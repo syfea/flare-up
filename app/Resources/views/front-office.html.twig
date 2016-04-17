@@ -1,0 +1,62 @@
+{# add navigation current nav mark #}
+{% set route = app.request.get('_route') %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Front-Office D&i{% endblock %}</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite'
+        '@AppBundle/Resources/public/css/materialize.css'
+        '@AppBundle/Resources/public/css/style.css'
+        '@AppBundle/Resources/public/css/font-awesome.min.css'
+        '@AppBundle/Resources/public/css/pgwslider.css'
+        '@AppBundle/Resources/public/css/camera.css'  %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
+    {% endblock %}
+</head>
+<body>
+    {% block header %}{% endblock %}
+    {% block flash %}
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    {% endblock %}
+    <div class="wrapper">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% block footer %}{% endblock footer %}
+{% block javascripts %}
+    {% javascripts
+    '@AppBundle/Resources/public/js/jquery-min.js'
+    '@AppBundle/Resources/public/js/materialize.js'
+    '@AppBundle/Resources/public/js/pgwslider.js'
+    '@AppBundle/Resources/public/js/jquery.touchSwipe.min.js'
+    '@AppBundle/Resources/public/js/jquery.liquid-slider.js'
+    '@AppBundle/Resources/public/js/camera.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        // get locale
+        locale = "{{ app.request.locale }}";
+        // get route
+        route = "{{ route }}";
+    </script>
+{% endblock %}
+
+</body>
+</html>
