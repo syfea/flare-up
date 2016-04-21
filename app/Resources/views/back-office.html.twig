@@ -10,81 +10,61 @@
     {% block stylesheets %}
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        {% stylesheets filter='cssrewrite'
-        '@AppBundle/Resources/public/css/lib/getmdl-select.min.css'
-        '@AppBundle/Resources/public/css/lib/nv.d3.min.css'
-        '@AppBundle/Resources/public/css/application.min.css' %}
+        {% stylesheets output="compiled/css/main.css" filter='cssrewrite'
+        'bundles/app/css/lib/getmdl-select.min.css'
+        'bundles/app/css/lib/nv.d3.min.css'
+        'bundles/app/css/application.min.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
 
     {% endblock %}
 </head>
 <body>
-<main class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+        {% block header %}{% endblock %}
 
-    {% block header %}{% endblock %}
+        {% block flash %}
 
-    {% block flash %}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
 
-        {% for flashMessage in app.session.flashbag.get('notice') %}
-            <div>
-                {{ flashMessage }}
-            </div>
-        {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
 
-        {% for flashMessage in app.session.flashbag.get('error') %}
-            <div>
-                {{ flashMessage }}
-            </div>
-        {% endfor %}
+        {% endblock %}
 
-    {% endblock %}
-
-    <div class="mdl-layout__drawer">
-        <header>darkboard</header>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-navigation__link--current" href="index.html">
-                <i class="material-icons" role="presentation">dashboard</i>
-                Dashboard
-            </a>
-            <a class="mdl-navigation__link" href="forms.html">
-                <i class="material-icons" role="presentation">person</i>
-                Account
-            </a>
-
-            <div class="mdl-layout-spacer"></div>
-            <a class="mdl-navigation__link" href="https://github.com/CreativeIT/getmdl-dashboard">
-                <i class="material-icons" role="presentation">link</i>
-                GitHub
-            </a>
-        </nav>
-    </div>
-
-    <!-- container content - BEGIN -->
-    <main class="mdl-layout__content">
-        <div class="mdl-grid mdl-grid--no-spacing">
-            <div class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
-                {% block content %}{% endblock %}
-            </div>
+        <div class="mdl-layout__drawer">
+            <header>darkboard</header>
+            {% block nav %}{% endblock %}
         </div>
-    </main>
-    <!-- container content - END -->
 
-    {% block footer %}{% endblock footer %}
+        <!-- container content - BEGIN -->
+        <main class="mdl-layout__content mdl-color--grey-100">
+            {% block content %}{% endblock %}
+        </main>
+        <!-- container content - END -->
 
-</div>
+        {% block footer %}{% endblock footer %}
+
+    </div>
 
 {% block javascripts %}
     {% javascripts
-    '@AppBundle/Resources/public/js/d3.min.js'
-    '@AppBundle/Resources/public/js/getmdl-select.min.js'
-    '@AppBundle/Resources/public/js/material.min.js'
-    '@AppBundle/Resources/public/js/nv.d3.min.js'
-    '@AppBundle/Resources/public/js/widgets/employer-form/employer-form.min.js'
-    '@AppBundle/Resources/public/js/widgets/line-chart/line-chart-nvd3.min.js'
-    '@AppBundle/Resources/public/js/widgets/pie-chart/pie-chart-nvd3.min.js'
-    '@AppBundle/Resources/public/js/widgets/table/table.min.js'
-    '@AppBundle/Resources/public/js/todo/todo.min.js' %}
+    'bundles/app/js/d3.min.js'
+    'bundles/app/js/getmdl-select.min.js'
+    'bundles/app/js/material.min.js'
+    'bundles/app/js/nv.d3.min.js'
+    'bundles/app/js/widgets/employer-form/employer-form.min.js'
+    'bundles/app/js/widgets/line-chart/line-chart-nvd3.min.js'
+    'bundles/app/js/widgets/pie-chart/pie-chart-nvd3.min.js'
+    'bundles/app/js/widgets/table/table.min.js'
+    'bundles/app/js/todo/todo.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
