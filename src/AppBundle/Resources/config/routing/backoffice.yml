@@ -3,3 +3,7 @@ app_backofficebundle_home:
     defaults: { _controller: "AppBundle:BackOffice:index" }
     requirements:
         _method: GET
+
+app_backofficebundle_myaccount:
+    pattern: /my-account
+    defaults: { _controller: "AppBundle:BackOffice:myaccount" }
