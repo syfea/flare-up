@@ -619,7 +619,7 @@ ul.pgwSlider > li span, .pgwSlider > .ps-list > li span
 /******************* 4.4 blockquote ************************/
 
 .blockquote {
-    background: url("../images/blockquote-bg.jpg");
+    background: url("images/blockquote-bg.jpg");
     color: #fff;
     font-size: 18px;
     padding: 25px 40px;

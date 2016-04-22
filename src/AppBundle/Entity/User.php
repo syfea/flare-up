@@ -95,6 +95,34 @@ class User extends BaseUser
     protected $phone;
 
     /**
+     * @var
+     *
+     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     */
+    protected $facebook;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     */
+    protected $twitter;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="skype", type="string", length=255, nullable=true)
+     */
+    protected $skype;
+
+    /**
+     * @var
+     *
+     * @ORM\Column(name="about_me", type="text", nullable=true)
+     */
+    protected $about_me;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -278,5 +306,69 @@ class User extends BaseUser
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * @param mixed $facebook
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param mixed $twitter
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param mixed $skype
+     */
+    public function setSkype($skype)
+    {
+        $this->skype = $skype;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkype()
+    {
+        return $this->skype;
+    }
+
+    /**
+     * @param mixed $about_me
+     */
+    public function setAboutMe($about_me)
+    {
+        $this->about_me = $about_me;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAboutMe()
+    {
+        return $this->about_me;
     }
 }
