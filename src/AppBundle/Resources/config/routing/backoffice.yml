@@ -14,3 +14,11 @@ app_backofficebundle_myaccount:
     pattern: /my-account
     defaults: { _controller: "AppBundle:BackOffice:myaccount" }
 
+
+app_backofficebundle_user_update:
+    pattern: /user/{id}/update
+    defaults: { _controller: "AppBundle:User:update" }
+
+app_backofficebundle_user_delete:
+    pattern: /user/{id}/delete
+    defaults: { _controller: "AppBundle:User:delete" }
