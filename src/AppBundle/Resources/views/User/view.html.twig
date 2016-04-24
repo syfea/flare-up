@@ -8,7 +8,8 @@
         </div>
 
         <div class="mdl-card__supporting-text">
-            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+            {{ form_errors(form) }}
                 <div class="form__article">
                     <h3>{{ 'Connexion data'|trans }}</h3>
 
@@ -21,6 +22,47 @@
                         <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             {{ form_widget(form.username, {'attr': {'class': 'mdl-textfield__input'}}) }}
                             {{ form_label(form.username, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                    </div>
+
+                    <span>Type of employment:</span>
+
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="partition-fulltime">
+                        <input type="radio" id="partition-fulltime" class="mdl-radio__button" name="roles[]" value="{{ 'ROLE_ADMIN' }}" checked/>
+                        <span class="mdl-radio__label">{{ 'Writter'|trans }}</span>
+                    </label>
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="partition-partTime">
+                        <input type="radio" id="partition-partTime" class="mdl-radio__button" name="roles[]" value="{{ 'ROLE_SUPER_ADMIN' }}" {% if user.roles[0] == 'ROLE_SUPER_ADMIN' %}checked="checked" {% endif %}/>
+                        <span class="mdl-radio__label">{{ 'Administrator'|trans }}</span>
+                    </label>
+
+                    {% if password %}
+                        <div class="mdl-grid">
+                            <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.plainPassword.first, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                            <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ form_widget(form.vignet, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                            {{ form_label(form.vignet, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <a href="{{ asset('uploads/vignet/' ~ user.vignet) }}">
+                                <img src="{{ asset('uploads/vignet/'~user.vignet|e) }}" class="vignet-bulle" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <span>Type of employment:</span>
                         </div>
                     </div>
 

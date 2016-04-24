@@ -14,6 +14,9 @@ app_backofficebundle_myaccount:
     pattern: /my-account
     defaults: { _controller: "AppBundle:BackOffice:myaccount" }
 
+app_backofficebundle_user_create:
+    pattern: /user/create
+    defaults: { _controller: "AppBundle:User:create" }
 
 app_backofficebundle_user_update:
     pattern: /user/{id}/update

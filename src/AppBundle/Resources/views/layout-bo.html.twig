@@ -139,7 +139,7 @@
 
             <div class="avatar-dropdown" id="icon">
                 <span>{{ app.user.username }}</span>
-                <img src="images/Icon_header.png">
+                <img src="{{ asset('uploads/vignet/'~app.user.vignet|e) }}" alt="" />
             </div>
 
             <ul class="mdl-menu mdl-list mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-shadow--2dp account-dropdown"
@@ -147,16 +147,18 @@
                 <li class="mdl-list__item mdl-list__item--two-line">
                     <span class="mdl-list__item-primary-content">
                         <span class="material-icons mdl-list__item-avatar"></span>
-                        <span>Luke</span>
-                        <span class="mdl-list__item-sub-title">Luke@skywalker.com</span>
+                        <span>{{ app.user.username }}</span>
+                        <span class="mdl-list__item-sub-title">{{ app.user.email }}</span>
                     </span>
                 </li>
                 <li class="list__item--border-top"></li>
                 <li class="mdl-menu__item mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">account_circle</i>
-                        My account
-                    </span>
+                    <a href="{{ path('app_backofficebundle_myaccount') }}">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon">account_circle</i>
+                            {{ 'My account'|trans }}
+                        </span>
+                    </a>
                 </li>
                 <li class="mdl-menu__item mdl-list__item">
                     <span class="mdl-list__item-primary-content">
@@ -181,10 +183,12 @@
                     </span>
                 </li>
                 <li class="mdl-menu__item mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon text-color--secondary">exit_to_app</i>
-                        Log out
-                    </span>
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        <span class="mdl-list__item-primary-content">
+                            <i class="material-icons mdl-list__item-icon text-color--secondary">exit_to_app</i>
+                            {{ 'Log out'|trans }}
+                        </span>
+                    </a>
                 </li>
             </ul>
 
@@ -196,7 +200,7 @@
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-shadow--2dp settings-dropdown"
                 for="more">
                 <li class="mdl-menu__item">
-                    <a href="{{ path('fos_user_security_logout') }}">{{ 'Déconnexion'|trans }}</a>
+                    <a href="{{ path('fos_user_security_logout') }}">{{ 'Log out'|trans }}</a>
                 </li>
             </ul>
         </div>
@@ -207,11 +211,11 @@
     <nav class="mdl-navigation">
         <a class="mdl-navigation__link mdl-navigation__link--current" href="{{ path('app_backofficebundle_home') }}">
             <i class="material-icons" role="presentation">dashboard</i>
-            Dashboard
+            {{ 'Dashboard'|trans }}
         </a>
         <a class="mdl-navigation__link" href="{{ path('app_backofficebundle_myaccount') }}">
             <i class="material-icons" role="presentation">person</i>
-            Account
+            {{ 'My account'|trans }}
         </a>
 
         {% if is_granted('ROLE_SUPER_ADMIN') %}

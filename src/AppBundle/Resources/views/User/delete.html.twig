@@ -1,0 +1,21 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block content %}
+<div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+    <div class="mdl-card__title">
+        <h2>{{ 'Do you want really delete this user ?'|trans }}</h2>
+        <div class="mdl-card__subtitle">{{ 'Delete user'|trans }}</div>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+
+        <div class="form__article">
+            <h3>{{ 'Connexion data'|trans }}</h3>
+            <form method="POST">
+                <input type="submit" name="{{ 'YES' | trans }}" value="{{ 'YES' | trans }}" class="" />
+                <input type="submit" name="{{ 'NO' | trans }}" value="{{ 'NO' | trans }}" class="" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -8,6 +8,9 @@ use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BackOfficeController extends Controller
 {
@@ -35,20 +38,36 @@ class BackOfficeController extends Controller
             ->add('twitter', 'text', ['required' => false])
             ->add('skype', 'text', ['required' => false])
             ->add('about_me', 'textarea')
+            ->add('vignet', 'file', array('data_class' => null, 'required' => false)
+            )
             ->getForm();
 
+        $fileName = $user->getVignet();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // $file stores the uploaded PDF file
+            /** @var UploadedFile $file */
+            $file = $user->getVignet();
+            if (!is_null($file)) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $brochuresDir = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/vignet';
+                $file->move($brochuresDir, $fileName);
+            }
+
+            $user->setRoles($request->request->get('roles'));
+            $user->setVignet($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            return new RedirectResponse($this->generateUrl('app_backofficebundle_myaccount'));
+            return new RedirectResponse($this->generateUrl('app_backofficebundle_home'));
         }
 
         return $this->render('AppBundle:Profile:myaccount.html.twig', array(
             'form' => $form->createView(),
+            'user' => $user
         ));
     }
 }

@@ -8,7 +8,7 @@
         </div>
 
         <div class="mdl-card__supporting-text">
-            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
                 <div class="form__article">
                     <h3>{{ 'Connexion data'|trans }}</h3>
 
@@ -21,6 +21,18 @@
                         <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             {{ form_widget(form.username, {'attr': {'class': 'mdl-textfield__input'}}) }}
                             {{ form_label(form.username, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ form_widget(form.vignet, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                            {{ form_label(form.vignet, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <a href="{{ asset('uploads/vignet/' ~ user.vignet) }}">
+                                <img src="{{ asset('uploads/vignet/'~user.vignet|e) }}" class="vignet-bulle" alt="" />
+                            </a>
                         </div>
                     </div>
 
@@ -41,11 +53,11 @@
                             {{ form_label(form.address, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
                         </div>
 
-                        <div class="mdl-cell mdl-cell--2-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <div class="mdl-cell mdl-cell--3-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             {{ form_widget(form.zip_code, {'attr': {'class': 'mdl-textfield__input'}}) }}
                             {{ form_label(form.zip_code, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
                         </div>
-                        <div class="mdl-cell mdl-cell--10-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <div class="mdl-cell mdl-cell--9-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             {{ form_widget(form.city, {'attr': {'class': 'mdl-textfield__input'}}) }}
                             {{ form_label(form.city, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
                         </div>

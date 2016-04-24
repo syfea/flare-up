@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -121,6 +122,18 @@ class User extends BaseUser
      * @ORM\Column(name="about_me", type="text", nullable=true)
      */
     protected $about_me;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\File
+     */
+    private $vignet;
+
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
 
     /**
      * Constructor
@@ -370,5 +383,17 @@ class User extends BaseUser
     public function getAboutMe()
     {
         return $this->about_me;
+    }
+
+    public function getVignet()
+    {
+        return $this->vignet;
+    }
+
+    public function setVignet($vignet)
+    {
+        $this->vignet = $vignet;
+
+        return $this;
     }
 }

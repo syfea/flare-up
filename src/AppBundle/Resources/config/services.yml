@@ -5,8 +5,8 @@ services:
         tags:
             - { name: form.type, alias: app_fos_user_profile }
 
-    user.form.register.type:
-        class: AppBundle\Form\Type\RegisterType
-        parent: fos_user.registration.form.type
-        tags:
-            - { name: form.type, alias: app_fos_user_register }
+#    user.form.register.type:
+#        class: AppBundle\Form\Type\RegisterType
+#        parent: fos_user.registration.form.type
+#        tags:
+#            - { name: form.type, alias: app_fos_user_register }
