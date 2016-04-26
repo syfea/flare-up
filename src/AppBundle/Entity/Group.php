@@ -69,4 +69,14 @@ class Group extends BaseGroup
     {
         return $this->users;
     }
+
+    /**
+     * Remove users
+     *
+     * @param \AppBundle\Entity\User $users
+     */
+    public function removeUser(\AppBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
 }

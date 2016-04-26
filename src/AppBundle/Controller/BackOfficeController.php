@@ -55,7 +55,6 @@ class BackOfficeController extends Controller
                 $file->move($brochuresDir, $fileName);
             }
 
-            $user->setRoles($request->request->get('roles'));
             $user->setVignet($fileName);
 
             $em = $this->getDoctrine()->getManager();

@@ -33,11 +33,15 @@ class User extends BaseUser
      *
      * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
      * @ORM\JoinTable(name="users_groups",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
      */
     protected $groups;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="user", cascade={"remove", "persist"})
+     */
+    protected $articles;
 
     /**
      * @var
@@ -395,5 +399,48 @@ class User extends BaseUser
         $this->vignet = $vignet;
 
         return $this;
+    }
+
+    /**
+     * Add articles
+     *
+     * @param \AppBundle\Entity\Article $articles
+     * @return User
+     */
+    public function addArticle(\AppBundle\Entity\Article $articles)
+    {
+        $this->articles[] = $articles;
+
+        return $this;
+    }
+
+    /**
+     * Remove articles
+     *
+     * @param \AppBundle\Entity\Article $articles
+     */
+    public function removeArticle(\AppBundle\Entity\Article $articles)
+    {
+        $this->articles->removeElement($articles);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * Set articles
+     *
+     * @param \Doctrine\Common\Collections\Collection $articles
+     */
+    public function setArticle(\Doctrine\Common\Collections\Collection $articles)
+    {
+        $this->articles = $articles;
     }
 }
