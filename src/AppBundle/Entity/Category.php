@@ -54,11 +54,17 @@ class Category
      */
     private $color;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="colorpicker", type="string", length=10, nullable=true)
+     */
+    private $colorpicker;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -81,7 +87,7 @@ class Category
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -104,7 +110,7 @@ class Category
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -127,7 +133,7 @@ class Category
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
@@ -150,7 +156,7 @@ class Category
     /**
      * Get color
      *
-     * @return string 
+     * @return string
      */
     public function getColor()
     {
@@ -190,7 +196,7 @@ class Category
     /**
      * Get articles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
@@ -215,5 +221,29 @@ class Category
     public function setArticle(\Doctrine\Common\Collections\Collection $articles)
     {
         $this->articles = $articles;
+    }
+
+    /**
+     * Set colorpicker
+     *
+     * @param string $colorpicker
+     *
+     * @return Category
+     */
+    public function setColorpicker($colorpicker)
+    {
+        $this->colorpicker = $colorpicker;
+
+        return $this;
+    }
+
+    /**
+     * Get colorpicker
+     *
+     * @return string
+     */
+    public function getColorpicker()
+    {
+        return $this->colorpicker;
     }
 }

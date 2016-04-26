@@ -1,0 +1,54 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block content %}
+<div class="mdl-grid mdl-grid--no-spacing">
+    <div class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+
+        <div class="mdl-cell mdl-cell--11-col-desktop mdl-cell--11-col-tablet mdl-cell--4-col-phone ">
+            <div class="mdl-card__title" style="position: relative">
+                <h2 class="mdl-card__title-text">{{ 'Category list' }}</h2>
+                <a href="{{ path('app_backofficebundle_category_create') }}" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored btn-floating" style="position: absolute; display: inline-block; z-index: 2; right: -7px; top: 40px">
+                    <i class="material-icons">add</i>
+                </a>
+            </div>
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp projects-table">
+                <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Name'|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Position'|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Color '|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Nb articles '|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Action '|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">
+                           {{ category.name }}
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            {{ category.position }}
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <span class="label label--mini " style="background-color: {{ category.color }}"></<span>
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            {{ category.articles|length }}
+                        </td>
+                        <td>
+                            <a href="{{ path('app_backofficebundle_category_update', {'id': category.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                <i class="material-icons">update</i>
+                            </a>
+                            <a href="{{ path('app_backofficebundle_category_delete', {'id': category.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

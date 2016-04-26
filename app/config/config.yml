@@ -98,3 +98,8 @@ assetic:
     bundles: []
     filters:
         cssrewrite: ~
+
+genemu_form:
+    recaptcha:
+        public_key:  `your public key is required`
+        private_key: `your private key is required`

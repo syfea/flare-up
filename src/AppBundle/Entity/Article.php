@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+    public function __construct()
+    {
+      $this->createdAt = new \Datetime();
+    }
+
     /**
      * @var int
      *
@@ -100,7 +105,7 @@ class Article
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -123,7 +128,7 @@ class Article
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -146,7 +151,7 @@ class Article
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -169,7 +174,7 @@ class Article
     /**
      * Get smallContent
      *
-     * @return string 
+     * @return string
      */
     public function getSmallContent()
     {
@@ -192,7 +197,7 @@ class Article
     /**
      * Get picture
      *
-     * @return string 
+     * @return string
      */
     public function getPicture()
     {
@@ -215,7 +220,7 @@ class Article
     /**
      * Get publishedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPublishedAt()
     {
@@ -238,7 +243,7 @@ class Article
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -261,7 +266,7 @@ class Article
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -284,7 +289,7 @@ class Article
     /**
      * Get countView
      *
-     * @return string 
+     * @return string
      */
     public function getCountView()
     {
@@ -307,7 +312,7 @@ class Article
     /**
      * Get averageRate
      *
-     * @return string 
+     * @return string
      */
     public function getAverageRate()
     {
@@ -330,7 +335,7 @@ class Article
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User 
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
@@ -353,7 +358,7 @@ class Article
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category 
+     * @return \AppBundle\Entity\Category
      */
     public function getCategory()
     {

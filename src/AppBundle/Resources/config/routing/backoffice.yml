@@ -1,27 +1,43 @@
 app_backofficebundle_home:
-    pattern: /
+    path: /
     defaults: { _controller: "AppBundle:BackOffice:index" }
     requirements:
         _method: GET
 
 app_backofficebundle_users:
-    pattern: /users
+    path: /users
     defaults: { _controller: "AppBundle:User:index" }
     requirements:
         _method: GET
 
 app_backofficebundle_myaccount:
-    pattern: /my-account
+    path: /my-account
     defaults: { _controller: "AppBundle:BackOffice:myaccount" }
 
 app_backofficebundle_user_create:
-    pattern: /user/create
+    path: /user/create
     defaults: { _controller: "AppBundle:User:create" }
 
 app_backofficebundle_user_update:
-    pattern: /user/{id}/update
+    path: /user/{id}/update
     defaults: { _controller: "AppBundle:User:update" }
 
 app_backofficebundle_user_delete:
-    pattern: /user/{id}/delete
+    path: /user/{id}/delete
     defaults: { _controller: "AppBundle:User:delete" }
+
+app_backofficebundle_category_index:
+    path: /categories
+    defaults: { _controller: "AppBundle:Category:index" }
+
+app_backofficebundle_category_create:
+    path: /category/create
+    defaults: { _controller: "AppBundle:Category:create" }
+
+app_backofficebundle_category_update:
+    path: /category/{id}/update
+    defaults: { _controller: "AppBundle:Category:update" }
+
+app_backofficebundle_category_delete:
+    path: /category/{id}/delete
+    defaults: { _controller: "AppBundle:Category:delete" }

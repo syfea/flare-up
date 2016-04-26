@@ -15,10 +15,12 @@ class UserController extends Controller
 {
     public function indexAction()
     {
-        $userManager = $this->get('fos_user.user_manager');
-        $users = $userManager->findUsers();
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            $userManager = $this->get('fos_user.user_manager');
+            $users = $userManager->findUsers();
 
-        return $this->render('AppBundle:User:index.html.twig', array('users' => $users));
+            return $this->render('AppBundle:User:index.html.twig', array('users' => $users));
+        }
     }
 
     public function createAction(Request $request)
@@ -66,7 +68,7 @@ class UserController extends Controller
                     $file->move($brochuresDir, $fileName);
                 }
                 $user->setRoles($request->request->get('roles'));
-                
+
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
@@ -142,10 +144,9 @@ class UserController extends Controller
     public function deleteAction(User $user, Request $request)
     {
         if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
-            return $this->render('AppBundle:User:delete.html.twig', array('user' => $user));
+            if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+                return $this->render('AppBundle:User:delete.html.twig', array('user' => $user));
+            }
         }
-
-
-
     }
 }
