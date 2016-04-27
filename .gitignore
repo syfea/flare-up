@@ -25,6 +25,9 @@
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
+/web/compiled/
+/web/css/
+/web/js/
 
 # Assets managed by Bower
 /web/assets/vendor/

@@ -100,6 +100,7 @@ assetic:
         cssrewrite: ~
 
 genemu_form:
-    recaptcha:
-        public_key:  `your public key is required`
-        private_key: `your private key is required`
+    tinymce:
+        script_url: '/bundles/app/js/tinymce/jquery.tinymce.min.js'
+        enabled: true
+        theme:   advanced

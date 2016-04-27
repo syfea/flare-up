@@ -57,6 +57,7 @@
 
 {% block javascripts %}
     {% javascripts output="compiled/js/main.js"
+    'bundles/app/js/jquery-1.12.3.js'
     'bundles/app/js/d3.min.js'
     'bundles/app/js/getmdl-select.min.js'
     'bundles/app/js/material.min.js'
@@ -65,11 +66,9 @@
     'bundles/app/js/widgets/line-chart/line-chart-nvd3.min.js'
     'bundles/app/js/widgets/pie-chart/pie-chart-nvd3.min.js'
     'bundles/app/js/widgets/table/table.min.js'
-    'bundles/app/js/todo/todo.min.js' %}
+    'bundles/app/js/todo/todo.min.js'%}
     <script src="{{ asset_url }}"></script>
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     {% endjavascripts %}
-
     <script>
         // get locale
         locale = "{{ app.request.locale }}";

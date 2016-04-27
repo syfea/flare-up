@@ -1,0 +1,50 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/tinymce/tinymce.min.js') }}"></script>
+    {{ form_javascript(form) }}
+{% endblock %}
+
+{% block content %}
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>{{ 'Article'|trans }}</h2>
+            <div class="mdl-card__subtitle">{{ 'Please complete the form'|trans }}</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+            {{ form_errors(form) }}
+                <div class="form__article">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ form_widget(form.title, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                            {{ form_label(form.title, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ form_widget(form.smallContent, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                            {{ form_label(form.smallContent, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ form_widget(form.content, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                            {{ form_label(form.content, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form__action">
+                        {{ form_widget(form.save, {'attr': {'class': 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored', 'id': 'submit_button'}}) }}
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

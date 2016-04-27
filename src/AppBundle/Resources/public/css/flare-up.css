@@ -42,4 +42,8 @@
     text-align: right; }
 .mdl-dialog__content {
     padding: 20px 24px 24px 24px;
-    color: rgba(0,0,0, 0.54); }
+    color: rgba(0,0,0, 0.54);
+}
+.colorpicker {
+    z-index: 1;
+}

@@ -41,3 +41,19 @@ app_backofficebundle_category_update:
 app_backofficebundle_category_delete:
     path: /category/{id}/delete
     defaults: { _controller: "AppBundle:Category:delete" }
+
+app_backofficebundle_article_index:
+    path: /articles
+    defaults: { _controller: "AppBundle:Article:index" }
+
+app_backofficebundle_article_create:
+    path: /article/create
+    defaults: { _controller: "AppBundle:Article:create" }
+
+app_backofficebundle_article_update:
+    path: /article/{id}/update
+    defaults: { _controller: "AppBundle:Article:update" }
+
+app_backofficebundle_article_delete:
+    path: /article/{id}/delete
+    defaults: { _controller: "AppBundle:Article:delete" }
