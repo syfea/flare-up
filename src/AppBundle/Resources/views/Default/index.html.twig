@@ -1,43 +1,10 @@
 {% extends 'AppBundle::layout-fo.html.twig' %}
 
 {% block content %}
-
         <div class="row">
             <div class="col l9 col m12 col s12">
-
                 <!-- News Slider -->
-                <div class="pgwSlider wide"><div style="height: 540px;" class="ps-current"><ul><li style="opacity: 1; z-index: 2; display: list-item;" class="elt_1"><a href="javascript:void(0);"><img src="images/hor-news2.jpg" alt=" <a href=" javascript:void(0);"="">Netanyachu's Likud Party Sweeps to Israel election victory "&gt;</a></li><li style="opacity: 0; display: none; z-index: 1;" class="elt_2"><a href="javascript:void(0);"><img src="images/hor-news3.jpg" alt="<a href=" javascript:void(0);"=""> Party,s Over for frat after ski-resort rampage "&gt;</a></li><li style="opacity: 0; display: none; z-index: 1;" class="elt_3"><a href="javascript:void(0);"><img src="images/hor-news4.jpg" alt="<a href=" javascript:void(0);"=""> Reeling Fashion Police gets Sidelined "&gt;</a></li></ul><span style="display: inline;" class="ps-caption"><div class="news-time"><i class="fa fa-clock-o"></i>21 Mins Ago</div><h2> <a href="javascript:void(0);">Netanyachu's Likud Party Sweeps to Israel election victory</a> </h2><p>Nullam Quies ante. rhoncus augue pharetra sed. Mauris tincidunt, nunc vitae tristique porta, nisi arcu pulvinar enim, in pretium mi ex quis felis. Integer pharetra sit amet ligula sit amet porttitor. Praesent condimentum augue ut ornare tempor. </p></span></div><ul class="ps-list">
-                        <li style="cursor: pointer; opacity: 1; width: 33.3333%; height: 180px;" class="elt_1">
-                            <!-- News Slider Image -->
-                            <img src="images/hor-news2.jpg" alt="News Slider 1"><span> <a href="javascript:void(0);">Netanyachu's Likud Party Sweeps to Israel election victory</a> </span>
-                            <!-- News Slider Content -->
-                            <div class="news-content">
-                                <div class="news-time"><small>21 Mins Ago</small></div>
-                                <div class="news-title big"><h2> <a href="javascript:void(0);">Netanyachu's Likud Party Sweeps to Israel election victory</a> </h2></div>
-                                <p class="news-detail">Nullam Quies ante. rhoncus augue pharetra sed. Mauris tincidunt, nunc vitae tristique porta, nisi arcu pulvinar enim, in pretium mi ex quis felis. Integer pharetra sit amet ligula sit amet porttitor. Praesent condimentum augue ut ornare tempor. </p>
-                            </div>
-                        </li>
-                        <li style="cursor: pointer; width: 33.3333%; height: 180px; opacity: 0.6;" class="elt_2">
-                            <!-- News Slider Image -->
-                            <img src="images/hor-news3.jpg" alt="News Slider 2"><span><a href="javascript:void(0);"> Party,s Over for frat after ski-resort rampage</a> </span>
-                            <!-- News Slider Content -->
-                            <div class="news-content">
-                                <div class="news-time"><small>21 Mins Ago</small></div>
-                                <div class="news-title big"><h2><a href="javascript:void(0);"> Party,s Over for frat after ski-resort rampage</a> </h2></div>
-                                <p class="news-detail">Nullam Quies ante. rhoncus augue pharetra sed. Mauris tincidunt, nunc vitae tristique porta, nisi arcu pulvinar enim, in pretium mi ex quis felis. Integer pharetra sit amet ligula sit amet porttitor. Praesent condimentum augue ut ornare tempor. </p>
-                            </div>
-                        </li>
-                        <li style="cursor: pointer; width: 33.3333%; height: 180px; opacity: 0.6;" class="elt_3">
-                            <!-- News Slider -->
-                            <img src="images/hor-news4.jpg" alt="News Slider 3"><span><a href="javascript:void(0);"> Reeling Fashion Police gets Sidelined</a> </span>
-                            <!-- News Slider Content -->
-                            <div class="news-content">
-                                <div class="news-time"><small>21 Mins Ago</small></div>
-                                <div class="news-title big"><h2><a href="javascript:void(0);"> Reeling Fashion Police gets Sidelined</a> </h2></div>
-                                <p class="news-detail">Nullam Quies ante. rhoncus augue pharetra sed. Mauris tincidunt, nunc vitae tristique porta, nisi arcu pulvinar enim, in pretium mi ex quis felis. Integer pharetra sit amet ligula sit amet porttitor. Praesent condimentum augue ut ornare tempor. </p>
-                            </div>
-                        </li>
-                    </ul></div>
+                {{ render(controller('AppBundle:Default:slider')) }}
             </div>
 
             <div class="col l3 col m12 col s12">

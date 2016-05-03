@@ -9,11 +9,13 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     {% block stylesheets %}
         {% stylesheets filter='cssrewrite'
+        '@AppBundle/Resources/public/css/materialdesignicons.css'
         '@AppBundle/Resources/public/css/materialize.css'
         '@AppBundle/Resources/public/css/style.css'
         '@AppBundle/Resources/public/css/font-awesome.min.css'
         '@AppBundle/Resources/public/css/pgwslider.css'
-        '@AppBundle/Resources/public/css/camera.css'  %}
+        '@AppBundle/Resources/public/css/camera.css'
+        '@AppBundle/Resources/public/css/flare-up.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -34,9 +36,11 @@
             </div>
         {% endfor %}
     {% endblock %}
-    <div class="wrapper">
-        <div class="container">
-            {% block content %}{% endblock %}
+    <div id="contain">
+        <div class="wrapper">
+            <div class="container">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
     {% block footer %}{% endblock footer %}
@@ -47,7 +51,7 @@
     '@AppBundle/Resources/public/js/pgwslider.js'
     '@AppBundle/Resources/public/js/jquery.touchSwipe.min.js'
     '@AppBundle/Resources/public/js/jquery.liquid-slider.js'
-    '@AppBundle/Resources/public/js/camera.js' %}
+    '@AppBundle/Resources/public/js/init-front.js'%}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script>
@@ -55,6 +59,10 @@
         locale = "{{ app.request.locale }}";
         // get route
         route = "{{ route }}";
+
+        $('.image-news .mdi-content-clear').on('click', function() {
+            $('.image-news .content').remove();
+        });
     </script>
 {% endblock %}
 

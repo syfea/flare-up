@@ -100,7 +100,7 @@ class Article
      * @ORM\Column(name="averageRate", type="decimal", precision=3, scale=2, nullable=true)
      */
     private $averageRate;
-
+    
 
     /**
      * Get id

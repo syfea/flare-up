@@ -6,6 +6,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\ChoiceList;
+use AppBundle\Entity\Category;
 
 class ArticleType extends AbstractType
 {
@@ -15,6 +16,11 @@ class ArticleType extends AbstractType
         ->add('title', 'text')
         ->add('content', 'genemu_tinymce')
         ->add('smallContent', 'text')
+        ->add('picture', 'file', array('data_class' => null, 'required' => false))
+        ->add('category', 'entity', array(
+            'class' => 'AppBundle:Category',
+            'property' => 'name',
+        ))
         ->add('save', 'submit');
   }
 

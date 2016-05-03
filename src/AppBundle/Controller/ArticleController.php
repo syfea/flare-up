@@ -34,6 +34,15 @@ class ArticleController extends Controller
 
             $form->handleRequest($request);
             if ($form->isValid()) {
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                $article->setUser($user);
+                /** @var UploadedFile $file */
+                $file = $article->getPicture();
+                if (!is_null($file)) {
+                    $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                    $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/article';
+                    $file->move($brochuresDir, $fileName);
+                }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);
                 $em->flush();
@@ -54,9 +63,19 @@ class ArticleController extends Controller
         if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
             $form = $this->get('form.factory')->create(new ArticleType(), $article);
 
+            $fileName = $article->getPicture();
             $form->handleRequest($request);
             if ($form->isValid()) {
-                $article->updatedAt = new \Datetime();
+                /** @var UploadedFile $file */
+                $file = $article->getPicture();
+                if (!is_null($file)) {
+                    $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                    $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/article';
+                    $file->move($brochuresDir, $fileName);
+                }
+
+                $article->setPicture($fileName);
+                $article->setUpdatedAt(new \Datetime());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);
                 $em->flush();

@@ -23,4 +23,26 @@ class DefaultController extends Controller
     {
         return new Response('<html><body>Admin page!</body></html>');
     }
+
+    public function navbarAction()
+    {
+        $categories = $this->getDoctrine()
+            ->getRepository('AppBundle:Category')
+            ->findAll();
+        
+        return $this->render('AppBundle:Default:navbar.html.twig', array(
+            'categories' => $categories
+        ));
+    }
+
+    public function sliderAction()
+    {
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->findAll();
+
+        return $this->render('AppBundle:Default:slider.html.twig', array(
+            'articles' => $articles
+        ));
+    }
 }

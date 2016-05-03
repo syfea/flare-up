@@ -47,3 +47,37 @@
 .colorpicker {
     z-index: 1;
 }
+
+
+/* ---------------------------------------------- */
+.header-top, header.header-fix .header-top {
+    background-color: #424242;
+}
+header, header.header-fix {
+    background-color: #4e4e4e
+}
+#contain {
+    background: url(../../../bundles/app/images/Dark_background_1920x1080.png) center 60px no-repeat;
+    background-attachment:fixed;
+}
+.wrapper {
+    background: transparent;
+    bottom: 40px;
+}
+.logo {
+    padding: 15px 0;
+}
+header.header-fix img {
+    height: 63px;
+}
+header.header-fix nav {
+    position: relative;
+    top: -20px;
+}
+header.header-fix .nav-wrapper.menu-category a {
+    color: #ffffff;
+    font-size: 14px;
+}
+.header-fix .logo {
+    padding: 5px 0 20px 0;
+}
