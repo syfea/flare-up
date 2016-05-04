@@ -12,4 +12,34 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
+    public function getLastPosted($limit = 3)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.publishedAt <= :publishedAt')
+            ->setParameter('publishedAt', date('Y-m-d'))
+            ->addOrderBy('a.publishedAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()->getResult();
+    }
+
+    public function getTopStories($limit = 3)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.publishedAt <= :publishedAt')
+            ->setParameter('publishedAt', date('Y-m-d'))
+            ->addOrderBy('a.countView', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()->getResult();
+    }
+
+    public function getArticleList($limit = 8)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.publishedAt <= :publishedAt')
+            ->setParameter('publishedAt', date('Y-m-d'))
+            ->addOrderBy('a.publishedAt', 'DESC')
+            ->setFirstResult(4)
+            ->setMaxResults($limit)
+            ->getQuery()->getResult();
+    }
 }

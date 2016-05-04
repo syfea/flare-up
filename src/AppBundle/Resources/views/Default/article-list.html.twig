@@ -1,0 +1,45 @@
+{% for article in articles|slice(0, 2) %}
+    <div class="col l3 col m6 col s12">
+        <!-- Vertical News Box -->
+        <div class="news vertical z-depth-1">
+            <!-- News Image -->
+            <div class="news-image">
+                <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="news Image!!!!!!!!!!!!!!!!!">
+            </div>
+            <!-- News Description -->
+            <div class="news-description">
+                <div class="news-time">
+                    <i class="fa fa-clock-o"></i> 9 min ago
+                </div>
+                <div class="news-title"><a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna leo metus vel magna. </a></div>
+                <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum Integer. </p></div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="col l6 col m12 col s12">
+    <div class="z-depth-1">
+        {% for article in articles|slice(2, 4) %}
+            <!--  Horizontal News Box -->
+            <div class="news horizontal">
+                <div class="col l4 col m4 col s12 no-padding">
+                    <!-- News Image -->
+                    <div class="news-image">
+                        <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="news Image --------------------------">
+                    </div>
+                </div>
+                <div class="col l8 col m8 col s12 no-padding">
+                    <!-- News Description -->
+                    <div class="news-description">
+                        <div class="news-time">
+                            <i class="fa fa-clock-o"></i> 9 min ago
+                        </div>
+                        <div class="news-title"><a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna. </a></div>
+                        <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. Mauris bibendum semper quam.</p></div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

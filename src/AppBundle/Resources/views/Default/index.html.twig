@@ -9,113 +9,12 @@
 
             <div class="col l3 col m12 col s12">
                 <!-- Sidebar -->
-                <div class="sidbar-box z-depth-1">
-                    <div class="sidebar-title">Top Stories</div>
-                    <ul>
-                        <li>
-                            <a href="javascript:void(0);"> 5 Things you Need To Know Wenesday</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">Auti-austeriry Protest Turns Violent In Germany</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">Flying Cars: The near Future, From SXSW</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">No end in Signt for California Drought</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">Boehner Coup by Conservatives is Unlikely</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">Market Reaction to fed rate talk: 3 scenarious</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">fed deny visas for 'Specialized' foreign workers</a>
-                        </li>
-                    </ul>
-                </div>
+                {{ render(controller('AppBundle:Default:topStories')) }}
             </div>
         </div>
 
         <div class="row">
-            <div class="col l3 col m6 col s12">
-                <!-- Vertical News Box -->
-                <div class="news vertical z-depth-1">
-                    <!-- News Image -->
-                    <div class="news-image">
-                        <img class="responsive-img" src="images/small-news1.jpg" alt="news Image">
-                    </div>
-                    <!-- News Description -->
-                    <div class="news-description">
-                        <div class="news-time">
-                            <i class="fa fa-clock-o"></i> 9 min ago
-                        </div>
-                        <div class="news-title"><a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna leo metus vel magna. </a></div>
-                        <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum Integer. </p></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col l3 col m6 col s12">
-                <!-- Vertical News Box -->
-                <div class="news vertical z-depth-1">
-                    <!-- News Image -->
-                    <div class="news-image">
-                        <img class="responsive-img" src="images/small-news2.jpg" alt="news Image">
-                    </div>
-                    <!-- News Description -->
-                    <div class="news-description">
-                        <div class="news-time">
-                            <i class="fa fa-clock-o"></i> 9 min ago
-                        </div>
-                        <div class="news-title"> <a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna. </a></div>
-                        <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus In dapibus ac tellus non rutrum</p></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col l6 col m12 col s12">
-                <div class="z-depth-1">
-                    <!--  Horizontal News Box -->
-                    <div class="news horizontal">
-                        <div class="col l4 col m4 col s12 no-padding">
-                            <!-- News Image -->
-                            <div class="news-image">
-                                <img class="responsive-img" src="images/hor-news1.jpg" alt="news Image">
-                            </div>
-                        </div>
-                        <div class="col l8 col m8 col s12 no-padding">
-                            <!-- News Description -->
-                            <div class="news-description">
-                                <div class="news-time">
-                                    <i class="fa fa-clock-o"></i> 9 min ago
-                                </div>
-                                <div class="news-title"><a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna. </a></div>
-                                <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. Mauris bibendum semper quam.</p></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Horizontal News Box -->
-                    <div class="news horizontal no-border">
-                        <div class="col l4 col m4 col s12 no-padding">
-                            <!-- News Image -->
-                            <div class="news-image">
-                                <img class="responsive-img" src="images/hor-news2.jpg" alt="news Image">
-                            </div>
-                        </div>
-                        <div class="col l8 col m8 col s12 no-padding">
-                            <!-- News Description -->
-                            <div class="news-description">
-                                <div class="news-time">
-                                    <i class="fa fa-clock-o"></i> 9 min ago
-                                </div>
-                                <div class="news-title"><a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna.</a></div>
-                                <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus. Mauris bibendum semper quam.</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{ render(controller('AppBundle:Default:articleList')) }}
         </div>
 
         <div class="row">

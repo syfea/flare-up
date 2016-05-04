@@ -39,10 +39,33 @@ class DefaultController extends Controller
     {
         $articles = $this->getDoctrine()
             ->getRepository('AppBundle:Article')
-            ->findAll();
+            ->getLastPosted();
 
         return $this->render('AppBundle:Default:slider.html.twig', array(
             'articles' => $articles
         ));
     }
+
+    public function topStoriesAction()
+    {
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->getTopStories();
+
+        return $this->render('AppBundle:Default:top-stories.html.twig', array(
+            'articles' => $articles
+        ));
+    }
+
+    public function articleListAction()
+    {
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->getArticleList();
+
+        return $this->render('AppBundle:Default:article-list.html.twig', array(
+            'articles' => $articles
+        ));
+    }
+
 }
