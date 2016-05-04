@@ -1,0 +1,17 @@
+<div class="sidbar-box z-depth-1">
+    <div class="sidebar-title">{{ 'Top Stories'|trans }}</div>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <a href="javascript:void(0);"> {{ article.title }}</a>
+            </li>
+        {%  endfor %}
+    </ul>
+</div>
+<br>
+<div class="sidbar-box z-depth-1">
+    <div class="sidebar-title">{{ 'Newsletter'|trans }}</div>
+    <form>
+        <input type="text" value="" placeholder="{{ 'Your email'|trans }}">
+    </form>
+</div>
