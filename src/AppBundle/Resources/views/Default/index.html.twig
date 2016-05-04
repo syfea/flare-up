@@ -9,7 +9,7 @@
 
             <div class="col l3 col m12 col s12">
                 <!-- Sidebar -->
-                {{ render(controller('AppBundle:Default:topStories')) }}
+                {#{{ render(controller('AppBundle:Default:topStories')) }}#}
             </div>
         </div>
 
@@ -18,86 +18,19 @@
         </div>
 
         <div class="row">
-            <div class="col l3 col m6 col s12">
-                <!--  Vertical News Box -->
-                <div class="news vertical z-depth-1">
-                    <!-- News Image -->
-                    <div class="news-image">
-                        <img class="responsive-img" src="images/money1.jpg" alt="news Image">
-                    </div>
-                    <!-- News Description -->
-                    <div class="news-description">
-                        <div class="news-time">
-                            <i class="fa fa-clock-o"></i> 9 min ago
-                        </div>
-                        <div class="news-title"><a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur. </a></div>
-                        <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus.</p></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col l3 col m6 col s12">
-                <!-- Vertical News Box -->
-                <div class="news vertical z-depth-1">
-                    <!-- News Image -->
-                    <div class="news-image">
-                        <img class="responsive-img" src="images/life4.jpg" alt="news Image">
-                    </div>
-                    <!-- News Description -->
-                    <div class="news-description">
-                        <div class="news-time">
-                            <i class="fa fa-clock-o"></i> 9 min ago
-                        </div>
-                        <div class="news-title"> <a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna. </a></div>
-                        <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus In dapibus ac tellus non rutrum</p></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col l3 col m6 col s12">
-                <!-- Vertical News Box -->
-                <div class="news vertical z-depth-1">
-                    <!-- News Image -->
-                    <div class="news-image">
-                        <img class="responsive-img" src="images/small-news3.jpg" alt="news Image">
-                    </div>
-                    <!-- News Description -->
-                    <div class="news-description">
-                        <div class="news-time">
-                            <i class="fa fa-clock-o"></i> 9 min ago
-                        </div>
-                        <div class="news-title"><a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna leo metus vel magna. </a></div>
-                        <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum Integer.</p></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col l3 col m6 col s12">
-                <!--  Vertical News Box -->
-                <div class="news vertical z-depth-1">
-                    <!-- News Image -->
-                    <div class="news-image">
-                        <img class="responsive-img" src="images/travel4.jpg" alt="news Image">
-                    </div>
-                    <!-- News Description -->
-                    <div class="news-description">
-                        <div class="news-time">
-                            <i class="fa fa-clock-o"></i> 9 min ago
-                        </div>
-                        <div class="news-title"> <a href="javascript:void(0);"> Nam erat nulla, auctor a eros vitae, hendrerit efficitur magna. </a></div>
-                        <div class="news-content"><p>et bibendum leo metus vel magna. In dapibus ac tellus non rutrum. Integer ut nisi risus In dapibus ac tellus non rutrum</p></div>
-                    </div>
-                </div>
-            </div>
+            {{ render(controller('AppBundle:Default:articleListInline')) }}
         </div>
 
         <div class="row">
             <div class="col l12 col m12 col s12">
                 <!-- blockquote -->
-                <div class="blockquote z-depth-1">
-                    <span>Hot News:</span> Nullam Quies ante. rhoncus augue pharetra sed. Mauris tincidunt, nunc vitae tristique porta, nisi arcu pulvinar enim, in pretium mi ex quis felis. Integer pharetra sit amet ligula sit amet porttitor. Praesent condimentum augue ut ornare tempor.
+                <div class="blockquote-breaking z-depth-1">
+                    <span>{{ 'Hot News'|trans }}:</span> Nullam Quies ante. rhoncus augue pharetra sed. Mauris tincidunt, nunc vitae tristique porta, nisi arcu pulvinar enim, in pretium mi ex quis felis. Integer pharetra sit amet ligula sit amet porttitor. Praesent condimentum augue ut ornare tempor.
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        {#<div class="row">
             <div class="col l6 col m6 col s12">
                 <!-- News Blog Box -->
                 <div class="news-blog z-depth-1">
@@ -158,9 +91,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>#}
 
-        <div class="row">
+       {# <div class="row">
             <div class="col l6 col m6 col s12">
                 <!-- News Blog Solid Box -->
                 <div class="news-blog solid z-depth-1">
@@ -215,9 +148,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>#}
 
-        <div class="row">
+        {#<div class="row">
             <div class="col l6 col m12 col s12">
                 <div class="z-depth-1">
                     <!-- Horizontal News Box -->
@@ -297,9 +230,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>#}
 
-        <section class="section">
+        {#<section class="section">
             <div class="row">
                 <div class="col l3 col m6 col s12">
                     <div class="col l12 col m12 col s12 no-padding">
@@ -396,7 +329,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>#}
 
         <section class="section">
             <div class="row">
@@ -723,5 +656,4 @@
                 </div>
             </div>
         </section>
-
 {% endblock %}

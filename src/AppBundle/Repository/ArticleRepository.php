@@ -38,7 +38,7 @@ class ArticleRepository extends EntityRepository
             ->where('a.publishedAt <= :publishedAt')
             ->setParameter('publishedAt', date('Y-m-d'))
             ->addOrderBy('a.publishedAt', 'DESC')
-            ->setFirstResult(4)
+            ->setFirstResult(3)
             ->setMaxResults($limit)
             ->getQuery()->getResult();
     }

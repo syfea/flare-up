@@ -1,0 +1,7 @@
+{% for category in categories %}
+    <ul style="border-top: 4px solid #{{ category.color }}">
+        <li class="footer-title">
+            <a href="javascript:void(0);">{{ category.name }}</a>
+        </li>
+    </ul>
+{% endfor %}
