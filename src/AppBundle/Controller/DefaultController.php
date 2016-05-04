@@ -29,7 +29,7 @@ class DefaultController extends Controller
         $categories = $this->getDoctrine()
             ->getRepository('AppBundle:Category')
             ->findAll();
-        
+
         return $this->render('AppBundle:Default:navbar.html.twig', array(
             'categories' => $categories
         ));
@@ -68,4 +68,25 @@ class DefaultController extends Controller
         ));
     }
 
+    public function articleListInlineAction()
+    {
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->getArticleList();
+
+        return $this->render('AppBundle:Default:article-list-inline.html.twig', array(
+            'articles' => $articles
+        ));
+    }
+
+    public function footer1Action()
+    {
+        $categories = $this->getDoctrine()
+            ->getRepository('AppBundle:Category')
+            ->findAll();
+
+        return $this->render('AppBundle:Default:footer1.html.twig', array(
+            'categories' => $categories
+        ));
+    }
 }

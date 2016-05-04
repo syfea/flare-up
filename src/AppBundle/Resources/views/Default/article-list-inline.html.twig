@@ -1,0 +1,20 @@
+{% for article in articles|slice(4, 4) %}
+    <div class="col l3 col m6 col s12">
+        <!--  Vertical News Box -->
+        <div class="news vertical z-depth-1">
+            <span class="label-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</span>
+            <!-- News Image -->
+            <div class="news-image">
+                <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
+            </div>
+            <!-- News Description -->
+            <div class="news-description">
+                <div class="news-time">
+                    <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y h:i') }}
+                </div>
+                <div class="news-title"><a href="javascript:void({{ article.id }});">{{ article.title | striptags | slice(0, 55) }}</a></div>
+                <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 110) }} [...]</p></div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
