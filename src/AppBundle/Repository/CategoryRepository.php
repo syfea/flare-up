@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    public function getNavBar()
+    {
+        return $this->createQueryBuilder('c')
+            ->addOrderBy('c.position', 'ASC')
+            ->getQuery()->getResult();
+    }
 }

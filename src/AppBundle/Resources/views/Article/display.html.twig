@@ -1,0 +1,64 @@
+{% extends 'AppBundle::layout-fo.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col l9 col m12">
+            <div class="news-single style-3 z-depth-1">
+                <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
+                <div class="content">
+                    <div class="news-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</div>
+                    <div class="news-title">
+                        {{ article.title }}
+                    </div>
+                    <div class="description">
+                        {{ article.content }}
+                    </div>
+                    <div class="news-detail">
+                        <span class="news-by"><a href="javascript:void(0);">{{ article.user.username }}</a></span>
+                        <span class="news-month"><a href="javascript:void(0);"><i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y h:i') }}</a></span>
+                        <span class="news-comment"><a href="javascript:void(0);"><i class="mdi-communication-messenger"></i> 42</a></span>
+                        <span class="news-view"><a href="javascript:void(0);"><i class="fa fa-eye"></i> {{ article.countView }}</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col l3 col m12">
+            <div class="client-box z-depth-1">
+                <img class="circle responsive-img" src="{{ asset('uploads/vignet/'~article.user.vignet|e) }}" alt="News Image">
+                <div class="client-name">
+                    {{ article.user.username }}
+                </div>
+
+                <div class="social-icon">
+                    <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                    <a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                    <a href="javascript:void(0);"><i class="fa fa-instagram"></i></a>
+                </div>
+                <a class="all-post" href="javascript:void(0);">{{ 'All post'|trans }}</a>
+            </div>
+
+            <div class="advertis z-depth-1">
+                <div class="sidbar-box left-align">
+                    <div class="sidebar-title">Recent Post</div>
+                    <div class="news-sidebar">
+                        {% for userArticle in userArticles %}
+                        <div class="news-box">
+                            <div class="image">
+                                <img alt="news Image" src="{{ asset('uploads/article/'~userArticle.picture|e) }}">
+                            </div>
+                            <div class="news-detail">
+                                <div class="news-category">
+                                    <p>{{ userArticle.publishedAt|date('d M Y h:i') }}</p>
+                                </div>
+                                <div class="news-title">
+                                    <a href="{{ userArticle.url }}">{{ userArticle.title }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

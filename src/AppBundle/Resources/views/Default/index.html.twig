@@ -8,8 +8,7 @@
             </div>
 
             <div class="col l3 col m12 col s12">
-                <!-- Sidebar -->
-                {#{{ render(controller('AppBundle:Default:topStories')) }}#}
+                {{ render(controller('AppBundle:Subscriber:index', {'request': app.request})) }}
             </div>
         </div>
 
@@ -552,107 +551,7 @@
                     </div>
                 </div>
                 <div class="col l3 col m12 col s12">
-                    <!-- News Sidebar -->
-                    <div class="sidbar-box z-depth-1">
-                        <div class="sidebar-title">New Stories</div>
-                        <div class="news-sidebar">
-                            <div class="news-box">
-                                <!-- News Sidebar Image -->
-                                <div class="image">
-                                    <img src="images/hor-news1.jpg" alt="news Image">
-                                </div>
-                                <!-- News Sidebar Detail -->
-                                <div class="news-detail">
-                                    <div class="news-category">
-                                        <a href="javascript:void(0);">World | 21 min ago </a>
-                                    </div>
-                                    <div class="news-title">
-                                        <a href="javascript:void(0);"> 5 things you need to know wenesday</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="news-box">
-                                <!-- News Sidebar Image -->
-                                <div class="image">
-                                    <img src="images/hor-news2.jpg" alt="news Image">
-                                </div>
-                                <!-- News Sidebar Detail -->
-                                <div class="news-detail">
-                                    <div class="news-category">
-                                        <a href="javascript:void(0);">Tech | 21 min ago </a>
-                                    </div>
-                                    <div class="news-title">
-                                        <a href="javascript:void(0);"> Auti-austeriry Protest Turns Violent In Germany</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="news-box">
-                                <!-- News Sidebar Image -->
-                                <div class="image">
-                                    <img src="images/hor-news3.jpg" alt="news Image">
-                                </div>
-                                <!-- News Sidebar Detail -->
-                                <div class="news-detail">
-                                    <div class="news-category">
-                                        <a href="javascript:void(0);">Money | 21 min ago </a>
-                                    </div>
-                                    <div class="news-title">
-                                        <a href="javascript:void(0);"> Flying Cars: The near Future, From SXSW</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="news-box">
-                                <!-- News Sidebar Image -->
-                                <div class="image">
-                                    <img src="images/hor-news4.jpg" alt="news Image">
-                                </div>
-                                <!-- News Sidebar Detail -->
-                                <div class="news-detail">
-                                    <div class="news-category">
-                                        <a href="javascript:void(0);">Life | 21 min ago </a>
-                                    </div>
-                                    <div class="news-title">
-                                        <a href="javascript:void(0);"> No end in Signt for California Drought</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="news-box">
-                                <!-- News Sidebar Image -->
-                                <div class="image">
-                                    <img src="images/hor-news5.jpg" alt="news Image">
-                                </div>
-                                <!-- News Sidebar Detail -->
-                                <div class="news-detail">
-                                    <div class="news-category">
-                                        <a href="javascript:void(0);">World | 21 min ago </a>
-                                    </div>
-                                    <div class="news-title">
-                                        <a href="javascript:void(0);"> Boehner Coup by Conservatives is Unlikely</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="news-box">
-                                <!-- News Sidebar Image -->
-                                <div class="image">
-                                    <img src="images/hor-news6.jpg" alt="news Image">
-                                </div>
-                                <!-- News Sidebar Detail -->
-                                <div class="news-detail">
-                                    <div class="news-category">
-                                        <a href="javascript:void(0);">Travel | 21 min ago </a>
-                                    </div>
-                                    <div class="news-title">
-                                        <a href="javascript:void(0);"> Market Reaction to fed rate talk: 3 scenarious</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {{ render(controller('AppBundle:Default:topStories')) }}
                 </div>
             </div>
         </section>

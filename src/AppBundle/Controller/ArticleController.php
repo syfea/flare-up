@@ -90,4 +90,16 @@ class ArticleController extends Controller
                 ));
         }
     }
+
+    public function displayAction(Article $article, Request $request)
+    {
+        $userArticles = $this->getDoctrine()
+                ->getRepository('AppBundle:Article')
+                ->getRecentArticleByUser(5);
+
+        return $this->render('AppBundle:Article:display.html.twig', array(
+            'article' => $article,
+            'userArticles' => $userArticles
+        ));
+    }
 }

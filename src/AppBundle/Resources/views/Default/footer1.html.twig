@@ -1,5 +1,7 @@
+{%  set nbCategegories = categories|length %}
+{%  set width = 100/nbCategegories %}
 {% for category in categories %}
-    <ul style="border-top: 4px solid #{{ category.color }}">
+    <ul style="border-top: 4px solid #{{ category.color }}; width: {{ width }}%">
         <li class="footer-title">
             <a href="javascript:void(0);">{{ category.name }}</a>
         </li>

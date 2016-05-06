@@ -42,4 +42,14 @@ class ArticleRepository extends EntityRepository
             ->setMaxResults($limit)
             ->getQuery()->getResult();
     }
+
+    public function getRecentArticleByUser($limit = 5)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.publishedAt <= :publishedAt')
+            ->setParameter('publishedAt', date('Y-m-d'))
+            ->addOrderBy('a.publishedAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()->getResult();
+    }
 }

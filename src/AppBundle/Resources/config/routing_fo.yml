@@ -2,5 +2,9 @@ app_front_office_homepage:
     path: /
     defaults: {_controller: AppBundle:FrontOffice:index}
 
+app_default_homepage:
+    path: /
+    defaults: {_controller: AppBundle:Default:index}
+
 app_front_office_security:
     resource: "@AppBundle/Resources/config/routing/security_fo.yml"

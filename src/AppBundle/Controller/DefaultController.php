@@ -11,8 +11,12 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+//       if($request->request->count() >= 1) {
+//           return $this->redirect('.');
+//       }
+
         return $this->render('AppBundle:Default:index.html.twig');
     }
 
@@ -28,7 +32,7 @@ class DefaultController extends Controller
     {
         $categories = $this->getDoctrine()
             ->getRepository('AppBundle:Category')
-            ->findAll();
+            ->getNavBar();
 
         return $this->render('AppBundle:Default:navbar.html.twig', array(
             'categories' => $categories

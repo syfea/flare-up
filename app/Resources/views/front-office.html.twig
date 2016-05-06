@@ -26,16 +26,17 @@
     {% block header %}{% endblock %}
     {% block flash %}
         {% for flashMessage in app.session.flashbag.get('notice') %}
-            <div>
+            <div class="flashMessage-notice">
                 {{ flashMessage }}
             </div>
         {% endfor %}
         {% for flashMessage in app.session.flashbag.get('error') %}
-            <div>
+            <div class="flashMessage-error">
                 {{ flashMessage }}
             </div>
         {% endfor %}
     {% endblock %}
+
     <div id="contain">
         <div class="wrapper">
             <div class="container">

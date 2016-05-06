@@ -1,5 +1,9 @@
 {% extends '::front-office.html.twig' %}
 
+{% block flashMessage %}
+
+{% endblock %}
+
 {% block header %}
 <header>
     <!-- Header Top Display In large and Tablet Device -->
@@ -14,7 +18,7 @@
                 <div class="col l4 col m3 col s12">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="{{ asset('bundles/app/images/logo_233.png') }}" alt="Logo"></a>
+                        <a href="{{ path('app_default_homepage') }}"><img src="{{ asset('bundles/app/images/logo_233.png') }}" alt="Logo"></a>
                     </div>
                 </div>
                 <div class="col l4 col m4 col s12 pull-right">
@@ -84,17 +88,15 @@
             <div class="col l12 col m12 col s12">
                 <!-- Footer Button -->
                 <div class="footer-button center-align">
-                    <span class="mdi-action-history"></span>
+                    <a href="" class="logo-footer">
+                        <img src="{{ asset('bundles/app/images/logo-footer.png') }}" alt="" />
+                    </a>
                 </div>
             </div>
 
             <div class="col l12 col m12 col s12">
                 {{ render(controller('AppBundle:Default:footer1')) }}
             </div>
-        </div>
-        <!-- Footer Logo -->
-        <div class="logo">
-            <a href="index.html"><img src="{{ asset('bundles/app/images/logo_233.png') }}" alt="Flare Up"></a>
         </div>
     </div>
     <!-- Footer Bottom -->
