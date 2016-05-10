@@ -171,7 +171,7 @@ footer.page-footer .footer-copyright {
     z-index: 99;
 }
 .footer-button .logo-footer:hover {
-    background-color: #95a2e7;
+    background-color: #039be5;
 }
 .footer-button .logo-footer img {
     width: 100%;
@@ -217,7 +217,7 @@ footer.page-footer .footer-copyright {
     text-align: center
 }
 .client-box.z-depth-1 {
-    box-shadow: 0 2px 5px 0 #95a2e7, 0 2px 10px 0 #95a2e7
+    box-shadow: 0 2px 5px 0 #039be5, 0 2px 10px 0 #039be5
 }
 .client-box .client-name {
     font-size: 15px;
@@ -240,4 +240,40 @@ footer.page-footer .footer-copyright {
 }
 .news-detail p {
     margin: 4px 0;
+}
+.login-page {
+    background-color: transparent;
+    padding: 120px 0;
+}
+footer.page-footer {
+    margin-top: -20px;
+}
+#contain {
+    padding-bottom: 20px;
+}
+.mdi-action-perm-identity::before, .mdi-action-lock-open::before {
+    content: '';
+}
+.login-page .input-field .prefix {
+    padding-bottom: 19px;
+}
+input[type="text"]:focus:not([readonly]) + label, input[type="email"]:focus:not([readonly]) + label, input[type="password"]:focus:not([readonly]) + label, textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #039be5;
+}
+input[type="text"]:focus:not([readonly]), input[type="email"]:focus:not([readonly]), input[type="password"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #039be5 !important;
+    box-shadow: 0 1px 0 0 #26a69a !important;
+}
+/*.input-field .prefix.active {*/
+    /*color: #039be5;*/
+/*}*/
+.login-page .input-field .prefix {
+    background-color: #039be5;
+}
+@media (min-width:320px) and (max-width: 600px) {
+    .top-header {
+        background: #424242;
+        border-bottom: 1px solid #039be5;;
+    }
+    header.header-fix{ background: #2f3e9b !important; }
 }

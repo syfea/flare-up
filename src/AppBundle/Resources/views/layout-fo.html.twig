@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col l4 col m5 col s12">
-                    <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+                    <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu fa fa-bars"></i></a>
                     <!-- Dropdown -->
                     <div class="header-dropdown"> </div>
                 </div>
@@ -26,7 +26,7 @@
                     <form class="searchbox">
                         <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required>
                         <input type="submit" class="searchbox-submit">
-                        <span class="searchbox-icon"><i class="mdi-action-search"></i></span>
+                        <span class="searchbox-icon"><i class="mdi-action-search fa fa-search"></i></span>
                     </form>
                     <!-- LogIn Link -->
                     <a href="{{ path('app_backofficebundle_home') }}" class="right login">{{ 'Login'|trans }}</a>
@@ -41,19 +41,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col l4 col m5 col s2">
-                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu fa fa-bars"></i></a>
                     </div>
 
                     <div class="col l4 col m4 col s3">
                         <!-- LogIn Link -->
-                        <a href="login.html" class="login">Login</a>
+                        <a href="{{ path('app_backofficebundle_home') }}" class="login">Login</a>
                     </div>
                     <div class="col l4 col m4 col s2">
                         <!-- Search Button -->
                         <form class="searchbox">
                             <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required>
                             <input type="submit" class="searchbox-submit">
-                            <span class="searchbox-icon"><i class="mdi-action-search"></i></span>
+                            <span class="searchbox-icon"><i class="mdi-action-search fa fa-search"></i></span>
                         </form>
                     </div>
                 </div>
@@ -63,9 +63,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col l4 col m4 col s12">
-                        <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="images/material-logo.png" alt="Flare Up"></a>
+                            <a href="{{ path('app_default_homepage') }}"><img src="{{ asset('bundles/app/images/logo_233.png') }}" alt="Flare Up"></a>
                         </div>
                     </div>
                 </div>

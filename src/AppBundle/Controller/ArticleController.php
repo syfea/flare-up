@@ -42,6 +42,7 @@ class ArticleController extends Controller
                     $fileName = md5(uniqid()).'.'.$file->guessExtension();
                     $brochuresDir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/article';
                     $file->move($brochuresDir, $fileName);
+                    $article->setPicture($fileName);
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);
@@ -93,13 +94,18 @@ class ArticleController extends Controller
 
     public function displayAction(Article $article, Request $request)
     {
-        $userArticles = $this->getDoctrine()
+        $datetime = new \DateTime("now");
+        if (!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime) {
+            $userArticles = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
                 ->getRecentArticleByUser(5);
 
-        return $this->render('AppBundle:Article:display.html.twig', array(
-            'article' => $article,
-            'userArticles' => $userArticles
-        ));
+            return $this->render('AppBundle:Article:display.html.twig', array(
+                'article' => $article,
+                'userArticles' => $userArticles
+            ));
+        }
+
+        return $this->redirect($this->generateUrl('app_default_homepage'));
     }
 }

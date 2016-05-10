@@ -1,34 +1,40 @@
 {% extends 'AppBundle::layout-fo.html.twig' %}
 
 {% block content %}
-
-    <div id="layout-view" class="view view-login">
-        {% if error %}
-            <div class="bg-danger">{{ error|trans({}, 'FOSUserBundle') }}</div>
-        {% endif %}
-        <div id="login-form" class="col-md-4 col-md-offset-4">
-
-            <h1 class="text-center">Blog Test</h1>
-
-            <form action="{{ path("app_back_office_security_check") }}" method="post" class="center-block">
-
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-                <div class="form-group">
-                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'email_address'|trans }}"/>
+    <div class="row">
+        <div class="col l12 col m12 col s12">
+            <div class="login-page">
+                <div class="col l4 col m6 col s12 offset-l4 offset-m3">
+                    <div class="login-title">
+                        {% if error %}
+                            <div class="bg-danger">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                        {% endif %}
+                    </div>
+                    <form action="{{ path("app_back_office_security_check") }}" method="post" class="center-block">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        <div class="input-field">
+                            <i class="mdi-action-perm-identity prefix fa fa-envelope-o"></i>
+                            <input id="username" name="_username" type="email" class="validate" placeholder="">
+                            <label for="username">Login</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="mdi-action-lock-open prefix fa fa-key fa-3x"></i>
+                            <input id="name" name="_password" type="password" class="validate">
+                            <label for="name">Password</label>
+                        </div>
+                        <div class="input-field forgot-password left">
+                            <a href="javascript:void(0);">Forgot your Password?</a>
+                        </div>
+                        <div class="input-field">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+                        </div>
+                        <div class="input-field">
+                            <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" onclick="Materialize.toast('<span>Login Successful</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;><a>', 5000)">Login</button>
+                        </diV>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="{{ 'password'|trans }}"/>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                    <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
-                </div>
-
-                <input class="btn btn-primary btn-block" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
-
-            </form>
-
+            </div>
         </div>
     </div>
 {% endblock %}
