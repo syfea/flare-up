@@ -14,7 +14,9 @@ class ArticleType extends AbstractType
   {
     $builder
         ->add('title', 'text')
-        ->add('content', 'genemu_tinymce')
+        ->add('content', 'ckeditor', array(
+            'transformers' => array(),
+        ))
         ->add('smallContent', 'text')
         ->add('picture', 'file', array('data_class' => null, 'required' => false))
         ->add('category', 'entity', array(

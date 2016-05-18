@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+            new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
+            new FM\ElfinderBundle\FMElfinderBundle(),
             new AppBundle\AppBundle(),
         );
 

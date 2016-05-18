@@ -97,3 +97,9 @@ app_article_fo_display:
 app_default_homepage:
     path: /
     defaults: {_controller: AppBundle:Default:index}
+
+route_name:
+  path: /web/uploads/articles
+
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"

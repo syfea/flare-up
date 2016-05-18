@@ -5,8 +5,7 @@ services:
         tags:
             - { name: form.type, alias: app_fos_user_profile }
 
-#    user.form.register.type:
-#        class: AppBundle\Form\Type\RegisterType
-#        parent: fos_user.registration.form.type
-#        tags:
-#            - { name: form.type, alias: app_fos_user_register }
+    app_ckeditor.transformer.remove_images:
+        class: AppBundle\Transformer\RemoveImages
+        tags:
+            - { name: trsteel_ckeditor.transformer, alias: remove_images }
