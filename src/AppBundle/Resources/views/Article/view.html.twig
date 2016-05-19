@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+    <div class="mdl-card mdl-shadow--2dp article-form" action="#">
         <div class="mdl-card__title">
             <h2>{{ 'Article'|trans }}</h2>
             <div class="mdl-card__subtitle">{{ 'Please complete the form'|trans }}</div>
@@ -60,6 +60,7 @@
 
                     <div class="form__action">
                         {{ form_widget(form.save, {'attr': {'class': 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored', 'id': 'submit_button'}}) }}
+                        <a href="{{ article.url }}" target="_blank" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-upgraded=",MaterialButton"> {{ 'Preview' | trans }} </a>
                     </div>
                 </div>
                 {{ form_rest(form) }}

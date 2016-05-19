@@ -132,6 +132,17 @@
 
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--12-col input-group">
+
+
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.instagram, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.instagram, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col input-group">
                             <img src="{{ asset('bundles/app/images/skype.svg') }}">
 
                             <div class="mdl-textfield mdl-js-textfield pull-left">

@@ -46,9 +46,13 @@
                             {% endif %}
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <div tabindex="0" data-upgraded=",MaterialProgress" id="task1" class="mdl-progress mdl-js-progress is-upgraded"><div style="width: 44%;" class="progressbar bar bar1"></div><div style="width: 100%;" class="bufferbar bar bar2"></div><div style="width: 0%;" class="auxbar bar bar3"></div></div>
+                            <div tabindex="0" data-upgraded=",MaterialProgress" id="task1" class="mdl-progress mdl-js-progress is-upgraded">
+                                <div style="width: {{ user.RateComplete }}%;" class="progressbar bar bar1"></div>
+                                <div style="width: 100%;" class="bufferbar bar bar2"></div>
+                                <div style="width: 0%;" class="auxbar bar bar3"></div>
+                            </div>
                             <div data-upgraded=",MaterialTooltip" class="mdl-tooltip" for="task1">
-                                44%
+                                90%
                             </div>
                         </td>
                         <td>

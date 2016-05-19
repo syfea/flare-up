@@ -95,7 +95,7 @@ class ArticleController extends Controller
     public function displayAction(Article $article, Request $request)
     {
         $datetime = new \DateTime("now");
-        if (!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime) {
+        if ((!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime) || $this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $userArticles = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
                 ->getRecentArticleByUser(5);

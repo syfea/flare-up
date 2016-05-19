@@ -53,6 +53,7 @@ class UserController extends Controller
                 ->add('facebook', 'text', ['required' => false])
                 ->add('twitter', 'text', ['required' => false])
                 ->add('skype', 'text', ['required' => false])
+                ->add('instagram', 'text', ['required' => false])
                 ->add('vignet', 'file', array('data_class' => null, 'required' => false))
                 ->add('about_me', 'textarea');
             $form->setData($user);
@@ -108,6 +109,7 @@ class UserController extends Controller
                 ->add('facebook', 'text', ['required' => false])
                 ->add('twitter', 'text', ['required' => false])
                 ->add('skype', 'text', ['required' => false])
+                ->add('instagram', 'text', ['required' => false])
                 ->add('vignet', 'file', array('data_class' => null, 'required' => false))
                 ->add('about_me', 'textarea')
                 ->getForm();

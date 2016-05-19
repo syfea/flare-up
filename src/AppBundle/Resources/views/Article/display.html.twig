@@ -11,7 +11,7 @@
                         {{ article.title }}
                     </div>
                     <div class="description">
-                        {{ article.content }}
+                        {{ article.content|raw }}
                     </div>
                     <div class="news-detail">
                         <span class="news-by"><a href="javascript:void(0);">{{ article.user.username }}</a></span>
@@ -24,15 +24,15 @@
         </div>
         <div class="col l3 col m12">
             <div class="client-box z-depth-1">
-                <img class="circle responsive-img" src="{{ asset('uploads/vignet/'~article.user.vignet|e) }}" alt="News Image">
+                <img class="circle responsive-img" src="{{ asset('uploads/vignet/'~article.user.vignet|e) }}" alt="{{ article.user.username }}">
                 <div class="client-name">
                     {{ article.user.username }}
                 </div>
 
                 <div class="social-icon">
-                    <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
-                    <a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
-                    <a href="javascript:void(0);"><i class="fa fa-instagram"></i></a>
+                    {% if article.user.twitter is not empty %}<a href="{{ article.user.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>{% endif %}
+                    {% if article.user.facebook is not empty %}<a href="{{ article.user.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>{% endif %}
+                    {% if article.user.instagram is not empty %} <a href="{{ article.user.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>{% endif %}
                 </div>
                 <a class="all-post" href="javascript:void(0);">{{ 'All post'|trans }}</a>
             </div>

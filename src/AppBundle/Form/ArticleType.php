@@ -7,6 +7,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\ChoiceList;
 use AppBundle\Entity\Category;
+use FM\ElfinderBundle\Form\Type\ElFinderType;
 
 class ArticleType extends AbstractType
 {

@@ -123,6 +123,13 @@ class User extends BaseUser
     /**
      * @var
      *
+     * @ORM\Column(name="instagram", type="string", length=255, nullable=true)
+     */
+    protected $instagram;
+
+    /**
+     * @var
+     *
      * @ORM\Column(name="about_me", type="text", nullable=true)
      */
     protected $about_me;
@@ -442,5 +449,53 @@ class User extends BaseUser
     public function setArticle(\Doctrine\Common\Collections\Collection $articles)
     {
         $this->articles = $articles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRateComplete()
+    {
+        $nb = 0;
+        if ($this->getFirstname() != '') { $nb++; }
+        if ($this->getLastname() != '') { $nb++; }
+        if ($this->getEmail() != '') { $nb++; }
+        if ($this->getZipCode() != '') { $nb++; }
+        if ($this->getAddress() != '') { $nb++; }
+        if ($this->getCity() != '') { $nb++; }
+        if ($this->getVignet() != '') { $nb++; }
+        if ($this->getAboutMe() != '') { $nb++; }
+        if ($this->getFacebook() != '') { $nb++; }
+        if ($this->getUsername() != '') { $nb++; }
+        if ($this->getTwitter() != '') { $nb++; }
+        if ($this->getSkype() != '') { $nb++; }
+        if ($this->getPhone() != '') { $nb++; }
+
+        return ($nb/13)*100;
+    }
+
+
+    /**
+     * Set instagram
+     *
+     * @param string $instagram
+     *
+     * @return User
+     */
+    public function setInstagram($instagram)
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    /**
+     * Get instagram
+     *
+     * @return string
+     */
+    public function getInstagram()
+    {
+        return $this->instagram;
     }
 }

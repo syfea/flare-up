@@ -38,8 +38,7 @@ class BackOfficeController extends Controller
             ->add('twitter', 'text', ['required' => false])
             ->add('skype', 'text', ['required' => false])
             ->add('about_me', 'textarea')
-            ->add('vignet', 'file', array('data_class' => null, 'required' => false)
-            )
+            ->add('vignet', 'file', array('data_class' => null, 'required' => false))
             ->getForm();
 
         $fileName = $user->getVignet();
