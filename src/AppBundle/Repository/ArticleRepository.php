@@ -52,4 +52,26 @@ class ArticleRepository extends EntityRepository
             ->setMaxResults($limit)
             ->getQuery()->getResult();
     }
+
+    public function getAllArticlesByCategory($category)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.publishedAt <= :publishedAt')
+            ->setParameter('publishedAt', date('Y-m-d H:i:s'))
+            ->andWhere('a.category = :categoryId')
+            ->setParameter('categoryId', $category->getId())
+            ->addOrderBy('a.publishedAt', 'DESC')
+            ->getQuery()->getResult();
+    }
+
+    public function getAllArticlesByUser($user)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.publishedAt <= :publishedAt')
+            ->setParameter('publishedAt', date('Y-m-d H:i:s'))
+            ->andWhere('a.user = :userId')
+            ->setParameter('userId', $user->getId())
+            ->addOrderBy('a.publishedAt', 'DESC')
+            ->getQuery()->getResult();
+    }
 }

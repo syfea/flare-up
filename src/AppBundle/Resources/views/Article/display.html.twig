@@ -4,16 +4,15 @@
     <div class="row">
         <div class="col l9 col m12">
             <div class="news-single style-3 z-depth-1">
+                <div class="breadcrumb">
+                    <a href="{{ path('app_default_homepage') }}">{{ 'Home'|trans }}</a>
+                    <i class="fa fa-angle-right"></i>
+                    <a href="{{ article.category.url }}">{{ article.category.name }} </a>
+                    <i class="fa fa-angle-right"></i>
+                    <a href="{{ article.url }}">{{ article.title }} </a>
+                </div>
                 <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
                 <div class="content">
-                    <!-- Breadcrumb -->
-                    <div class="breadcrumb">
-                        <a href="{{ path('app_default_homepage') }}">{{ 'Home'|trans }}</a>
-                        <i class="fa fa-angle-right"></i>
-                        <a href="{{ article.category.url }}">{{ article.category.name }} </a>
-                        <i class="fa fa-angle-right"></i>
-                        <a href="{{ article.url }}">{{ article.title }} </a>
-                    </div>
                     <div class="news-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</div>
                     <div class="news-title">
                         {{ article.title }}
@@ -32,7 +31,7 @@
         </div>
         <div class="col l3 col m12">
             <div class="client-box z-depth-1">
-                <a class="all-post" href="javascript:void(0);">
+                <a class="all-post" href="{{ article.user.url }}">
                     <img class="circle responsive-img" src="{{ asset('uploads/vignet/'~article.user.vignet|e) }}" alt="{{ article.user.username }}">
                     <div class="client-name">
                         {{ article.user.username }}
@@ -44,7 +43,7 @@
                     {% if article.user.facebook is not empty %}<a href="{{ article.user.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>{% endif %}
                     {% if article.user.instagram is not empty %} <a href="{{ article.user.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>{% endif %}
                 </div>
-                <a class="all-post" href="javascript:void(0);">{{ 'All post'|trans }}</a>
+                <a class="all-post" href="{{ article.user.url }}">{{ 'All post'|trans }}</a>
             </div>
 
             <div class="advertis z-depth-1">
@@ -71,4 +70,5 @@
             </div>
         </div>
     </div>
+    {{ render(controller('AppBundle:Comment:display', {'request': app.request, 'article': article})) }}
 {% endblock %}

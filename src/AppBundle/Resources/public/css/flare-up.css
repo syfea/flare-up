@@ -298,6 +298,54 @@ input[type="text"]:focus:not([readonly]), input[type="email"]:focus:not([readonl
 .login-page .input-field .prefix {
     background-color: #039be5;
 }
+.mdl-menu .vignet-bulle {
+    border-radius: 40px;
+    float: left;
+    height: 50px;
+    margin-right: 10px;
+    width: 50px;
+}
+.profile .profile-box.news {
+    background-color: #4e4e4e;
+}
+.profile .profile-box {
+    background-color: #4e4e4e;
+}
+.breadcrumb {
+    padding-left: 8px;
+}
+.breadcrumb a {
+    color: #039be5;
+}
+.breadcrumb .fa.fa-angle-right {
+    color: #ffffff;
+}
+.profile-detail .profile-by {
+    color: #ffffff;
+}
+.sidbar-box a {
+    border: 0;
+}
+.login, .button-collapse .mdi-navigation-menu, .page-footer li a, footer.page-footer .footer-copyright {
+    color: #039be5;
+}
+.login-page .input-field .prefix ~ input {
+    color: #ffffff;
+}
+.news-single {
+    position: relative;
+}
+.news-single .breadcrumb {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+.profile-sidebar {
+    box-shadow: 0 2px 5px 0 #039be5, 0 2px 10px 0 #039be5;
+}
+.comment-title {
+    float: none;
+}
 @media (min-width:320px) and (max-width: 600px) {
     .top-header {
         background: #424242;

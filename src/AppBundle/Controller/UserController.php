@@ -153,7 +153,7 @@ class UserController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($user);
                 $em->flush();
-                
+
                 return $this->redirect($this->generateUrl('app_backofficebundle_users'));
             } else if ($request->request->get('action_value') == 0) {
                 return $this->redirect($this->generateUrl('app_backofficebundle_users'));
@@ -175,5 +175,17 @@ class UserController extends Controller
 
             return $this->redirect($this->generateUrl('app_backofficebundle_users'));
         }
+    }
+
+    public function displayAction(User $user)
+    {
+        $articles = $this->getDoctrine()
+                ->getRepository('AppBundle:Article')
+                ->getAllArticlesByUser($user);
+
+        return $this->render('AppBundle:User:display.html.twig', array(
+                'articles' => $articles,
+                'user' => $user
+            ));
     }
 }

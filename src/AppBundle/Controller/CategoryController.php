@@ -87,4 +87,16 @@ class CategoryController extends Controller
             }
         }
     }
+
+    public function displayAction(Category $category)
+    {
+        $articles = $this->getDoctrine()
+                ->getRepository('AppBundle:Article')
+                ->getAllArticlesByCategory($category);
+
+        return $this->render('AppBundle:Category:display.html.twig', array(
+            'articles' => $articles,
+            'category' => $category
+        ));
+    }
 }

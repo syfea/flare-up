@@ -141,6 +141,8 @@ class User extends BaseUser
      */
     private $vignet;
 
+    private $url;
+
     public function getBrochure()
     {
         return $this->brochure;
@@ -153,6 +155,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->groups = new ArrayCollection();
+        $this->url = $this->getUrl();
     }
 
     /**
@@ -434,7 +437,7 @@ class User extends BaseUser
     /**
      * Get articles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getArticles()
     {
@@ -497,5 +500,31 @@ class User extends BaseUser
     public function getInstagram()
     {
         return $this->instagram;
+    }
+
+    public function getUrl()
+    {
+        $CHARACTER_REPLACE_URL = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+                        'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+                        'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+                        'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+                        'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y' );
+
+        if ($this->id != 0) {
+            global $kernel;
+
+            if ('AppCache' == get_class($kernel)) {
+                $kernel = $kernel->getKernel();
+            }
+
+            $container = $kernel->getContainer()->get('router');
+
+            $str = strtr($this->getUsername(), $CHARACTER_REPLACE_URL);
+            $str = str_replace(' ', '-', $str);
+            $str = preg_replace('/[^A-Za-z0-9\-]/', '', $str);
+            $str = strtolower($str);
+
+            return $container->generate('app_user_fo_display', array('id' => $this->id, 'name' => $str));
+        }
     }
 }

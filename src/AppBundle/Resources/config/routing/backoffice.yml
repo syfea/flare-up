@@ -64,6 +64,9 @@ app_backofficebundle_article_publish:
     path: /article/{id}/publish
     defaults: { _controller: "AppBundle:Article:publish" }
 
+app_backofficebundle_article_ask:
+    path: /article/{id}/ask
+    defaults: { _controller: "AppBundle:Article:ask" }
 app_backofficebundle_subscriber_index:
   path: /subscriber
   defaults: { _controller: "AppBundle:Subscriber:list" }

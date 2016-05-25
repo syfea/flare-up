@@ -146,7 +146,7 @@
                 for="icon">
                 <li class="mdl-list__item mdl-list__item--two-line">
                     <span class="mdl-list__item-primary-content">
-                        <span class="material-icons mdl-list__item-avatar"></span>
+                        <img class="vignet-bulle" src="{{ asset('uploads/vignet/'~app.user.vignet|e) }}" alt="" />
                         <span>{{ app.user.username }}</span>
                         <span class="mdl-list__item-sub-title">{{ app.user.email }}</span>
                     </span>

@@ -1,0 +1,83 @@
+{% extends 'AppBundle::layout-fo.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col l12 col m12 col s12">
+            <div class="profil-content">
+                <div class="col l3 col m4 col s12 no-padding">
+                    <!-- Profile Sidebar -->
+                    <div class="profile-sidebar z-depth-1  left-align">
+                        <div class="name" style="color: #{{category.color}}">{{ category.name }}</div>
+                        <p>{{ category.description }}</p>
+                        <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button gridview-btn">{{ 'Grid view'|trans }}</button>
+                        <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right listview-btn">{{ 'List view'|trans }}</button>
+                        <div class="follower">
+                            <div class="col 22 col m12 col s12">{{ 'Article number' }}<br><span>{{ category.articles|length }}</span></div>
+                        </div>
+                        <div class="bottom">
+                            <div class="social-icon">
+                                <a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                                <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                                <a href="javascript:void(0);"><i class="fa fa-pinterest"></i></a>
+                                <a href="javascript:void(0);"><i class="fa fa-instagram"></i></a>
+                                <a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l9 col m8 col s12">
+                    <div class="breadcrumb">
+                        <a href="{{ path('app_default_homepage') }}">{{ 'Home'|trans }}</a>
+                        <i class="fa fa-angle-right"></i>
+                        <a href="{{ category.url }}">{{ category.name }} </a>
+                    </div>
+                    <div class="profile">
+                        <!-- Profile Grid View -->
+                        <div id="grid-view">
+                            {% for article in articles %}
+                                <div class="col l4 col m6">
+                                    <div class="news vertical z-depth-1 profile-box">
+                                        <div class="news-image">
+                                            <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
+                                        </div>
+                                        <div class="news-description">
+                                            <div class="news-time">
+                                                <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y h:i') }}
+                                            </div>
+                                            <div class="news-title"><a href="{{ article.url }}">{{ article.title | striptags | slice(0, 55) }}</a></div>
+                                            <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 105) }} [...] </p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div id="list-view" class="listview" style="display:none">
+                            <div class="col l12 col m12">
+                                {% for article in articles %}
+                                <div class="profile-box z-depth-1">
+                                    <div class="col l3">
+                                        <img alt="{{ article.title }}" src="{{ asset('uploads/article/'~article.picture|e) }}" class="responsive-img">
+                                    </div>
+                                    <div class="col l9">
+                                        <div class="profile-detail">
+                                            <div class="news-title">
+                                                <a href="{{article.url}}">{{ article.title }}</a>
+                                            </div>
+                                            <p>{{ article.smallContent }}</p>
+                                            <div class="profile-by">
+                                                {{ 'by'|trans }} <a href="{{article.url}}">{{ article.user.username }}</a>
+                                                {{ 'at'|trans }}
+                                                {{ article.publishedAt|date('d M Y h:i') }} 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

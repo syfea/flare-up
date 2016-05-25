@@ -7,3 +7,15 @@ jQuery('#delete-btn-no').click(function () {
     jQuery('#action_value').val(0);
     jQuery('#form').submit();
 });
+jQuery(".gridview-btn").on('click', function() {
+    jQuery("#list-view").hide('2000');
+    jQuery("#grid-view").show('2000');
+    jQuery("#gridview i").addClass('active');
+    jQuery("#listview i").removeClass('active');
+});
+jQuery(".listview-btn").on('click', function() {
+    jQuery("#list-view").show('2000');
+    jQuery("#grid-view").hide('2000');
+    jQuery("#gridview i").removeClass('active');
+    jQuery("#listview i").addClass('active');
+});
