@@ -35,7 +35,7 @@ class Article
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="articles", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="articles")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
@@ -108,6 +108,13 @@ class Article
      * @ORM\Column(name="averageRate", type="decimal", precision=3, scale=2, nullable=true)
      */
     private $averageRate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=150, nullable=false, options={"default" = "draft"})
+     */
+    private $status;
 
     private $url;
 
@@ -376,10 +383,45 @@ class Article
 
     public function getUrl()
     {
-        $str = strtr($this->title, SELF::CHARACTER_REPLACE_URL);
-        $str = str_replace(' ', '-', $str);
-        $str = preg_replace('/[^A-Za-z0-9\-]/', '', $str);
+        if ($this->id != 0) {
+            global $kernel;
 
-        return 'article/'.$this->id.'/'.$str;
+            if ('AppCache' == get_class($kernel)) {
+                $kernel = $kernel->getKernel();
+            }
+
+            $container = $kernel->getContainer()->get('router');
+
+            $str = strtr($this->title, SELF::CHARACTER_REPLACE_URL);
+            $str = str_replace(' ', '-', $str);
+            $str = preg_replace('/[^A-Za-z0-9\-]/', '', $str);
+
+            //return 'article/'.$this->id.'/'.$str;
+            return $container->generate('app_article_fo_display', array('id' => $this->id, 'name' => $str));
+        }
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Article
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

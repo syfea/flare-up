@@ -70,4 +70,21 @@ class CategoryController extends Controller
                 ));
         }
     }
+
+    public function deleteAction(Category $category, Request $request)
+    {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            if (is_null($request->request->get('action_value'))) {
+                return $this->render('AppBundle:Category:delete.html.twig', array('category' => $category));
+            }else if ($request->request->get('action_value') == 1) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($category);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('app_backofficebundle_categories'));
+            } else if ($request->request->get('action_value') == 0) {
+                return $this->redirect($this->generateUrl('app_backofficebundle_categories'));
+            }
+        }
+    }
 }

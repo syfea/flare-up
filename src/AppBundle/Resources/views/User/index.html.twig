@@ -17,6 +17,7 @@
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Username'|trans }}</th>
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Roles'|trans }}</th>
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Email '|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Article number'|trans }}</th>
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Enabled '|trans }}</th>
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Complete '|trans }}</th>
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Action '|trans }}</th>
@@ -39,11 +40,16 @@
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">{{ user.email }}</td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            {%  if user.enabled %}
-                                <i class="material-icons background-color--mint">done</i>
-                            {%  else %}
-                                <i class="material-icons background-color--secondary">remove_circle</i>
-                            {% endif %}
+                            {{ user.articles|length }}
+                        </td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <a href="{{ path('app_backofficebundle_user_disabled', {'id': user.id} ) }}">
+                                {%  if user.enabled %}
+                                    <i class="material-icons">done</i>
+                                {%  else %}
+                                    <i class="material-icons">remove_circle</i>
+                                {% endif %}
+                            </a>
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
                             <div tabindex="0" data-upgraded=",MaterialProgress" id="task1" class="mdl-progress mdl-js-progress is-upgraded">

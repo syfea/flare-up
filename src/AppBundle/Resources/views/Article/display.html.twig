@@ -6,6 +6,14 @@
             <div class="news-single style-3 z-depth-1">
                 <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
                 <div class="content">
+                    <!-- Breadcrumb -->
+                    <div class="breadcrumb">
+                        <a href="{{ path('app_default_homepage') }}">{{ 'Home'|trans }}</a>
+                        <i class="fa fa-angle-right"></i>
+                        <a href="{{ article.category.url }}">{{ article.category.name }} </a>
+                        <i class="fa fa-angle-right"></i>
+                        <a href="{{ article.url }}">{{ article.title }} </a>
+                    </div>
                     <div class="news-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</div>
                     <div class="news-title">
                         {{ article.title }}
@@ -24,10 +32,12 @@
         </div>
         <div class="col l3 col m12">
             <div class="client-box z-depth-1">
-                <img class="circle responsive-img" src="{{ asset('uploads/vignet/'~article.user.vignet|e) }}" alt="{{ article.user.username }}">
-                <div class="client-name">
-                    {{ article.user.username }}
-                </div>
+                <a class="all-post" href="javascript:void(0);">
+                    <img class="circle responsive-img" src="{{ asset('uploads/vignet/'~article.user.vignet|e) }}" alt="{{ article.user.username }}">
+                    <div class="client-name">
+                        {{ article.user.username }}
+                    </div>
+                </a>
 
                 <div class="social-icon">
                     {% if article.user.twitter is not empty %}<a href="{{ article.user.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>{% endif %}
@@ -39,7 +49,7 @@
 
             <div class="advertis z-depth-1">
                 <div class="sidbar-box left-align">
-                    <div class="sidebar-title">Recent Post</div>
+                    <div class="sidebar-title">{{ 'Recent Post'|trans }}</div>
                     <div class="news-sidebar">
                         {% for userArticle in userArticles %}
                         <div class="news-box">

@@ -234,6 +234,13 @@
             {{ 'Articles'|trans }}
         </a>
 
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <a class="mdl-navigation__link" href="{{ path('app_backofficebundle_subscriber_index') }}">
+                <i class="material-icons" role="presentation">mail</i>
+                {{ 'Subscribers'|trans }}
+            </a>
+        {% endif %}
+
         <div class="mdl-layout-spacer"></div>
         <a class="mdl-navigation__link" href="https://github.com/syfea/flare-up">
             <i class="material-icons" role="presentation">link</i>

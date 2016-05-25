@@ -36,4 +36,17 @@ class SubscriberController extends Controller
 
         return $this->render('AppBundle:Default:subscriber.html.twig', array('form' => $form->createView()));
     }
+
+    public function listAction(Request $request)
+    {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            $subscribers = $this->getDoctrine()
+                ->getRepository('AppBundle:Subscriber')
+                ->getList();
+
+            return $this->render('AppBundle:Subscriber:list.html.twig', array(
+                'subscribers' => $subscribers
+            ));
+        }
+    }
 }

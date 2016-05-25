@@ -108,4 +108,38 @@ class ArticleController extends Controller
 
         return $this->redirect($this->generateUrl('app_default_homepage'));
     }
+
+    public function publishAction(Article $article)
+    {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            $datetime = new \DateTime("now");
+            if($article->getStatus() == 'publish') {
+                $article->setStatus('wait');
+                $article->setPublishedAt(null);
+            } else {
+                $article->setStatus('publish');
+                $article->setPublishedAt($datetime);
+            }
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('app_backofficebundle_article_index'));
+    }
+
+    public function askAction(Article $article)
+    {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            $article->setStatus('wait');
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('app_backofficebundle_article_index'));
+    }
 }

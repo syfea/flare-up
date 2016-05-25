@@ -146,9 +146,34 @@ class UserController extends Controller
     public function deleteAction(User $user, Request $request)
     {
         if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
-            if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            if (is_null($request->request->get('action_value'))) {
                 return $this->render('AppBundle:User:delete.html.twig', array('user' => $user));
+            }else if ($request->request->get('action_value') == 1) {
+                $user->setEnabled(false);
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($user);
+                $em->flush();
+                
+                return $this->redirect($this->generateUrl('app_backofficebundle_users'));
+            } else if ($request->request->get('action_value') == 0) {
+                return $this->redirect($this->generateUrl('app_backofficebundle_users'));
             }
+        }
+    }
+
+    public function disabledAction(User $user, Request $request)
+    {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            if ($user->isEnabled()) {
+                $user->setEnabled(false);
+            } else {
+                $user->setEnabled(true);
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('app_backofficebundle_users'));
         }
     }
 }

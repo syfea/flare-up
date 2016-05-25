@@ -7,8 +7,6 @@ app_backofficebundle_home:
 app_backofficebundle_users:
     path: /users
     defaults: { _controller: "AppBundle:User:index" }
-    requirements:
-        _method: GET
 
 app_backofficebundle_myaccount:
     path: /my-account
@@ -25,6 +23,10 @@ app_backofficebundle_user_update:
 app_backofficebundle_user_delete:
     path: /user/{id}/delete
     defaults: { _controller: "AppBundle:User:delete" }
+
+app_backofficebundle_user_disabled:
+    path: /user/{id}/disabled
+    defaults: { _controller: "AppBundle:User:disabled" }
 
 app_backofficebundle_category_index:
     path: /categories
@@ -57,3 +59,11 @@ app_backofficebundle_article_update:
 app_backofficebundle_article_delete:
     path: /article/{id}/delete
     defaults: { _controller: "AppBundle:Article:delete" }
+
+app_backofficebundle_article_publish:
+    path: /article/{id}/publish
+    defaults: { _controller: "AppBundle:Article:publish" }
+
+app_backofficebundle_subscriber_index:
+  path: /subscriber
+  defaults: { _controller: "AppBundle:Subscriber:list" }

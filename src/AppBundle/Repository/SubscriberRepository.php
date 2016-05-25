@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class SubscriberRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getList()
+    {
+        return $this->createQueryBuilder('s')
+            ->addOrderBy('s.createdAt', 'DESC')
+            ->getQuery()->getResult();
+    }
 }

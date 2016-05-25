@@ -16,7 +16,7 @@ class ArticleRepository extends EntityRepository
     {
         return $this->createQueryBuilder('a')
             ->where('a.publishedAt <= :publishedAt')
-            ->setParameter('publishedAt', date('Y-m-d'))
+            ->setParameter('publishedAt', date('Y-m-d H:i:s'))
             ->addOrderBy('a.publishedAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()->getResult();
@@ -26,7 +26,7 @@ class ArticleRepository extends EntityRepository
     {
         return $this->createQueryBuilder('a')
             ->where('a.publishedAt <= :publishedAt')
-            ->setParameter('publishedAt', date('Y-m-d'))
+            ->setParameter('publishedAt', date('Y-m-d H:i:s'))
             ->addOrderBy('a.countView', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()->getResult();
@@ -36,7 +36,7 @@ class ArticleRepository extends EntityRepository
     {
         return $this->createQueryBuilder('a')
             ->where('a.publishedAt <= :publishedAt')
-            ->setParameter('publishedAt', date('Y-m-d'))
+            ->setParameter('publishedAt', date('Y-m-d H:i:s'))
             ->addOrderBy('a.publishedAt', 'DESC')
             ->setFirstResult(3)
             ->setMaxResults($limit)
@@ -47,7 +47,7 @@ class ArticleRepository extends EntityRepository
     {
         return $this->createQueryBuilder('a')
             ->where('a.publishedAt <= :publishedAt')
-            ->setParameter('publishedAt', date('Y-m-d'))
+            ->setParameter('publishedAt', date('Y-m-d H:i:s'))
             ->addOrderBy('a.publishedAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()->getResult();

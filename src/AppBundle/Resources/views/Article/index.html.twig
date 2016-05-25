@@ -6,7 +6,7 @@
 
         <div class="mdl-cell mdl-cell--11-col-desktop mdl-cell--11-col-tablet mdl-cell--4-col-phone ">
             <div class="mdl-card__title" style="position: relative">
-                <h2 class="mdl-card__title-text">{{ 'Category list' }}</h2>
+                <h2 class="mdl-card__title-text">{{ 'Article list' }}</h2>
                 <a href="{{ path('app_backofficebundle_article_create') }}" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored btn-floating" style="position: absolute; display: inline-block; z-index: 2; right: -7px; top: 40px">
                     <i class="material-icons">add</i>
                 </a>
@@ -41,7 +41,7 @@
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
                             {% if article.publishedAt is null %}
-                                {{ 'Draft'|trans }}
+                                {{ article.status }}
                             {% else %}
                                 {{ article.publishedAt|date('d/m/Y') }} à {{ article.publishedAt|date('H:i') }}
                             {% endif %}
@@ -53,12 +53,39 @@
                             {{ article.countView }}
                         </td>
                         <td>
-                            <a href="{{ path('app_backofficebundle_article_update', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-                                <i class="material-icons">update</i>
-                            </a>
-                            <a href="{{ path('app_backofficebundle_article_delete', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
-                                <i class="material-icons">delete</i>
-                            </a>
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <a href="{{ path('app_backofficebundle_article_update', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                    <i class="material-icons">update</i>
+                                </a>
+                                {% if article.status == 'wait' %}
+                                    <a href="{{ path('app_backofficebundle_article_publish', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                        <i class="material-icons">publish</i>
+                                    </a>
+                                {% elseif article.status == 'publish' %}
+                                    <a href="{{ path('app_backofficebundle_article_publish', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                        <i class="material-icons">vertical_align_bottom</i>
+                                    </a>
+                                {% elseif article.status == 'draft' %}
+                                    <a href="{{ path('app_backofficebundle_article_ask', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                        <i class="material-icons">touch_app</i>
+                                    </a>
+                                    <a href="{{ path('app_backofficebundle_article_delete', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                {% endif %}
+                            {%  else %}
+                                {% if article.status == 'draft' %}
+                                    <a href="{{ path('app_backofficebundle_article_update', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                        <i class="material-icons">update</i>
+                                    </a>
+                                    <a href="{{ path('app_backofficebundle_article_ask', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                        <i class="material-icons">touch_app</i>
+                                    </a>
+                                    <a href="{{ path('app_backofficebundle_article_delete', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

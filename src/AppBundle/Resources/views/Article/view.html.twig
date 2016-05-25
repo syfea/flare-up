@@ -60,7 +60,9 @@
 
                     <div class="form__action">
                         {{ form_widget(form.save, {'attr': {'class': 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored', 'id': 'submit_button'}}) }}
-                        <a href="{{ article.url }}" target="_blank" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-upgraded=",MaterialButton"> {{ 'Preview' | trans }} </a>
+                        {% if article.url != '' %}
+                            <a href="{{ article.url }}" target="_blank" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-upgraded=",MaterialButton"> {{ 'Preview' | trans }} </a>
+                        {% endif %}
                     </div>
                 </div>
                 {{ form_rest(form) }}

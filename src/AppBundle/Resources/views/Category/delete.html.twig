@@ -3,24 +3,24 @@
 {% block content %}
     <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
         <div class="mdl-card__title">
-            <h2>{{ 'Delete user'|trans }}</h2>
-            <div class="mdl-card__subtitle">{{ user.firstname }} {{ user.lastname }} / {{ user.username }}</div>
+            <h2>{{ 'Delete category'|trans }}</h2>
+            <div class="mdl-card__subtitle">{{ category.name }}</div>
         </div>
 
         <div class="mdl-card__supporting-text">
 
             <div class="form__article">
-                {%  if user.articles | length %}
-                    <h3>{{ 'Can not delete this user, he has articles.'| trans }}</h3>
-                    {% for article in user.articles %}
+                {%  if category.articles | length > 0 %}
+                    <h3>{{ 'Impossible, the following items are related to this category'| trans }}</h3>
+                    {% for article in category.articles %}
                         <p>- <a href="{{ article.url }}">{{ article.id }} {{ article.title }}</a></p>
                     {%  endfor %}
                 {% else %}
-                    <h3>{{ 'Do you want really delete this user ?'|trans }}</h3>
+                    <h3>{{ 'Do you want really delete this category ?'|trans }}</h3>
                     <form method="POST" id="form" action="#">
                         <input type="hidden" name="action_value" id="action_value" value="" />
                         <input id="delete-btn-yes" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-upgraded=",MaterialButton" type="button" name="btn-yes" value="{{ 'YES' | trans }}" />
-                        <input id="delete-btn-no" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored " data-upgraded=",MaterialButton" type="button" name="btn-no" value="{{ 'NO' | trans }}" />
+                        <input id="delete-btn-no" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-upgraded=",MaterialButton" type="button" name="btn-no" value="{{ 'NO' | trans }}" />
                     </form>
                 {% endif %}
             </div>
