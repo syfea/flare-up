@@ -6,6 +6,7 @@ use AppBundle\Entity\Subscriber;
 use AppBundle\Form\SubscriberType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class SubscriberController extends Controller
 {
@@ -13,10 +14,20 @@ class SubscriberController extends Controller
     {
         $subscriber = new Subscriber();
         $form = $this->get('form.factory')->create(new SubscriberType(), $subscriber);
-
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        return $this->render('AppBundle:Default:subscriber.html.twig', array('form' => $form->createView()));
+    }
+
+    public function saveAction(Request $request)
+    {
+        $request = $this->container->get('request');
+
+        if($request->isXmlHttpRequest())
+        {
+            $subscriber = new Subscriber();
+            $email = $request->request->get('email');
+            $subscriber->setEmail($email);
             $subscriberSearch = $this->getDoctrine()
                 ->getRepository('AppBundle:Subscriber')
                 ->findByEmail($subscriber->getEmail());
@@ -25,16 +36,13 @@ class SubscriberController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($subscriber);
                 $em->flush();
-                $subscriber = new Subscriber();
-                $form = $this->get('form.factory')->create(new SubscriberType(), $subscriber);
                 $request->getSession()->getFlashBag()->add('notice', 'Vous êtes bien enregistré à notre newsletter.');
             } else {
                 $request->getSession()->getFlashBag()->add('error', 'Cette adresse email est déjà inscrite à notre newsletter.');
             }
-
         }
 
-        return $this->render('AppBundle:Default:subscriber.html.twig', array('form' => $form->createView()));
+        return new Response();
     }
 
     public function listAction(Request $request)

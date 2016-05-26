@@ -346,6 +346,15 @@ input[type="text"]:focus:not([readonly]), input[type="email"]:focus:not([readonl
 .comment-title {
     float: none;
 }
+.comment .share {
+    background-color: #039be5;
+}
+.comment-title {
+    color: #039be5;
+}
+.sidbar-box {
+    background-color: #4e4e4e;
+}
 @media (min-width:320px) and (max-width: 600px) {
     .top-header {
         background: #424242;

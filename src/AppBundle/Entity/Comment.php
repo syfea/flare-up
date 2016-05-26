@@ -78,7 +78,7 @@ class Comment
 
     public function __construct()
     {
-        $this->createdAt = new \Datetime();
+        $this->dateCreated = new \Datetime();
     }
 
     /**

@@ -31,7 +31,7 @@
         </div>
         <div class="col l3 col m12">
             <div class="client-box z-depth-1">
-                <a class="all-post" href="{{ article.user.url }}">
+                {#<a class="all-post" href="{{ article.user.url }}">#}
                     <img class="circle responsive-img" src="{{ asset('uploads/vignet/'~article.user.vignet|e) }}" alt="{{ article.user.username }}">
                     <div class="client-name">
                         {{ article.user.username }}
@@ -43,7 +43,7 @@
                     {% if article.user.facebook is not empty %}<a href="{{ article.user.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>{% endif %}
                     {% if article.user.instagram is not empty %} <a href="{{ article.user.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>{% endif %}
                 </div>
-                <a class="all-post" href="{{ article.user.url }}">{{ 'All post'|trans }}</a>
+                {#<a class="all-post" href="{{ article.user.url }}">{{ 'All post'|trans }}</a>#}
             </div>
 
             <div class="advertis z-depth-1">

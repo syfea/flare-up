@@ -1,8 +1,8 @@
 <div class="sidbar-box z-depth-1">
     <div class="sidebar-title">{{ 'Newsletter'|trans }}</div>
-    {{ form_start(form, {'attr': {'class': 'form', 'id': 'form-subscriber'}}) }}
+    <form method="post" class="form" id="form-subscriber" action="{{ path('app_ajax_subscriber_save') }}">
         {{ form_errors(form) }}
         {{ form_widget(form.email) }}
         {{ form_widget(form.save, {'attr': {'class': 'btn btn-flat waves-effect waves-light shopping-cart-button right', 'placeholder': 'Email'|trans}}) }}
-    {{ form_end(form) }}
+    </form>
 </div>

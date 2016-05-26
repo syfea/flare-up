@@ -100,11 +100,17 @@ app_category_fo_display:
     requirements:
       name: "[a-zA-Z0-9-]{2,500}"
 
-app_user_fo_display:
-    path: /user/{id}/{name}
-    defaults: { _controller: "AppBundle:User:display" }
+app_ajax_subscriber_save:
+    path: /subscriber/save
+    defaults: { _controller: "AppBundle:Subscriber:save" }
     requirements:
-      name: "[a-zA-Z0-9-]{2,500}"
+      _method: POST
+
+app_ajax_comment_save:
+    path: /comment/save
+    defaults: { _controller: "AppBundle:Comment:save" }
+    requirements:
+      _method: POST
 
 app_default_homepage:
     path: /

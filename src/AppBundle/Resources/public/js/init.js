@@ -51,53 +51,55 @@ $(document).ready(function() {
         }
     });
 
-
-    //Thubnail Slider 1
-    $('#camera_wrap_1').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-
-
-    //Thubnail Slider 2
-    $('#camera_wrap_2').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-
-
-    //Thubnail Slider 3
-    $('#camera_wrap_3').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-
-
-    //Thubnail Slider 4
-    $('#camera_wrap_4').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-
-
-    //Thubnail Slider 5
-    $('#camera_wrap_5').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-
-
     //Tab Slider
     $('#main-slider').liquidSlider();
+
+    // newsletter font
+    $('#form-subscriber').on('submit', function(event) {
+        var $this = $(this);
+        var data = 'email=' + $('#appbundle_subscriber_email').val();
+        $.ajax({
+            url: $this.attr('action'),
+            type: $this.attr('method'),
+            data: data,
+            success: function(data) {
+                $('html, body').animate({ scrollTop: 0 }, 0);
+                location.reload();
+            },
+            error: function () {
+                alert('La requête n\'a pas abouti');
+            }
+        });
+
+
+        return false;
+    });
+
+    $('#write-comment').click(function(){
+        $('html,body').animate({
+            scrollTop: $('#contactForm').offset().top
+        }, 1000);
+    });
+
+    $('#contactForm').on('submit', function(event) {
+        var $this = $(this);
+        var data = 'email=' + $('#appbundle_comment_email').val() + '&username=' + $('#appbundle_comment_username').val() + '&message=' + $('#appbundle_comment_message').val() + '&article_id=' + $('#article_id').val();
+        $.ajax({
+            url: $this.attr('action'),
+            type: $this.attr('method'),
+            data: data,
+            success: function(data) {
+                $('html,body').animate({
+                    scrollTop: $('.comment').offset().top
+                }, 1000);
+            },
+            error: function () {
+                alert('La requête n\'a pas abouti');
+            }
+        });
+
+
+        return false;
+    });
 
 });

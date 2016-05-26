@@ -7,7 +7,7 @@
                 <div class="comment-title">Comments</div>
                 <!-- Comment Share it button -->
                 <div class="right">
-                    <a class="waves-effect waves-light btn share">Share It</a>
+                    <a class="waves-effect waves-light btn share" id="write-comment">{{ 'Leave comment'|trans }}</a>
                 </div>
                 <div class="clearfix"></div>
                 <ul>
@@ -104,9 +104,10 @@
                     </li>
                 </ul>
 
-                {{ form_start(form, {'attr': {'class': 'form', 'id': 'contactForm', 'name': 'sentMessage'}}) }}
-                {{ form_errors(form) }}
-                    <div class="comment-title">Leave Comment</div>
+                <form method="post" class="form" id="contactForm" action="{{ path('app_ajax_comment_save') }}">
+                    {{ form_errors(form) }}
+                    <input type="hidden" name="article_id" id="article_id" value="{{ article.id }}" />
+                    <div class="comment-title">{{ 'Leave comment'|trans }}</div>
                     <div class="input-field">
                         {{ form_widget(form.username, {'attr': {'class': 'mdl-textfield__input'}}) }}
                         {{ form_label(form.username, null, {'label_attr': {'class': 'validate'}}) }}
@@ -123,7 +124,7 @@
 
                     {{ form_widget(form.save, {'attr': {'class': 'btn btn-flat waves-effect waves-light shopping-cart-button'}}) }}
                     {{ form_rest(form) }}
-                {{ form_end(form) }}
+                </form>
             </div>
             <div class="col l4 offset-l1 col m12 col s12">
                 <div class="discussion">

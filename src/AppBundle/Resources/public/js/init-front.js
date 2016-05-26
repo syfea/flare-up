@@ -53,48 +53,48 @@ $(document).ready(function() {
   
   
     //Thubnail Slider 1
-    $('#camera_wrap_1').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-  
-  
-    //Thubnail Slider 2
-    $('#camera_wrap_2').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-  
-  
-    //Thubnail Slider 3
-    $('#camera_wrap_3').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-  
-  
-    //Thubnail Slider 4
-    $('#camera_wrap_4').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
-  
-    
-    //Thubnail Slider 5
-    $('#camera_wrap_5').camera({
-        height: '520px',
-        loader: 'bar',
-        pagination: false,
-        thumbnails: true
-    });
+   // $('#camera_wrap_1').camera({
+    //     height: '520px',
+    //     loader: 'bar',
+    //     pagination: false,
+    //     thumbnails: true
+    // });
+    //
+    //
+    // //Thubnail Slider 2
+    // $('#camera_wrap_2').camera({
+    //     height: '520px',
+    //     loader: 'bar',
+    //     pagination: false,
+    //     thumbnails: true
+    // });
+    //
+    //
+    // //Thubnail Slider 3
+    // $('#camera_wrap_3').camera({
+    //     height: '520px',
+    //     loader: 'bar',
+    //     pagination: false,
+    //     thumbnails: true
+    // });
+    //
+    //
+    // //Thubnail Slider 4
+    // $('#camera_wrap_4').camera({
+    //     height: '520px',
+    //     loader: 'bar',
+    //     pagination: false,
+    //     thumbnails: true
+    // });
+    //
+    //
+    // //Thubnail Slider 5
+    // $('#camera_wrap_5').camera({
+    //     height: '520px',
+    //     loader: 'bar',
+    //     pagination: false,
+    //     thumbnails: true
+    // });
   
     
     //Tab Slider
