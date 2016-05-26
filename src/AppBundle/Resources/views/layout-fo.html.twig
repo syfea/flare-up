@@ -22,13 +22,7 @@
                     </div>
                 </div>
                 <div class="col l4 col m4 col s12 pull-right">
-                    <!-- Search Button -->
-                    <form class="searchbox">
-                        <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required>
-                        <input type="submit" class="searchbox-submit">
-                        <span class="searchbox-icon"><i class="mdi-action-search fa fa-search"></i></span>
-                    </form>
-                    <!-- LogIn Link -->
+                    {{ render(controller('AppBundle:Default:searchEngine')) }}
                     <a href="{{ path('app_backofficebundle_home') }}" class="right login">{{ 'Login'|trans }}</a>
                 </div>
             </div>

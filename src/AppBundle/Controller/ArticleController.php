@@ -47,7 +47,7 @@ class ArticleController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);
                 $em->flush();
-                $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Article is created'));
 
                 return $this->redirect($this->generateUrl('app_backofficebundle_article_index'));
             }
@@ -80,7 +80,7 @@ class ArticleController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);
                 $em->flush();
-                $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Article is updated'));
 
                 return $this->redirect($this->generateUrl('app_backofficebundle_article_index'));
             }
@@ -105,6 +105,8 @@ class ArticleController extends Controller
                 'userArticles' => $userArticles
             ));
         }
+
+
 
         return $this->redirect($this->generateUrl('app_default_homepage'));
     }

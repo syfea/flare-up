@@ -89,9 +89,12 @@ $(document).ready(function() {
             type: $this.attr('method'),
             data: data,
             success: function(data) {
+                $('#appbundle_comment_message').val('');
                 $('html,body').animate({
-                    scrollTop: $('.comment').offset().top
+                    scrollTop: $('.comment').offset().top - 100
                 }, 1000);
+                location.reload();
+                $('#appbundle_comment_message').val('');
             },
             error: function () {
                 alert('La requête n\'a pas abouti');

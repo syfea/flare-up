@@ -4,38 +4,35 @@
         <div class="comment z-depth-1">
             <div class="col l7 col m12 col s12">
                 <!-- Comment Title -->
-                <div class="comment-title">Comments</div>
+                <div class="comment-title">{{ 'Comments'|trans }}</div>
                 <!-- Comment Share it button -->
                 <div class="right">
                     <a class="waves-effect waves-light btn share" id="write-comment">{{ 'Leave comment'|trans }}</a>
                 </div>
                 <div class="clearfix"></div>
                 <ul>
-                    <!-- Comment Box -->
-                    <li class="comment-box">
-                        <!-- Comment Image -->
-                        <div class="comment-image">
-                            <img alt="news Image" src="images/client1.jpg" class="responsive-img">
-                        </div>
-                        <!-- Comment Content -->
-                        <div class="comment-content">
-                            <!-- Comment Name -->
-                            <div class="comment-name">
-                                Sandro Doinitsin
+                    {% for comment in comments %}
+                        <li class="comment-box">
+                            <div class="comment-image">
+                                {% if comment.user is not null %}
+                                    <img alt="{{ comment.username }}" src="{{ asset('uploads/vignet/'~comment.user.vignet|e) }}" class="responsive-img">
+                                {% else %}
+                                    <img alt="{{ comment.username }}" src="{{ asset('bundles/app/images/logo-footer.png') }}" class="responsive-img">
+                                {% endif %}
                             </div>
-                            <!-- Comment Detail -->
-                            <div class="comment-detail">
-                                <p>Curabitur erat est, dapibus quis molestie vitae, auctor elementum tellus</p>
+                            <div class="comment-content">
+                                <div class="comment-name">{{ comment.username }}</div>
+                                <div class="comment-detail">
+                                    <p>{{ comment.message }}</p>
+                                </div>
+
+                                <div class="comment-time">{{ comment.dateCreated|date('d M Y h:i') }}</div>
                             </div>
-                            <!-- Comment Time -->
-                            <div class="comment-time">
-                                13 march in 14:57
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    {% endfor %}
 
                     <!-- Comment Box -->
-                    <li class="comment-box child">
+                   {# <li class="comment-box child">
                         <!-- Comment Image -->
                         <div class="comment-image">
                             <img alt="news Image" src="images/client2.jpg" class="responsive-img">
@@ -55,53 +52,7 @@
                                 13 march in 14:57
                             </div>
                         </div>
-                    </li>
-
-                    <!-- Comment Box -->
-                    <li class="comment-box child">
-                        <!-- Comment Image -->
-                        <div class="comment-image">
-                            <img alt="news Image" src="images/client3.jpg" class="responsive-img">
-                        </div>
-                        <!-- Comment Content -->
-                        <div class="comment-content">
-                            <!-- Comment Name -->
-                            <div class="comment-name">
-                                Alla Rozanvo <i class="fa fa-share"></i> Sandro Doinitsin
-                            </div>
-                            <!-- Comment Detail -->
-                            <div class="comment-detail">
-                                <p>Curabitur erat est, dapibus quis molestie vitae, auctor elementum tellus</p>
-                            </div>
-                            <!-- Comment Time -->
-                            <div class="comment-time">
-                                13 march in 14:57
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- Comment Box -->
-                    <li class="comment-box child">
-                        <!-- Comment Image -->
-                        <div class="comment-image">
-                            <img alt="news Image" src="images/client4.jpg" class="responsive-img">
-                        </div>
-                        <!-- Comment Content -->
-                        <div class="comment-content">
-                            <!-- Comment Name -->
-                            <div class="comment-name">
-                                Lera Shvets <i class="fa fa-share"></i> Sandro Doinitsin
-                            </div>
-                            <!-- Comment Detail -->
-                            <div class="comment-detail">
-                                <p>Curabitur erat est, dapibus quis molestie vitae, auctor elementum tellus</p>
-                            </div>
-                            <!-- Comment Time -->
-                            <div class="comment-time">
-                                13 march in 14:57
-                            </div>
-                        </div>
-                    </li>
+                    </li>#}
                 </ul>
 
                 <form method="post" class="form" id="contactForm" action="{{ path('app_ajax_comment_save') }}">
@@ -128,84 +79,8 @@
             </div>
             <div class="col l4 offset-l1 col m12 col s12">
                 <div class="discussion">
-                    <div class="comment-title">Recently discussion</div>
-                    <ul>
-                        <!-- Discussion Box -->
-                        <li class="discussion-box">
-                            <!-- Discussion Image -->
-                            <div class="discussion-image">
-                                <img alt="news Image" src="images/client1.jpg" class="responsive-img">
-                            </div>
-                            <!-- Discussion Content -->
-                            <div class="discussion-content">
-                                <!-- Discussion Name -->
-                                <div class="discussion-name">SweetLycasualldragun</div>
-                                <!-- Discussion Category -->
-                                <div class="discussion-category">Relational Temporarily</div>
-                                <!-- Discussion Month -->
-                                <div class="discussion-month">March 9</div>
-                                <!-- Discussion Comment -->
-                                <div class="discussion-comment"><a href="javascript:void(0);"><i class="mdi-communication-messenger"></i>325</a></div>
-                            </div>
-                        </li>
+                    <div class="comment-title">{{ 'Shared'|trans }}</div>
 
-                        <!-- Discussion Box -->
-                        <li class="discussion-box">
-                            <!-- Discussion Image -->
-                            <div class="discussion-image">
-                                <img alt="news Image" src="images/client2.jpg" class="responsive-img">
-                            </div>
-                            <!-- Discussion content -->
-                            <div class="discussion-content">
-                                <!-- Discussion Name -->
-                                <div class="discussion-name">Miki Banki</div>
-                                <!-- Discussion Category -->
-                                <div class="discussion-category">Unipolar World</div>
-                                <!-- Discussion Month -->
-                                <div class="discussion-month">March 9</div>
-                                <!-- Discussion Comment -->
-                                <div class="discussion-comment"><a href="javascript:void(0);"><i class="mdi-communication-messenger"></i>245</a></div>
-                            </div>
-                        </li>
-
-                        <!-- Discussion Box -->
-                        <li class="discussion-box">
-                            <!-- Discussion Image -->
-                            <div class="discussion-image">
-                                <img alt="news Image" src="images/client3.jpg" class="responsive-img">
-                            </div>
-                            <!-- Discussion content -->
-                            <div class="discussion-content">
-                                <!-- Discussion Name -->
-                                <div class="discussion-name">Apcdaora</div>
-                                <!-- Discussion Category -->
-                                <div class="discussion-category">Worlds Through the eyes of Children</div>
-                                <!-- Discussion Month -->
-                                <div class="discussion-month">March 9</div>
-                                <!-- Discussion Comment -->
-                                <div class="discussion-comment"><a href="javascript:void(0);"><i class="mdi-communication-messenger"></i>45</a></div>
-                            </div>
-                        </li>
-
-                        <!-- Discussion Box -->
-                        <li class="discussion-box">
-                            <!-- Discussion Image -->
-                            <div class="discussion-image">
-                                <img alt="news Image" src="images/client4.jpg" class="responsive-img">
-                            </div>
-                            <!-- Discussion content -->
-                            <div class="discussion-content">
-                                <!-- Discussion Name -->
-                                <div class="discussion-name">Dikomn</div>
-                                <!-- Discussion Category -->
-                                <div class="discussion-category">Style and Fashion</div>
-                                <!-- Discussion Month -->
-                                <div class="discussion-month">March 9</div>
-                                <!-- Discussion Comment -->
-                                <div class="discussion-comment"><a href="javascript:void(0);"><i class="mdi-communication-messenger"></i>7</a></div>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

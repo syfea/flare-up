@@ -37,7 +37,7 @@ class CategoryController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($category);
                 $em->flush();
-                $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Category is created'));
 
                 return $this->redirect($this->generateUrl('app_backofficebundle_category_index'));
             }
@@ -59,7 +59,7 @@ class CategoryController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($category);
                 $em->flush();
-                $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Category is created'));
 
                 return $this->redirect($this->generateUrl('app_backofficebundle_category_index'));
             }

@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Form\SearchType;
 
 class DefaultController extends Controller
 {
@@ -13,10 +14,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-//       if($request->request->count() >= 1) {
-//           return $this->redirect('.');
-//       }
-
         return $this->render('AppBundle:Default:index.html.twig');
     }
 
@@ -92,5 +89,14 @@ class DefaultController extends Controller
         return $this->render('AppBundle:Default:footer1.html.twig', array(
             'categories' => $categories
         ));
+    }
+
+    public function searchEngineAction()
+    {
+        $form = $this->get('form.factory')->create(new SearchType());
+
+        return $this->render('AppBundle:Default:searchEngine.html.twig', array(
+                    'form' => $form->createView(),
+                ));
     }
 }

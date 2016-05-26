@@ -41,6 +41,7 @@
                             {% for article in articles %}
                                 <div class="col l4 col m6">
                                     <div class="news vertical z-depth-1 profile-box">
+                                        <span class="label-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</span>
                                         <div class="news-image">
                                             <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
                                         </div>
@@ -58,18 +59,20 @@
                         <div id="list-view" class="listview" style="display:none">
                             <div class="col l12 col m12">
                                 {% for article in articles %}
-                                <div class="profile-box z-depth-1">
+                                <div class="profile-box z-depth-1 news">
                                     <div class="col l3">
                                         <img alt="{{ article.title }}" src="{{ asset('uploads/article/'~article.picture|e) }}" class="responsive-img">
                                     </div>
                                     <div class="col l9">
                                         <div class="profile-detail">
+                                            <span class="label-category right" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</span>
                                             <div class="news-title">
                                                 <a href="{{article.url}}">{{ article.title }}</a>
                                             </div>
                                             <p>{{ article.smallContent }}</p>
                                             <div class="profile-by">
-                                                {{ 'by'|trans }} <a href="{{article.url}}">{{ article.user.username }}</a>
+                                                {{ 'by'|trans }}
+                                                <a href="{{article.url}}">{{ article.user.username }}</a>
                                                 {{ 'at'|trans }}
                                                 {{ article.publishedAt|date('d M Y h:i') }}
                                             </div>

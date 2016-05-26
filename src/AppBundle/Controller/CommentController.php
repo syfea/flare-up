@@ -12,23 +12,20 @@ class CommentController extends Controller
 {
     public function displayAction(Request $request, Article $article)
     {
+        $options['user'] = $this->getUser();
         $comment = new Comment();
         $comment->setArticle($article);
-        $form = $this->get('form.factory')->create(new CommentType(), $comment);
-
+        $form = $this->get('form.factory')->create(new CommentType($options), $comment);
         $form->handleRequest($request);
 
-
-        if ($form->isValid()) {
-            echo 'stop';
-            //$this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN');
-            //var_dump($this->container->get('security.authorization_checker')->isUser());
-            exit();
-        }
+        $comments = $this->getDoctrine()
+                ->getRepository('AppBundle:Comment')
+                ->getAllCommentsByArticle($article);
 
         return $this->render('AppBundle:Comment:display.html.twig', array(
                     'form' => $form->createView(),
-                    'article' => $article
+                    'article' => $article,
+                    'comments' => $comments
                ));
     }
 
@@ -38,32 +35,29 @@ class CommentController extends Controller
 
         if($request->isXmlHttpRequest())
         {
-            $article = $this->getDoctrine()
+            if ($request->request->get('article_id') != '' && $request->request->get('username') != '' && $request->request->get('email') != '' && $request->request->get('message') != '') {
+                $article = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
                 ->find($request->request->get('article_id'));
 
-            $comment = new Comment();
-            $comment->setArticle($article);
-            $comment->setUsername($request->request->get('username'));
-            $comment->setEmail($request->request->get('email'));
-            $comment->setMessage($request->request->get('message'));
-            $comment->setHidden(false);
-            if (!is_null($this->getUser())) {
-                $comment->setUser($this->getUser());
-            }
+                $comment = new Comment();
+                $comment->setArticle($article);
+                $comment->setUsername($request->request->get('username'));
+                $comment->setEmail($request->request->get('email'));
+                $comment->setMessage($request->request->get('message'));
+                $comment->setHidden(false);
+                if (!is_null($this->getUser())) {
+                    $comment->setUser($this->getUser());
+                }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-//
-//            if (count($subscriberSearch) == 0) {
-//                $em = $this->getDoctrine()->getManager();
-//                $em->persist($subscriber);
-//                $em->flush();
-//                $request->getSession()->getFlashBag()->add('notice', 'Vous êtes bien enregistré à notre newsletter.');
-//            } else {
-//                $request->getSession()->getFlashBag()->add('error', 'Cette adresse email est déjà inscrite à notre newsletter.');
-//            }
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($comment);
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Your comment is created'));
+            } else {
+                $request->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('Your comment is created'));
+            }
         }
 
         return new Response();

@@ -189,8 +189,8 @@ footer.page-footer .footer-copyright {
     color: #039be5;;
 }
 .flashMessage-notice {
-    position: absolute;
-    z-index: 15;
+    position: fixed;
+    z-index: 1000;
     background-color: forestgreen;
     left: 0px;
     right: 0px;
@@ -355,6 +355,31 @@ input[type="text"]:focus:not([readonly]), input[type="email"]:focus:not([readonl
 .sidbar-box {
     background-color: #4e4e4e;
 }
+.comment-box {
+    border-top: 2px solid #039be5;
+}
+.comment {
+    background-color: #4e4e4e;
+    margin-top: 0;
+}
+.comment-detail p, .comment-time {
+    color: #ffffff;
+}
+.comment-name {
+    color: #039be5;
+    font-size: 14px;
+    font-weight: bold;
+}
+.comment-time {
+    font-style: italic;
+}
+#contactForm .input-field input, #contactForm .input-field #appbundle_comment_message {
+    background-color: white;
+}
+.discussion .comment-title {
+    border-bottom: 2px solid #039be5;
+}
+
 @media (min-width:320px) and (max-width: 600px) {
     .top-header {
         background: #424242;

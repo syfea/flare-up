@@ -104,6 +104,16 @@ genemu_form:
         script_url: '/bundles/app/js/tinymce/jquery.tinymce.min.js'
         enabled: true
         theme:   advanced
+    recaptcha:
+        public_key:  '6Lej9iATAAAAAB3fQC4RNSMLDuOuJyholKy8snSj'
+        private_key: '6Lej9iATAAAAAHPloNEPmSn0uO7FHInTshmzGSYq'
+        validation:
+            host: www.google.com
+            port: 80
+            path: /recaptcha/api/verify
+            timeout: 10
+            code: ~
+        configs: []
 
 trsteel_ckeditor:
     class: Trsteel\CkeditorBundle\Form\Type\CkeditorType

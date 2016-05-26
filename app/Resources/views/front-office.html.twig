@@ -9,14 +9,14 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     {% block stylesheets %}
         {% stylesheets output="compiled/css/main_fo.css" filter='cssrewrite'
-        '@AppBundle/Resources/public/css/materialdesignicons.css'
-        '@AppBundle/Resources/public/css/materialize.css'
-        '@AppBundle/Resources/public/css/style.css'
-        '@AppBundle/Resources/public/css/font-awesome.min.css'
-        '@AppBundle/Resources/public/css/pgwslider.css'
-        '@AppBundle/Resources/public/css/camera.css'
-        '@AppBundle/Resources/public/css/flare-up.css'
-        '@AppBundle/Resources/public/font/*' %}
+        'bundles/app/css/materialdesignicons.css'
+        'bundles/app/css/materialize.css'
+        'bundles/app/css/style.css'
+        'bundles/app/css/font-awesome.min.css'
+        'bundles/app/css/pgwslider.css'
+        'bundles/app/css/camera.css'
+        'bundles/app/css/flare-up.css'
+        'bundles/app/font/*' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
         <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
@@ -47,14 +47,14 @@
     </div>
     {% block footer %}{% endblock footer %}
 {% block javascripts %}
-    {% javascripts
-    '@AppBundle/Resources/public/js/jquery-min.js'
-    '@AppBundle/Resources/public/js/materialize.js'
-    '@AppBundle/Resources/public/js/pgwslider.js'
-    '@AppBundle/Resources/public/js/jquery.touchSwipe.min.js'
-    '@AppBundle/Resources/public/js/jquery.liquid-slider.js'
-    '@AppBundle/Resources/public/js/init.js'
-    '@AppBundle/Resources/public/js/flare-up.js'%}
+    {% javascripts output="compiled/js/main_front.js"
+    'bundles/app/js/jquery-min.js'
+    'bundles/app/js/materialize.js'
+    'bundles/app/js/pgwslider.js'
+    'bundles/app/js/jquery.touchSwipe.min.js'
+    'bundles/app/js/jquery.liquid-slider.js'
+    'bundles/app/js/init.js'
+    'bundles/app/js/flare-up.js'%}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script>

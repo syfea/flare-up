@@ -65,7 +65,7 @@ class Comment
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="articles", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="comments", cascade={"remove"})
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
     protected $article;

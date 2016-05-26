@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Article;
 /**
  * CommentRepository
  *
@@ -10,4 +11,13 @@ namespace AppBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllCommentsByArticle(Article $article)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.hidden <= 0')
+            ->andWhere('c.article = :articleId')
+            ->setParameter('articleId', $article->getId())
+            ->addOrderBy('c.dateCreated', 'DESC')
+            ->getQuery()->getResult();
+    }
 }

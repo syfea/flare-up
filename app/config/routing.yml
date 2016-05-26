@@ -100,6 +100,12 @@ app_category_fo_display:
     requirements:
       name: "[a-zA-Z0-9-]{2,500}"
 
+app_user_fo_display:
+    path: /user/{id}/{name}
+    defaults: { _controller: "AppBundle:User:display" }
+    requirements:
+      name: "[a-zA-Z0-9-]{2,500}"
+
 app_ajax_subscriber_save:
     path: /subscriber/save
     defaults: { _controller: "AppBundle:Subscriber:save" }

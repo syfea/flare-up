@@ -36,9 +36,9 @@ class SubscriberController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($subscriber);
                 $em->flush();
-                $request->getSession()->getFlashBag()->add('notice', 'Vous êtes bien enregistré à notre newsletter.');
+                $request->getSession()->getFlashBag()->add('notice',  $this->get('translator')->trans('You are well recorded in our newsletter'));
             } else {
-                $request->getSession()->getFlashBag()->add('error', 'Cette adresse email est déjà inscrite à notre newsletter.');
+                $request->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('This email address is already registered for our newsletter.'));
             }
         }
 
