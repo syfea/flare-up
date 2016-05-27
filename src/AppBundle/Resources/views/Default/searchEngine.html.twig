@@ -1,17 +1,7 @@
-{#<form class="searchbox">
-    <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required>
-    <input type="submit" class="searchbox-submit">
-    <span class="searchbox-icon"><i class="mdi-action-search fa fa-search"></i></span>
-</form>#}
-<form class="searchbox" method="post" name="appbundle_search">
-    <input id="appbundle_search_search" class="searchbox-input" type="text" placeholder="" required="required" name="appbundle_search[search]">
-    <button id="appbundle_search_save" class="Type and Press Enter" placeholder="" name="appbundle_search[save]" type="submit">Save</button>
-    <input id="appbundle_search__token" type="hidden" value="HvgTPXwyrfkMJ4250T5H9ugB5YEBbgf94yuFpXEipXs" name="appbundle_search[_token]">
-</form>
-
 {{ form_start(form, {'attr': {'class': 'searchbox'}}) }}
-{{ form_errors(form) }}
+    {{ form_errors(form) }}
     {{ form_widget(form.search) }}
     {{ form_widget(form.save) }}
-{{ form_rest(form) }}
+    <span class="searchbox-icon"><i class="mdi-action-search fa fa-search"></i></span>
+    {{ form_rest(form) }}
 {{ form_end(form) }}

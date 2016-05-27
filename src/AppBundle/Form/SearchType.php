@@ -18,10 +18,11 @@ class SearchType extends AbstractType
                                     )
                                 ))
         ->add('save', 'submit', array(
-            'label'  => '',
+            'label'  => ' ',
             'attr'   =>  array(
-                            'class'   => 'Type and Press Enter',
-                            'placeholder' => ''
+                            'class'   => 'searchbox-icon',
+                            'placeholder' => '',
+                            'value' => '',
                 )
             ));
   }
