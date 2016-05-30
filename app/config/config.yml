@@ -34,6 +34,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        ga_tracking: UA-78515324-1
 
 # Doctrine Configuration
 doctrine:
