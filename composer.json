@@ -26,7 +26,8 @@
         "bmatzner/fontawesome-bundle": "~4.3",
         "genemu/form-bundle": "^3.0@dev",
         "Trsteel/ckeditor-bundle": "~1.6",
-        "helios-ag/fm-elfinder-bundle": "~6"
+        "helios-ag/fm-elfinder-bundle": "~6",
+        "google/apiclient": "1.1.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

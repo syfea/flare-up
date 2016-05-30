@@ -23,8 +23,9 @@
                     <div class="news-detail">
                         <span class="news-by"><a href="javascript:void(0);">{{ article.user.username }}</a></span>
                         <span class="news-month"><a href="javascript:void(0);"><i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y h:i') }}</a></span>
-                        <span class="news-comment"><a href="javascript:void(0);"><i class="mdi-communication-messenger"></i> 42</a></span>
-                        <span class="news-view"><a href="javascript:void(0);"><i class="fa fa-eye"></i> {{ article.countView }}</a></span>
+                        <span class="news-comment"><a href="javascript:void(0);" title="{{ 'Average time spent' }}"><i class="fa fa-clock-o"></i> {{ u['ga:avgTimeOnSite'] }}</a></span>
+                        <span class="news-comment"><a href="javascript:void(0);" title="{{ 'Number visitor' }}"><i class="fa fa-users"></i> {{ u['ga:visitors'] }}</a></span>
+                        <span class="news-view"><a href="javascript:void(0);" title="{{ 'Number visit' }}"><i class="fa fa-eye"></i> {{ u['ga:visits'] }}</a></span>
                     </div>
                 </div>
             </div>

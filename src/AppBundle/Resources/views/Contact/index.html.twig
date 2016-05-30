@@ -1,0 +1,49 @@
+{% extends 'AppBundle::layout-fo.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col l12">
+            <div class="contact-detail z-depth-1">
+                <div class="col l7 col m12 col s12">
+                    <div class="col l7 col m6 col s12">
+                        <div class="title">Contact Detail</div>
+                        <p>Yeah, Accessories is Greate and this the fun part. we'd to talkabout your project or just chat about Accessories. So either fill out the form, pick up the phone.   </p>
+                        <div class="address">
+                            <p><i class="fa fa-home"></i> 3340 King St. London W6 ORR, UK</p>
+                            <p><i class="fa fa-phone"></i> Phone: +44 (0) 20 9493 89819</p>
+                            <p><i class="fa fa-fax"></i> Fax: +44 (0) 20 9493 89810</p>
+                            <p><i class="fa fa-envelope"></i> Email: hello@mass-theme.com</p>
+                        </div>
+                        <div class="social-icon">
+                            <a href="javascript:void(0);"><i class="fa fa-behance"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-pinterest"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-instagram"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l5 col m6 col s12">
+                    <form action="#" method="post" id="contactForm" name="sentMessage">
+                        <div class="input-field">
+                            <i class="mdi-action-perm-identity prefix"></i>
+                            <input type="text" required="" class="validate" id="name">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <i class="mdi-communication-email prefix"></i>
+                            <input type="email" required="" class="validate" id="email">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <textarea class="materialize-textarea" id="textarea1"></textarea>
+                            <label for="textarea1">Message Here</label>
+                        </div>
+                        <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right">Submit Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

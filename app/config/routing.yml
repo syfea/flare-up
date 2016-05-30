@@ -122,6 +122,10 @@ app_default_homepage:
     path: /
     defaults: {_controller: AppBundle:Default:index}
 
+app_contact_general:
+    path: /contact
+    defaults: {_controller: AppBundle:Contact:index}
+
 route_name:
   path: /web/uploads/articles
 
