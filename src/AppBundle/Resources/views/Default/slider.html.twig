@@ -6,7 +6,7 @@
             <!-- News Slider Content -->
             <div class="news-content">
                 <div class="news-time" style="color: #{{ article.category.color }}">
-                    <small>{{ article.publishedAt|date('d M Y h:i') }}</small>
+                    <small>{{ article.publishedAt|date('d M Y H:i') }}</small>
                 </div>
                 <div class="news-title big"><h2> <a href="{{ article.url }}">{{ article.title }}</a> </h2></div>
                 <p class="news-detail">{{ article.smallContent }}</p>

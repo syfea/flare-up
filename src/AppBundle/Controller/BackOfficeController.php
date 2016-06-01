@@ -16,7 +16,7 @@ class BackOfficeController extends Controller
 {
     public function indexAction()
     {
-        
+
         return $this->render('AppBundle:Default:dashboard.html.twig');
     }
 

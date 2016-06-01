@@ -126,6 +126,9 @@ app_contact_general:
     path: /contact
     defaults: {_controller: AppBundle:Contact:index}
 
+app_fo_privacy:
+    path: /privacy
+    defaults: {_controller: AppBundle:Default:privacy}
 route_name:
   path: /web/uploads/articles
 

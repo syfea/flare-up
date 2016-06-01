@@ -10,7 +10,7 @@
             <!-- News Description -->
             <div class="news-description">
                 <div class="news-time">
-                    <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y h:i') }}
+                    <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y H:i') }}
                 </div>
                 <div class="news-title"><a href="{{ article.url }}">{{ article.title | striptags | slice(0, 55) }}</a></div>
                 <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 110) }} [...]</p></div>

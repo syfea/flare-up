@@ -101,26 +101,31 @@ class ArticleController extends Controller
                 ->getRepository('AppBundle:Article')
                 ->getRecentArticleByUser(5);
 
-            $client = new \Google_Client();
-            $client->setApplicationName('flareup');
-            $analytics = $this->container->getParameter('analytics');
-            $analytics_file = $this->get('kernel')->getRootDir() . '/Resources/'.$analytics['name_file'];
+            if ((!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime)) {
+                $client = new \Google_Client();
+                $client->setApplicationName('flareup');
+                $analytics = $this->container->getParameter('analytics');
+                $analytics_file = $this->get('kernel')->getRootDir() . '/Resources/'.$analytics['name_file'];
 
-            $params = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
-            $cred = new \Google_Auth_AssertionCredentials($analytics['id_account'] , array('https://www.googleapis.com/auth/analytics.readonly'), file_get_contents($analytics_file));
-            $client->setAssertionCredentials($cred);
-            if($client->getAuth()->isAccessTokenExpired()) {
-                $client->getAuth()->refreshTokenWithAssertion($cred);
+                $params = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
+                $cred = new \Google_Auth_AssertionCredentials($analytics['id_account'] , array('https://www.googleapis.com/auth/analytics.readonly'), file_get_contents($analytics_file));
+                $client->setAssertionCredentials($cred);
+                if($client->getAuth()->isAccessTokenExpired()) {
+                    $client->getAuth()->refreshTokenWithAssertion($cred);
+                }
+                $service = new \Google_Service_Analytics($client);
+                $u = $service->data_ga->get('ga:'.$analytics['id_view'], $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), 'ga:visitors,ga:visits,ga:avgTimeOnSite', $params);
+                $uView = $u->getTotalsForAllResults();
+            } else {
+                $uView['ga:avgTimeOnSite'] = 0;
+                $uView['ga:visitors'] = 0;
+                $uView['ga:visits'] = 0;
             }
-
-            $service = new \Google_Service_Analytics($client);
-
-            $u = $service->data_ga->get('ga:'.$analytics['id_view'], $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), 'ga:visitors,ga:visits,ga:avgTimeOnSite', $params);
 
             return $this->render('AppBundle:Article:display.html.twig', array(
                 'article' => $article,
                 'userArticles' => $userArticles,
-                'u' => $u->getTotalsForAllResults()
+                'u' => $uView
             ));
         }
 

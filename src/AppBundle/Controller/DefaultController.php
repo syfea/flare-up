@@ -99,4 +99,13 @@ class DefaultController extends Controller
                     'form' => $form->createView(),
                 ));
     }
+
+    public function socialFooterAction()
+    {
+        $parameter = $this->getDoctrine()->getManager()->getRepository('AppBundle:Parameter')->findOneById(1);
+
+        return $this->render('AppBundle:Default:socialFooter.html.twig', array(
+            'parameter' => $parameter
+        ));
+    }
 }

@@ -126,6 +126,7 @@ trsteel_ckeditor:
     class: Trsteel\CkeditorBundle\Form\Type\CkeditorType
     transformers: ['html_purifier']
     toolbar: ['document', 'clipboard', 'editing', '/', 'basicstyles', 'paragraph', 'links', '/', 'insert', 'styles', 'tools']
+    #external_plugins: ['youtube']
     toolbar_groups:
         document: []
         clipboard: ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo']

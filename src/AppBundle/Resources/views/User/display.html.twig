@@ -1,5 +1,6 @@
 {% extends 'AppBundle::layout-fo.html.twig' %}
 
+{% block title %}{{ user.username }} - Flare Up{% endblock %}
 {% block content %}
     <div class="row">
         <div class="col l12 col m12 col s12">
@@ -47,7 +48,7 @@
                                         </div>
                                         <div class="news-description">
                                             <div class="news-time">
-                                                <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y h:i') }}
+                                                <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y H:i') }}
                                             </div>
                                             <div class="news-title"><a href="{{ article.url }}">{{ article.title | striptags | slice(0, 55) }}</a></div>
                                             <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 105) }} [...] </p></div>
@@ -74,7 +75,7 @@
                                                 {{ 'by'|trans }}
                                                 <a href="{{article.url}}">{{ article.user.username }}</a>
                                                 {{ 'at'|trans }}
-                                                {{ article.publishedAt|date('d M Y h:i') }}
+                                                {{ article.publishedAt|date('d M Y H:i') }}
                                             </div>
                                         </div>
                                     </div>

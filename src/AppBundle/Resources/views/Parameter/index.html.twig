@@ -1,0 +1,101 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/tinymce/tinymce.min.js') }}"></script>
+    {{ form_javascript(form) }}
+{% endblock %}
+
+{% block content %}
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>{{ 'Settings'|trans }}</h2>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                <div class="form__article employer-form__contacts">
+                    <h3>{{ 'Content page'|trans }}</h3>
+                    <div class="mdl-cell mdl-cell--12-col input-group">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ form_widget(form.content_contact, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                            {{ form_label(form.content_contact, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ form_widget(form.privacy, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                            {{ form_label(form.privacy, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--12-col input-group">
+
+                    </div>
+                </div>
+                <div class="form__article employer-form__contacts">
+                    <h3>{{ 'Social Network'|trans }}</h3>
+
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.facebook, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.facebook, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.twitter, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.twitter, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.pinterest, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.pinterest, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.instagram, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.instagram, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.youtube, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.youtube, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.vimeo, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.vimeo, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.linkedin, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.linkedin, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.googleplus, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.googleplus, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col input-group">
+                            <div class="mdl-textfield mdl-js-textfield pull-left">
+                                {{ form_widget(form.rss, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                                {{ form_label(form.rss, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form__action">
+                    {{ form_widget(form.save, {'attr': {'class': 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored', 'id': 'submit_button'}}) }}
+                </div>
+                {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
