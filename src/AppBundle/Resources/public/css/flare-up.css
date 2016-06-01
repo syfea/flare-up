@@ -400,6 +400,9 @@ input[type="text"]:focus:not([readonly]), input[type="email"]:focus:not([readonl
 .profile-sidebar .social-icon .fa:hover {
     color: #039be5;
 }
+.social-icon {
+    text-align: center;
+}
 @media (min-width:320px) and (max-width: 600px) {
     .top-header {
         background: #424242;

@@ -10,8 +10,14 @@ class ParameterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content_contact', 'ckeditor', array('required' => true))
-            ->add('privacy', 'ckeditor', array('required' => true))
+            ->add('content_contact', 'ckeditor', array(
+                'transformers' => array(),
+                'required' => true
+            ))
+            ->add('privacy', 'ckeditor', array(
+                'transformers' => array(),
+                'required' => true
+            ))
             ->add('facebook', 'text', array('required' => false))
             ->add('twitter', 'text', array('required' => false))
             ->add('pinterest', 'text', array('required' => false))
