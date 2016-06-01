@@ -35,7 +35,7 @@ class Article
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     protected $category;

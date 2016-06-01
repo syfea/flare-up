@@ -167,4 +167,21 @@ class ArticleController extends Controller
 
         return $this->redirect($this->generateUrl('app_backofficebundle_article_index'));
     }
+
+    public function deleteAction(Article $article, Request $request)
+    {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            if (is_null($request->request->get('action_value'))) {
+                return $this->render('AppBundle:Article:delete.html.twig', array('article' => $article));
+            }else if ($request->request->get('action_value') == 1) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($article);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('app_backofficebundle_article_index'));
+            } else if ($request->request->get('action_value') == 0) {
+                return $this->redirect($this->generateUrl('app_backofficebundle_article_index'));
+            }
+        }
+    }
 }
