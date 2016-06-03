@@ -24,7 +24,7 @@
                     <div class="news-detail">
                         <span class="news-by"><a href="javascript:void(0);">{{ article.user.username }}</a></span>
                         <span class="news-month"><a href="javascript:void(0);"><i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y H:i') }}</a></span>
-                        <span class="news-comment"><a href="javascript:void(0);" title="{{ 'Average time spent' }}"><i class="fa fa-clock-o"></i> {{ u['avgTimeOnSite'] }}</a></span>
+                        <span class="news-comment"><a href="javascript:void(0);" title="{{ 'Average time spent' }}"><i class="fa fa-clock-o"></i> {{ u['avgTimeOnSite']|number_format(0, ',', ' m ') }}</a></span>
                         <span class="news-comment"><a href="javascript:void(0);" title="{{ 'Number visitor' }}"><i class="fa fa-users"></i> {{ u['users'] }}</a></span>
                         <span class="news-view"><a href="javascript:void(0);" title="{{ 'Number visit' }}"><i class="fa fa-eye"></i> {{ u['sessions'] }}</a></span>
                     </div>

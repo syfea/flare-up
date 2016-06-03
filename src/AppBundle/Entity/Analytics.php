@@ -77,8 +77,8 @@ class Analytics
             'ga:' . $profileId,
             $beginDate,
             $endDate,
-            'ga:sessions,ga:users,ga:avgTimeOnSite',
-            $page);
+            'ga:sessions,ga:users,ga:avgTimeOnSite'
+        );
         $data = $results->getRows();
 
         if (count($data) > 0) {

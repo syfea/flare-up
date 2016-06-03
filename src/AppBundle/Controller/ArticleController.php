@@ -107,8 +107,6 @@ class ArticleController extends Controller
                 $analytics_file = $this->get('kernel')->getRootDir() . '/Resources/'.$analytics['name_file'];
 
                 $page = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
-//                $u = $service->data_ga->get('ga:'.$analytics['id_view'], $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), 'ga:users,ga:sessions,ga:avgTimeOnSite', $params);
-
                 $analytic = new Analytics();
                 $analytics = $analytic->getService($analytics, $analytics_file);
                 $profile = $analytic->getFirstProfileId($analytics);
