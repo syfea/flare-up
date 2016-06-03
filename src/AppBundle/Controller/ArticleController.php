@@ -106,7 +106,7 @@ class ArticleController extends Controller
                 $analytics = $this->container->getParameter('analytics');
                 $analytics_file = $this->get('kernel')->getRootDir() . '/Resources/'.$analytics['name_file'];
 
-                $page = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
+                $page = array('filters' => 'ga:pagePath=~/app_dev.php/article/'.$article->getId().'/*');
                 $analytic = new Analytics();
                 $analytics = $analytic->getService($analytics, $analytics_file);
                 $profile = $analytic->getFirstProfileId($analytics);
@@ -114,7 +114,7 @@ class ArticleController extends Controller
             } else {
                 $uView['avgTimeOnSite'] = 0;
                 $uView['users'] = 0;
-                $uView['sessions'] = 0;
+                $uView['pageViews'] = 0;
             }
 
             return $this->render('AppBundle:Article:display.html.twig', array(

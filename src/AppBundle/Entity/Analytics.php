@@ -77,21 +77,21 @@ class Analytics
             'ga:' . $profileId,
             $beginDate,
             $endDate,
-            'ga:sessions,ga:users,ga:avgTimeOnSite'
+            'ga:pageViews,ga:users,ga:avgTimeOnPage', $page
         );
         $data = $results->getRows();
-
+print_r($results);
         if (count($data) > 0) {
             return [
-                'sessions' => $data[0][0],
+                'pageViews' => $data[0][0],
                 'users' => $data[0][1],
                 'avgTimeOnSite' => $data[0][2],
             ];
         } else {
             return [
-                'sessions' => 0,
+                'pageViews' => 0,
                 'users' => 0,
-                'avgTimeOnSite' => 0,
+                'avgTimeOnPage' => 0,
             ];
         }
     }
