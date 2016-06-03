@@ -81,9 +81,9 @@ class CategoryController extends Controller
                 $em->remove($category);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('app_backofficebundle_categories'));
+                return $this->redirect($this->generateUrl('app_backofficebundle_category_index'));
             } else if ($request->request->get('action_value') == 0) {
-                return $this->redirect($this->generateUrl('app_backofficebundle_categories'));
+                return $this->redirect($this->generateUrl('app_backofficebundle_category_index'));
             }
         }
     }

@@ -114,12 +114,12 @@ class ArticleController extends Controller
                     $client->getAuth()->refreshTokenWithAssertion($cred);
                 }
                 $service = new \Google_Service_Analytics($client);
-                $u = $service->data_ga->get('ga:'.$analytics['id_view'], $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), 'ga:visitors,ga:visits,ga:avgTimeOnSite', $params);
+                $u = $service->data_ga->get('ga:'.$analytics['id_view'], $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), 'ga:users,ga:sessions,ga:avgTimeOnSite', $params);
                 $uView = $u->getTotalsForAllResults();
             } else {
                 $uView['ga:avgTimeOnSite'] = 0;
-                $uView['ga:visitors'] = 0;
-                $uView['ga:visits'] = 0;
+                $uView['ga:users'] = 0;
+                $uView['ga:sessions'] = 0;
             }
 
             return $this->render('AppBundle:Article:display.html.twig', array(
