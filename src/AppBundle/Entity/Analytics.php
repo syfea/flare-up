@@ -80,7 +80,7 @@ class Analytics
             'ga:pageViews,ga:users,ga:avgTimeOnPage', $page
         );
         $data = $results->getRows();
-print_r($results);
+
         if (count($data) > 0) {
             return [
                 'pageViews' => $data[0][0],
