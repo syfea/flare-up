@@ -10,6 +10,7 @@ use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use AppBundle\Form\ArticleType;
+use AppBundle\Entity\Analytics;
 
 class ArticleController extends Controller
 {
@@ -102,24 +103,20 @@ class ArticleController extends Controller
                 ->getRecentArticleByUser(5);
 
             if ((!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime)) {
-                $client = new \Google_Client();
-                $client->setApplicationName('flareup');
                 $analytics = $this->container->getParameter('analytics');
                 $analytics_file = $this->get('kernel')->getRootDir() . '/Resources/'.$analytics['name_file'];
 
-                $params = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
-                $cred = new \Google_Auth_AssertionCredentials($analytics['id_account'] , array('https://www.googleapis.com/auth/analytics.readonly'), file_get_contents($analytics_file));
-                $client->setAssertionCredentials($cred);
-                if($client->getAuth()->isAccessTokenExpired()) {
-                    $client->getAuth()->refreshTokenWithAssertion($cred);
-                }
-                $service = new \Google_Service_Analytics($client);
-                $u = $service->data_ga->get('ga:'.$analytics['id_view'], $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), 'ga:users,ga:sessions,ga:avgTimeOnSite', $params);
-                $uView = $u->getTotalsForAllResults();
+                $page = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
+//                $u = $service->data_ga->get('ga:'.$analytics['id_view'], $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), 'ga:users,ga:sessions,ga:avgTimeOnSite', $params);
+
+                $analytic = new Analytics();
+                $analytics = $analytic->getService($analytics, $analytics_file);
+                $profile = $analytic->getFirstProfileId($analytics);
+                $uView = $analytic->getArticlesResults($analytics, $profile, $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), $page);
             } else {
-                $uView['ga:avgTimeOnSite'] = 0;
-                $uView['ga:users'] = 0;
-                $uView['ga:sessions'] = 0;
+                $uView['avgTimeOnSite'] = 0;
+                $uView['users'] = 0;
+                $uView['sessions'] = 0;
             }
 
             return $this->render('AppBundle:Article:display.html.twig', array(
