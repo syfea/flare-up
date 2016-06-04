@@ -38,10 +38,6 @@
                         <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu fa fa-bars"></i></a>
                     </div>
 
-                    <div class="col l4 col m4 col s3">
-                        <!-- LogIn Link -->
-                        <a href="{{ path('app_backofficebundle_home') }}" class="login">Login</a>
-                    </div>
                     <div class="col l4 col m4 col s2">
                         <!-- Search Button -->
                         <form class="searchbox">
@@ -70,6 +66,8 @@
         {{ render(controller('AppBundle:Default:navbar')) }}
     {%  endblock %}
 </header>
+<!-- Sidebar Navigation -->
+{{ render(controller('AppBundle:Default:sidebar')) }}
 {% endblock %}
 
 {% block content %}{% endblock %}

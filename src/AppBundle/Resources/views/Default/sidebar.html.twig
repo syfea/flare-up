@@ -1,0 +1,17 @@
+<!-- Sidebar Navigation -->
+<ul id="slide-out" class="side-nav full">
+    <li class="logo-title">
+        <a href="{{ path('app_default_homepage') }}">{{ 'Flare Up' }}</a>
+    </li>
+    <li class="waves-effect">
+        <a href="{{ path('app_backofficebundle_home') }}">{{ 'Login'|trans }}</a>
+    </li>
+    {% for category in categories %}
+        <li class="waves-effect">
+            <a href="{{ category.url }}" class="sidebar-{{ category.id }}">
+                <i class="fa fa-hashtag" style="color: #{{ category.color }}"></i>
+                {{ category.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

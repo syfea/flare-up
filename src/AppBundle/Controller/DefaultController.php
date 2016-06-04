@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\SearchType;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -17,14 +18,6 @@ class DefaultController extends Controller
         return $this->render('AppBundle:Default:index.html.twig');
     }
 
-    /**
-     * @Route("/admin")
-     */
-    public function adminAction()
-    {
-        return new Response('<html><body>Admin page!</body></html>');
-    }
-
     public function navbarAction()
     {
         $categories = $this->getDoctrine()
@@ -32,6 +25,17 @@ class DefaultController extends Controller
             ->getNavBar();
 
         return $this->render('AppBundle:Default:navbar.html.twig', array(
+            'categories' => $categories
+        ));
+    }
+
+    public function sidebarAction()
+    {
+        $categories = $this->getDoctrine()
+            ->getRepository('AppBundle:Category')
+            ->getNavBar();
+
+        return $this->render('AppBundle:Default:sidebar.html.twig', array(
             'categories' => $categories
         ));
     }
