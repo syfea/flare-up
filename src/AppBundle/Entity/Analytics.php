@@ -91,7 +91,7 @@ class Analytics
             return [
                 'pageViews' => 0,
                 'users' => 0,
-                'avgTimeOnPage' => 0,
+                'avgTimeOnSite' => 0,
             ];
         }
     }
