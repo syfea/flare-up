@@ -140,9 +140,13 @@ footer.page-footer .footer-copyright {
 .page-footer ul {
     text-align: center;
 }
-.news-image {
-    height: 153px;
+.vertical .news-image {
+    width:auto;
+    height: 200px;
     overflow: hidden;
+}
+.vertical .news-image img {
+    height: 200px;
 }
 .news-title {
     height: 50px;
@@ -464,8 +468,8 @@ li.logo-title {
         left: 0;
         right: 0;
     }
-    .article-display .content img {
-        max-width: 100% !important;
+    .article-display .description img {
+        width: 100% !important;
         height: auto !important;
     }
     .article-display .news-title {

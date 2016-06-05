@@ -5,14 +5,14 @@
             <span class="label-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</span>
             <!-- News Image -->
             <div class="news-image">
-                <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
+                <img class="responsive-img" src="{{ asset('/uploads/article/'~article.picture|e) | imagine_filter('my_relative_homepage') }}" alt="{{ article.title }}">
             </div>
             <!-- News Description -->
             <div class="news-description">
                 <div class="news-time">
                     <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y H:i') }}
                 </div>
-                <div class="news-title"><a href="{{ article.url }}">{{ article.title | striptags | slice(0, 55) }}</a></div>
+                <div class="news-title"><a href="{{ article.url }}">{{ article.title | striptags | slice(0, 60) }}</a></div>
                 <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 105) }} [...] </p></div>
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <span class="label-category right" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</span>
                 <div class="col l4 col m4 col s12 no-padding">
                     <div class="news-image">
-                        <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
+                        <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) | imagine_filter('my_vertical_homepage') }}" alt="{{ article.title }}">
                     </div>
                 </div>
                 <div class="col l8 col m8 col s12 no-padding">

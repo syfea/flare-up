@@ -172,3 +172,15 @@ fm_elfinder:
                         upload_max_size: 2M # also file upload sizes restricted in php.ini
                         attributes:
                             - { pattern: '/(.*?)/', read: true, write: true, locked: true }
+
+
+liip_imagine:
+    filter_sets:
+        my_vertical_homepage:
+            quality: 75
+            filters:
+                thumbnail: { size: [400, 400] }
+        my_relative_homepage:
+            quality: 100
+            filters:
+                relative_resize: { scale: 1.5 }   # Transforms 50x40 to 125x100

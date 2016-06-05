@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new AppBundle\AppBundle(),
         );
 
