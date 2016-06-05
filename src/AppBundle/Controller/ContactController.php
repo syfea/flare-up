@@ -15,6 +15,10 @@ class ContactController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('AppBundle:Contact:index.html.twig');
+        $parameters = $this->getDoctrine()->getManager()->getRepository('AppBundle:Parameter')->findOneById(1); 
+
+        return $this->render('AppBundle:Contact:index.html.twig', array(
+            'parameters' => $parameters
+        ));
     }
 }

@@ -17,8 +17,15 @@
             {{ form_start(form, {'attr': {'class': 'form'}}) }}
             {{ form_errors(form) }}
             <div class="form__article">
-                <h3>{{ 'Social Network'|trans }}</h3>
+                <h3>{{ 'Alerts'|trans }}</h3>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form_widget(form.alert_one, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                        {{ form_label(form.alert_one, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                    </div>
+                </div>
 
+                <h3>{{ 'Social Network'|trans }}</h3>
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col input-group">
                         <div class="mdl-textfield mdl-js-textfield pull-left">

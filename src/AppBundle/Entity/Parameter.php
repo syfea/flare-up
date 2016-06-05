@@ -98,6 +98,13 @@ class Parameter
      */
     private $privacy;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alert_one", type="text", nullable=true)
+     */
+    private $alert_one;
+
 
     /**
      * Get id
@@ -371,5 +378,29 @@ class Parameter
     public function getPrivacy()
     {
         return $this->privacy;
+    }
+
+    /**
+     * Set alertOne
+     *
+     * @param string $alertOne
+     *
+     * @return Parameter
+     */
+    public function setAlertOne($alertOne)
+    {
+        $this->alert_one = $alertOne;
+
+        return $this;
+    }
+
+    /**
+     * Get alertOne
+     *
+     * @return string
+     */
+    public function getAlertOne()
+    {
+        return $this->alert_one;
     }
 }

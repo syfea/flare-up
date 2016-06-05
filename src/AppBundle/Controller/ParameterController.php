@@ -25,6 +25,8 @@ class ParameterController extends Controller
                 $em->persist($parameter);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Parameters are updated'));
+
+                return $this->redirect($this->generateUrl('app_backofficebundle_parameter_index'));
             }
 
             return $this->render('AppBundle:Parameter:index.html.twig', array(

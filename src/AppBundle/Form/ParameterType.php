@@ -18,6 +18,7 @@ class ParameterType extends AbstractType
                 'transformers' => array(),
                 'required' => true
             ))
+            ->add('alert_one', 'textarea', array('required' => false))
             ->add('facebook', 'text', array('required' => false))
             ->add('twitter', 'text', array('required' => false))
             ->add('pinterest', 'text', array('required' => false))
