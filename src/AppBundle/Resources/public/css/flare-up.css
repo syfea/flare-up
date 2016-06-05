@@ -464,4 +464,17 @@ li.logo-title {
         left: 0;
         right: 0;
     }
+    .article-display .content img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    .article-display .news-title {
+        height: auto;
+    }
+    .gridview-btn, .listview-btn {
+        display: none;
+    }
+    .breadcrumb {
+        margin-top: 8px;
+    }
 }
