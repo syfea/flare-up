@@ -24,12 +24,22 @@ class ArticleController extends Controller
            return $this->render('AppBundle:Article:index.html.twig', array(
                    'articles' => $articles
                ));
+        } else {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+
+            $articles = $this->getDoctrine()
+                ->getRepository('AppBundle:Article')
+                ->findByUser($user);
+
+            return $this->render('AppBundle:Article:index.html.twig', array(
+                'articles' => $articles
+            ));
         }
     }
 
     public function createAction(Request $request)
     {
-        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $article = new Article();
             $form = $this->get('form.factory')->create(new ArticleType(), $article);
 
@@ -63,7 +73,7 @@ class ArticleController extends Controller
 
     public function updateAction(Article $article, Request $request)
     {
-        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $form = $this->get('form.factory')->create(new ArticleType(), $article);
 
             $fileName = $article->getPicture();
@@ -152,7 +162,7 @@ class ArticleController extends Controller
 
     public function askAction(Article $article)
     {
-        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             $article->setStatus('wait');
 
             $em = $this->getDoctrine()->getManager();
