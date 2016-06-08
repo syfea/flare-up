@@ -13,6 +13,11 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 
 class UserController extends Controller
 {
+    public function getParent()
+    {
+        return 'FOSUserBundle';
+    }
+
     public function indexAction()
     {
         if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
@@ -69,20 +74,11 @@ class UserController extends Controller
                     $file->move($brochuresDir, $fileName);
                 }
                 $user->setRoles($request->request->get('roles'));
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
 
-                $event = new FormEvent($form, $request);
-                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-
-                $userManager->updateUser($user);
-
-                if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('fos_user_registration_confirmed');
-                    $response = new RedirectResponse($url);
-                }
-
-                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
-                return $response;
+                return new RedirectResponse($this->generateUrl('app_backofficebundle_users'));
             }
 
             return $this->render('AppBundle:User:view.html.twig', array(
@@ -187,5 +183,13 @@ class UserController extends Controller
                 'articles' => $articles,
                 'user' => $user
             ));
+    }
+
+    /**
+     * Request reset user password: show form
+     */
+    public function requestAction()
+    {
+        return $this->render('AppBundle:Resetting:request.html.twig');
     }
 }

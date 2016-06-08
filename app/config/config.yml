@@ -12,6 +12,7 @@ parameters:
       id_key: 78fdbdd326cce22b53b9be1333aa87113b805f1b
       id_view: 122912967
       name_file: FlareUp-78fdbdd326cc.p12
+      name_file_json: FlareUp-f363bf07a188.json
 
 framework:
     #esi:             ~

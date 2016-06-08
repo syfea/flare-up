@@ -66,7 +66,7 @@ fos_user_registration_confirmed:
 # RESETTING PASSWORD
 fos_user_resetting_request:
     pattern: /mot-de-passe-oublie/reinitialisation
-    defaults: { _controller: FOSUserBundle:Resetting:request }
+    defaults: { _controller: AppBundle:User:request }
     requirements:
         _method: GET
 

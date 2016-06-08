@@ -1,0 +1,18 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        {% if invalid_username is defined %}
+            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+        {% endif %}
+
+        <div class="input-field">
+            <i class="mdi-action-perm-identity prefix fa fa-envelope-o"></i>
+            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+            <input type="text" id="username" name="username" required="required" />
+        </div>
+    </div>
+    <div class="input-field">
+        <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" onclick="Materialize.toast('<span>Login Successful</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;><a>', 5000)">{{ 'resetting.request.submit'|trans }}</button>
+    </diV>
+</form>

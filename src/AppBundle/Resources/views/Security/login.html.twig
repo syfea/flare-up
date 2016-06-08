@@ -7,7 +7,10 @@
                 <div class="col l4 col m6 col s12 offset-l4 offset-m3">
                     <div class="login-title">
                         {% if error %}
-                            <div class="bg-danger">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% set result = error.messageKey|trans(error.messageData, 'security') %}
+                        {%  else  %}
+                            {% set result = 'Login Successful' %}
                         {% endif %}
                     </div>
                     <form action="{{ path("app_back_office_security_check") }}" method="post" class="center-block">
@@ -15,23 +18,23 @@
                         <div class="input-field">
                             <i class="mdi-action-perm-identity prefix fa fa-envelope-o"></i>
                             <input id="username" name="_username" type="email" class="validate" placeholder="">
-                            <label for="username">Login</label>
+                            <label for="username">{{ 'Login'|trans }}</label>
                         </div>
                         <div class="input-field">
                             <i class="mdi-action-lock-open prefix fa fa-key fa-3x"></i>
                             <input id="name" name="_password" type="password" class="validate">
-                            <label for="name">Password</label>
+                            <label for="name">{{ 'Password'|trans }}</label>
                         </div>
                         <div class="input-field forgot-password left">
-                            <a href="javascript:void(0);">Forgot your Password?</a>
+                            <a href="{{ path('fos_user_resetting_request') }}">{{ 'Forgot your password'|trans }}</a>
                         </div>
                         <div class="input-field">
                             <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                             <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
                         </div>
                         <div class="input-field">
-                            <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right" onclick="Materialize.toast('<span>Login Successful</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;><a>', 5000)">Login</button>
-                        </diV>
+                            <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right">{{ 'Login'|trans }}</button>
+                        </div>
                     </form>
                 </div>
             </div>
