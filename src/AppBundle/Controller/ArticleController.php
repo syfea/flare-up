@@ -108,7 +108,7 @@ class ArticleController extends Controller
     {
         $datetime = new \DateTime("now");
         if ((!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime) || $this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            if (!$this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            if ($this->container->get('')->isGranted('ROLE_ADMIN')) {
                 if ($article->getUser()->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()) {
                     return $this->redirect($this->generateUrl('app_default_homepage'));
                 }
