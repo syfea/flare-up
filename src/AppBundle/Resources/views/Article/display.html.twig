@@ -1,6 +1,15 @@
 {% extends 'AppBundle::layout-fo.html.twig' %}
 
 {% block title %}{{ article.title }} - Flare Up{% endblock %}
+{% block metaOG %}
+    <meta property="og:title" content="{{ article.title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:section" content="{{ article.category.name }}" />
+    <meta property="og:published_time" content="{{ article.publishedAt|date('Y-m-d H:i:s') }}" />
+    <meta property="og:modified_time" content="{{ article.publishedAt|date('Y-m-d H:i:s') }}" />
+    <meta property="og:url" content="http://{{ app.request.server.get('SERVER_NAME') }}{{ article.url }}" />
+    <meta property="og:image" content="http://{{ app.request.server.get('SERVER_NAME') }}{{ asset('uploads/article/'~article.picture|e) }}" />
+{% endblock %}
 {% block content %}
     <div class="row article-display">
         <div class="col l9 col m12">
@@ -15,9 +24,9 @@
                 <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
                 <div class="content">
                     <div class="news-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</div>
-                    <div class="news-title">
+                    <h1 class="news-title">
                         {{ article.title }}
-                    </div>
+                    </h1>
                     <div class="description">
                         {{ article.content|raw }}
                     </div>

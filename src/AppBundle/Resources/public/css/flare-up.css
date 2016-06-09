@@ -429,6 +429,25 @@ li.logo-title {
 .side-nav li.logo-title {
     border-bottom: 1px solid #ffffff;
 }
+.article-display h1 {
+    font-size: 1.8rem !important;
+}
+.article-display h2 {
+    font-size: 1.8rem !important;
+}
+.article-display h3 {
+    font-size: 1.6rem !important;
+}
+.article-display h4 {
+    font-size: 1.5rem !important;
+}
+.article-display h5 {
+    font-size: 1.4rem !important;
+}
+.article-display h6 {
+    font-size: 1.3rem !important;
+}
+
 @media (min-width:320px) and (max-width: 600px) {
     .top-header {
         background: #424242;
