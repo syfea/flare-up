@@ -21,12 +21,7 @@
         </div>
 
         <div class="row">
-            <div class="col l12 col m12 col s12">
-                <!-- blockquote -->
-                <div class="blockquote-breaking z-depth-1">
-                    <span>{{ 'Hot News'|trans }}:</span> Nullam Quies ante. rhoncus augue pharetra sed. Mauris tincidunt, nunc vitae tristique porta, nisi arcu pulvinar enim, in pretium mi ex quis felis. Integer pharetra sit amet ligula sit amet porttitor. Praesent condimentum augue ut ornare tempor.
-                </div>
-            </div>
+            {{ render(controller('AppBundle:Default:alertOne')) }}
         </div>
 
         {#<section class="section">

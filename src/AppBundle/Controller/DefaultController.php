@@ -112,4 +112,13 @@ class DefaultController extends Controller
             'parameter' => $parameter
         ));
     }
+
+    public function alertOneAction()
+    {
+        $parameter = $this->getDoctrine()->getManager()->getRepository('AppBundle:Parameter')->findOneById(1);
+
+        return $this->render('AppBundle:Default:alertOne.html.twig', array(
+            'parameter' => $parameter
+        ));
+    }
 }

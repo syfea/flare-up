@@ -2,7 +2,7 @@
 {% set route = app.request.get('_route') %}
 
 <!DOCTYPE html>
-<html>
+{% block htmlOG %}<html>{% endblock %}
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Flare Up{% endblock %}</title>

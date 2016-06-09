@@ -44,6 +44,11 @@ class User extends BaseUser
     protected $articles;
 
     /**
+     * @ORM\OneToMany(targetEntity="Contact", mappedBy="user", cascade={"remove", "persist"})
+     */
+    protected $contacts;
+
+    /**
      * @var
      *
      * @ORM\Column(name="gender", type="string", length=255, nullable=true)

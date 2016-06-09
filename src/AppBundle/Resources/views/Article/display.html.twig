@@ -1,6 +1,11 @@
 {% extends 'AppBundle::layout-fo.html.twig' %}
 
+{% block htmlOG %}
+<html prefix="og: http://ogp.me/ns#">
+{% endblock %}
+
 {% block title %}{{ article.title }} - Flare Up{% endblock %}
+
 {% block metaOG %}
     <meta property="og:title" content="{{ article.title }}" />
     <meta property="og:type" content="article" />
