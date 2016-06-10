@@ -106,56 +106,23 @@ class ArticleController extends Controller
 
     public function displayAction(Article $article, Request $request)
     {
-        $datetime = new \DateTime("now");
         if (!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime) {
             $userArticles = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
                 ->getRecentArticleByUser(5);
 
-            if ((!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime)) {
-                $analytics = $this->container->getParameter('analytics');
-                $analytics_file = $this->get('kernel')->getRootDir() . '/Resources/'.$analytics['name_file'];
-
-                $page = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
-                $analytic = new Analytics();
-                $analytics = $analytic->getService($analytics, $analytics_file);
-                $profile = $analytic->getFirstProfileId($analytics);
-                $uView = $analytic->getArticlesResults($analytics, $profile, $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), $page);
-            } else {
-                $uView['avgTimeOnSite'] = 0;
-                $uView['users'] = 0;
-                $uView['pageViews'] = 0;
-            }
-
             return $this->render('AppBundle:Article:display.html.twig', array(
                 'article' => $article,
                 'userArticles' => $userArticles,
-                'u' => $uView
             ));
         } elseif ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
             $userArticles = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
                 ->getRecentArticleByUser(5);
 
-            if ((!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime)) {
-                $analytics = $this->container->getParameter('analytics');
-                $analytics_file = $this->get('kernel')->getRootDir() . '/Resources/'.$analytics['name_file'];
-
-                $page = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
-                $analytic = new Analytics();
-                $analytics = $analytic->getService($analytics, $analytics_file);
-                $profile = $analytic->getFirstProfileId($analytics);
-                $uView = $analytic->getArticlesResults($analytics, $profile, $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), $page);
-            } else {
-                $uView['avgTimeOnSite'] = 0;
-                $uView['users'] = 0;
-                $uView['pageViews'] = 0;
-            }
-
             return $this->render('AppBundle:Article:display.html.twig', array(
                 'article' => $article,
                 'userArticles' => $userArticles,
-                'u' => $uView
             ));
         } elseif ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
             if ($article->getUser()->getId() != $this->container->get('security.context')->getToken()->getUser()->getId()) {
@@ -165,29 +132,11 @@ class ArticleController extends Controller
                 ->getRepository('AppBundle:Article')
                 ->getRecentArticleByUser(5);
 
-            if ((!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime)) {
-                $analytics = $this->container->getParameter('analytics');
-                $analytics_file = $this->get('kernel')->getRootDir() . '/Resources/'.$analytics['name_file'];
-
-                $page = array('filters' => 'ga:pagePath=~/article/'.$article->getId().'/*');
-                $analytic = new Analytics();
-                $analytics = $analytic->getService($analytics, $analytics_file);
-                $profile = $analytic->getFirstProfileId($analytics);
-                $uView = $analytic->getArticlesResults($analytics, $profile, $article->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), $page);
-            } else {
-                $uView['avgTimeOnSite'] = 0;
-                $uView['users'] = 0;
-                $uView['pageViews'] = 0;
-            }
-
             return $this->render('AppBundle:Article:display.html.twig', array(
                 'article' => $article,
                 'userArticles' => $userArticles,
-                'u' => $uView
             ));
         }
-
-
 
         return $this->redirect($this->generateUrl('app_default_homepage'));
     }

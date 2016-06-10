@@ -21,7 +21,7 @@
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Category'|trans }}</th>
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Published '|trans }}</th>
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Created'|trans }}</th>
-                        <th class="mdl-data-table__cell--numeric">{{ 'Counter view '|trans }}</th>
+                        <th class="mdl-data-table__cell--numeric">{{ 'Counter view'|trans }}</th>
                         <th class="mdl-data-table__cell--non-numeric">{{ 'Action'|trans }}</th>
                     </tr>
                 </thead>
@@ -50,7 +50,7 @@
                             {{ article.createdAt|date('d/m/Y') }} à {{ article.createdAt|date('H:i') }}
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            {{ article.countView }}
+                            {{ article.analytics['pageViews'] }}
                         </td>
                         <td>
                             {% if is_granted('ROLE_SUPER_ADMIN') %}

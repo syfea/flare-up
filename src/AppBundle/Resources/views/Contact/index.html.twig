@@ -17,23 +17,25 @@
                     </div>
                 </div>
                 <div class="col l5 col m6 col s12">
-                    <form action="#" method="post" id="contactForm" name="sentMessage">
+                    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                        {{ form_errors(form) }}
                         <div class="input-field">
                             <i class="fa fa-user prefix"></i>
-                            <input type="text" required="" class="validate" id="name">
-                            <label for="name">Name</label>
+                            <label for="appbundle_contact_name">{{ 'Name'|trans }}</label>
+                            {{ form_widget(form.name, {'attr': {'class': 'validate'}}) }}
                         </div>
                         <div class="input-field">
                             <i class="fa fa-envelope-o prefix"></i>
-                            <input type="email" required="" class="validate" id="email">
-                            <label for="email">Email</label>
+                            <label for="appbundle_contact_email">{{ 'Email'|trans }}</label>
+                            {{ form_widget(form.email, {'attr': {'class': 'validate'}}) }}
                         </div>
                         <div class="input-field">
-                            <textarea class="materialize-textarea" id="textarea1"></textarea>
-                            <label for="textarea1">Message Here</label>
+                            {{ form_widget(form.message, {'attr': {'class': 'materialize-textarea'}}) }}
+                            <label for="appbundle_contact_message">{{ 'Message here'|trans }}</label>
                         </div>
-                        <button name="action" type="submit" class="btn btn-flat waves-effect waves-light shopping-cart-button right">Submit Now</button>
-                    </form>
+                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-flat waves-effect waves-light shopping-cart-button right'}}) }}
+                        {{ form_rest(form) }}
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>

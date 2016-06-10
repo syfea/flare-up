@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use AppBundle\Entity\Analytics;
 /**
  * Article
  *
@@ -16,7 +16,7 @@ class Article
     {
         $this->createdAt = new \Datetime();
         $this->url = $this->getUrl();
-
+        $this->analytics = $this->getAnalytics();
     }
 
     /**
@@ -116,6 +116,8 @@ class Article
     private $status;
 
     private $url;
+
+    private $analytics;
 
     /**
      * Get id
@@ -302,13 +304,33 @@ class Article
     }
 
     /**
-     * Get countView
+     * Get zarty
      *
      * @return string
      */
-    public function getCountView()
+    public function getAnalytics()
     {
-        return $this->countView;
+        global $kernel;
+        if ('AppCache' == get_class($kernel)) {
+            $kernel = $kernel->getKernel();
+        }
+
+        $datetime = new \DateTime("now");
+        if ((!is_null($this->getPublishedAt()) && $this->getPublishedAt() < $datetime)) {
+            $analytics = $kernel->getContainer()->getParameter('analytics');
+            $analytics_file = $kernel->getRootDir() . '/Resources/'.$analytics['name_file'];
+
+            $page = array('filters' => 'ga:pagePath=~/article/'.$this->getId().'/*');
+            $analytic = new Analytics();
+            $analytics = $analytic->getService($analytics, $analytics_file);
+            $profile = $analytic->getFirstProfileId($analytics);
+            $uView = $analytic->getArticlesResults($analytics, $profile, $this->getPublishedAt()->format('Y-m-d'), $datetime->format('Y-m-d'), $page);
+        } else {
+            $uView['avgTimeOnSite'] = 0;
+            $uView['users'] = 0;
+            $uView['pageViews'] = 0;
+        }
+        return $uView;
     }
 
     /**

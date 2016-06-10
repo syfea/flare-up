@@ -18,14 +18,19 @@ class ContactController extends Controller
     {
         $parameters = $this->getDoctrine()->getManager()->getRepository('AppBundle:Parameter')->findOneById(1);
         $contact = new Contact();
-//        $form = $this->get('form.factory')->create(new ContactType(), $contact);
-//        $form->handleRequest($request);
-//        if ($form->isValid()) {
-//
-//        }
+        $form = $this->get('form.factory')->create(new ContactType(), $contact);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Your message was sent !'));
+
+            return $this->redirect($this->generateUrl('app_contact_general'));
+        }
 
         return $this->render('AppBundle:Contact:index.html.twig', array(
-//            'form' => $form->createView(),
+            'form' => $form->createView(),
             'parameters' => $parameters
         ));
     }

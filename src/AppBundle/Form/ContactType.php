@@ -2,8 +2,8 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use AppBundle\Entity\Contact;
 
 class ContactType extends AbstractType
 {
@@ -14,9 +14,15 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
-            ->add('email', 'text')
-            ->add('message', 'textarea')
+            ->add('name', 'text', array(
+                'required' => true,
+            ))
+            ->add('email', 'email', array(
+                'required' => true,
+            ))
+            ->add('message', 'textarea', array(
+                'required' => true,
+            ))
             ->add('save', 'submit');
     }
 

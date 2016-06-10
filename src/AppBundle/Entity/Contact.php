@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="contact")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ContactRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Contact
 {
@@ -43,6 +44,8 @@ class Contact
     private $message;
 
     /**
+     * created Time/Date
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime")
@@ -61,7 +64,6 @@ class Contact
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
-
 
     /**
      * Get id
@@ -148,13 +150,15 @@ class Contact
     /**
      * Set dateCreated
      *
+     * @ORM\PrePersist
+     *
      * @param \DateTime $dateCreated
      *
      * @return Contact
      */
     public function setDateCreated($dateCreated)
     {
-        $this->dateCreated = $dateCreated;
+        $this->createdAt = new \DateTime();
 
         return $this;
     }
