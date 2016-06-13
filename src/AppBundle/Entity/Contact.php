@@ -9,10 +9,14 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="contact")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ContactRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class Contact
 {
+    public function __construct()
+    {
+        $this->dateCreated = new \Datetime();
+    }
+
     /**
      * @var int
      *
@@ -150,15 +154,13 @@ class Contact
     /**
      * Set dateCreated
      *
-     * @ORM\PrePersist
-     *
      * @param \DateTime $dateCreated
      *
      * @return Contact
      */
     public function setDateCreated($dateCreated)
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = $dateCreated;
 
         return $this;
     }
@@ -195,6 +197,29 @@ class Contact
     public function getDateRead()
     {
         return $this->dateRead;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Article
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
 

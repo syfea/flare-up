@@ -20,10 +20,36 @@ class ContactController extends Controller
         $contact = new Contact();
         $form = $this->get('form.factory')->create(new ContactType(), $contact);
         $form->handleRequest($request);
+
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
+            $users = $this->getDoctrine()
+                ->getRepository('AppBundle:User')
+                ->fetchByRoles(array('ROLE_SUPER_ADMIN'));
+
+            foreach ($users as $user) {
+                foreach ($users as $user) {
+                    $contact->setUser($user);
+
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Hello Email')
+                        ->setFrom('lubomir@lubo.com')
+                        ->setTo('s.feasson@gmail.com')
+                        ->setBody(
+                            $this->renderView(
+                                'Emails/contact.html.twig',
+                                array('name' => $contact->getName())
+                            ),
+                            'text/html'
+                        )
+                    ;
+                    $this->get('mailer')->send($message);
+
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($contact);
+                    $em->flush();
+                }
+            }
             $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Your message was sent !'));
 
             return $this->redirect($this->generateUrl('app_contact_general'));
