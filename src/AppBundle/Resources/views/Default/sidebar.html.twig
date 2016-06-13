@@ -4,7 +4,10 @@
         <a href="{{ path('app_default_homepage') }}">{{ 'Flare Up' }}</a>
     </li>
     <li class="waves-effect">
-        <a href="{{ path('app_backofficebundle_home') }}">{{ 'Login'|trans }}</a>
+        <a href="{{ path('app_backofficebundle_home') }}">
+            <i class="fa fa-lock" aria-hidden="true" style="color: #FFFFFF"></i>
+            {{ 'Login'|trans }}
+        </a>
     </li>
     {% for category in categories %}
         <li class="waves-effect">
