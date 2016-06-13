@@ -10,20 +10,22 @@
     <div class="header-top hide-on-small-only">
         <div class="container">
             <div class="row">
-                <div class="col l4 col m5 col s12">
+                <div class="col l1 col m1 col s12">
                     <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu fa fa-bars"></i></a>
                     <!-- Dropdown -->
                     <div class="header-dropdown"> </div>
                 </div>
-                <div class="col l4 col m3 col s12">
+                <div class="col l10 col m9 col s12">
                     <!-- Logo -->
                     <div class="logo">
                         <a href="{{ path('app_default_homepage') }}"><img src="{{ asset('bundles/app/images/logo_233.png') }}" alt="{{ 'Flare Up' }}"></a>
                     </div>
                 </div>
-                <div class="col l4 col m4 col s12 pull-right">
+                <div class="col l1 col m2 col s12 pull-right col-login-search">
                     {{ render(controller('AppBundle:Default:searchEngine')) }}
-                    <a href="{{ path('app_backofficebundle_home') }}" class="right login">{{ 'Login'|trans }}</a>
+                    <a href="{{ path('app_backofficebundle_home') }}" class="left login">
+                        <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </div>

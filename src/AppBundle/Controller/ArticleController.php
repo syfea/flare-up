@@ -106,6 +106,7 @@ class ArticleController extends Controller
 
     public function displayAction(Article $article, Request $request)
     {
+        $datetime = new \DateTime("now");
         if (!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime) {
             $userArticles = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
