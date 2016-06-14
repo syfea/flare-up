@@ -15,4 +15,13 @@ class PageController extends Controller
             'parameter' => $parameter
         ));
     }
+
+    public function whoAreWeAction()
+    {
+        $parameter = $this->getDoctrine()->getManager()->getRepository('AppBundle:Parameter')->findOneById(1);
+
+        return $this->render('AppBundle:Page:whoAreWe.html.twig', array(
+            'parameter' => $parameter
+        ));
+    }
 }

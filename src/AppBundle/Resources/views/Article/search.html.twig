@@ -1,0 +1,42 @@
+{% extends 'AppBundle::layout-fo.html.twig' %}
+
+{% block title %} - Flare Up{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col l12 col m12 col s12">
+            <div class="search-content">
+                <div class="col l12 col m12 col s12">
+                    <div class="breadcrumb">
+                        <a href="{{ path('app_default_homepage') }}">{{ 'Home'|trans }}</a>
+                        <i class="fa fa-angle-right"></i>
+                        <a href="#">{{ 'Search'|trans }}</a>
+                    </div>
+                    <div class="profile">
+                        {% if articles|length > 0 %}
+                            <div id="grid-view">
+                                {% for article in articles %}
+                                    <div class="col l4 col m6">
+                                        <div class="news vertical z-depth-1 profile-box">
+                                            <div class="news-image">
+                                                <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) }}" alt="{{ article.title }}">
+                                            </div>
+                                            <div class="news-description">
+                                                <div class="news-time">
+                                                    <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y H:i') }}
+                                                </div>
+                                                <div class="news-title"><a href="{{ article.url }}">{{ article.title | striptags | slice(0, 55) }}</a></div>
+                                                <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 105) }} [...] </p></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <h2>{{ 'Empty Result'|trans }}</h2>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -105,6 +105,13 @@ class Parameter
      */
     private $alert_one;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="who_are_we", type="text", nullable=true)
+     */
+    private $who_are_we;
+
 
     /**
      * Get id
@@ -402,5 +409,29 @@ class Parameter
     public function getAlertOne()
     {
         return $this->alert_one;
+    }
+
+    /**
+     * Set whoAreWe
+     *
+     * @param string $whoAreWe
+     *
+     * @return Parameter
+     */
+    public function setWhoAreWe($whoAreWe)
+    {
+        $this->who_are_we = $whoAreWe;
+
+        return $this;
+    }
+
+    /**
+     * Get whoAreWe
+     *
+     * @return string
+     */
+    public function getWhoAreWe()
+    {
+        return $this->who_are_we;
     }
 }

@@ -74,4 +74,35 @@ class ArticleRepository extends EntityRepository
             ->addOrderBy('a.publishedAt', 'DESC')
             ->getQuery()->getResult();
     }
+
+    public function getSearch($parameters)
+    {
+        $parameterArray = explode(' ', $parameters);
+        $orWheres = array();
+        foreach($parameterArray as $parameter) {
+            if (strlen($parameter) >= 3) {
+                $orWheres[] = $parameter;
+            }
+        }
+
+        if (count($orWheres) == 0) {
+            return array();
+        }
+
+        $return = array();
+        foreach ($orWheres as $key => $orWhere) {
+            $qb = $this->createQueryBuilder('a')
+                ->where('a.publishedAt <= :publishedAt')
+                ->andWhere('a.content LIKE :param OR a.smallContent LIKE :param OR a.title LIKE :param')
+                ->setParameter('publishedAt', date('Y-m-d H:i:s'))
+                ->setParameter('param', '%'.$orWhere.'%')
+                ->addOrderBy('a.publishedAt', 'DESC');
+
+            foreach ($qb->getQuery()->getResult() as $article) {
+                $return[$article->getId()] = $article;
+            }
+        }
+
+        return $return;
+    }
 }

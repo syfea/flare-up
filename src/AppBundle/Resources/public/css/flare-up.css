@@ -467,6 +467,9 @@ li.logo-title {
     float: left;
     padding-bottom: 0;
 }
+.search-content h2 {
+    color: #ffffff;
+}
 @media (min-width:320px) and (max-width: 1280px) {
     header.header-fix nav {
         display: none;

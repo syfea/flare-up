@@ -113,6 +113,20 @@ class DefaultController extends Controller
         ));
     }
 
+    public function searchAction(Request $request)
+    {
+        $param = $request->request->get('appbundle_search');
+        $q = $param['search'];
+
+        $articles = $this->getDoctrine()
+                ->getRepository('AppBundle:Article')
+                ->getSearch($q);
+
+        return $this->render('AppBundle:Article:search.html.twig', array(
+            'articles' => $articles
+        ));
+    }
+
     public function alertOneAction()
     {
         $parameter = $this->getDoctrine()->getManager()->getRepository('AppBundle:Parameter')->findOneById(1);

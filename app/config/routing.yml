@@ -129,6 +129,15 @@ app_contact_general:
 app_fo_disclamer:
     path: /disclamer
     defaults: {_controller: AppBundle:Page:disclamer}
+
+app_fo_whoarewe:
+    path: /whoarewe
+    defaults: {_controller: AppBundle:Page:whoAreWe}
+
+app_fo_search_result:
+    path: /search
+    defaults: {_controller: AppBundle:Default:search}
+
 route_name:
   path: /web/uploads/articles
 
