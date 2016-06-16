@@ -72,8 +72,6 @@ swiftmailer:
     username:  "%mailer_username%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-    encryption: %mailer_encryption%
-    auth_mode:  %mailer_auth_mode%
 
 # FOS User Bundle
 fos_user:
