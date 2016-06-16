@@ -14,6 +14,8 @@ parameters:
     mailer_host:       smtp.gmail.com
     mailer_username: flareup42@gmail.com
     mailer_password: flareupflareup42
+    mailer_transport:  smtp
+    mailer_encryption: ssl
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt

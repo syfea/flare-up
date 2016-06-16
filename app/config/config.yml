@@ -72,6 +72,8 @@ swiftmailer:
     username:  "%mailer_username%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    encryption: %mailer_encryption%
+    auth_mode:  %mailer_auth_mode%
 
 # FOS User Bundle
 fos_user:
@@ -173,6 +175,7 @@ fm_elfinder:
                         upload_max_size: 2M # also file upload sizes restricted in php.ini
                         attributes:
                             - { pattern: '/(.*?)/', read: true, write: true, locked: true }
+
 
 liip_imagine:
     filter_sets:
