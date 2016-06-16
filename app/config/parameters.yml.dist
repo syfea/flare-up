@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    mailer_auth_mode: login
+    mailer_host: smtp.gmail.com
+    mailer_username: flareup42@gmail.com
+    mailer_password: flareupflareup42
