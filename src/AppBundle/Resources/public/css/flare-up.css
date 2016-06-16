@@ -405,6 +405,9 @@ input[type="text"]:focus:not([readonly]), input[type="email"]:focus:not([readonl
 .contact-detail p {
     color: #ffffff;
 }
+.contact-detail input {
+    background-color: #ffffff;
+}
 .input-field textarea {
     background-color: #FFFFFF;
 }

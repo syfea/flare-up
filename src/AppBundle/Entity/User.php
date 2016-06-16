@@ -532,4 +532,56 @@ class User extends BaseUser
             return $container->generate('app_user_fo_display', array('id' => $this->id, 'name' => $str));
         }
     }
+
+    /**
+     * Add contact
+     *
+     * @param \AppBundle\Entity\Contact $contact
+     *
+     * @return User
+     */
+    public function addContact(\AppBundle\Entity\Contact $contact)
+    {
+        $this->contacts[] = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Remove contact
+     *
+     * @param \AppBundle\Entity\Contact $contact
+     */
+    public function removeContact(\AppBundle\Entity\Contact $contact)
+    {
+        $this->contacts->removeElement($contact);
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * Get contacts not read
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContactsNotRead()
+    {
+        $return = array();
+        foreach ($this->contacts as $contact) {
+            if (is_null($contact->getDateRead())) {
+                $return[$contact->getId()] = $contact;
+            }
+        }
+        arsort($return);
+
+        return $return;
+    }
 }

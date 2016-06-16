@@ -11,6 +11,7 @@ use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use AppBundle\Form\ContactType;
 use AppBundle\Entity\Contact;
+use AppBundle\Entity\User;
 
 class ContactController extends Controller
 {
@@ -21,6 +22,7 @@ class ContactController extends Controller
         $form = $this->get('form.factory')->create(new ContactType(), $contact);
         $form->handleRequest($request);
 
+        //echo $this->container->get('templating.helper.assets')->getUrl('bundles/app/images/logo-footer.png');
         if ($form->isValid()) {
             $users = $this->getDoctrine()
                 ->getRepository('AppBundle:User')
@@ -30,20 +32,21 @@ class ContactController extends Controller
                 foreach ($users as $user) {
                     $contact->setUser($user);
 
-                    $message = \Swift_Message::newInstance()
-                        ->setSubject('Hello Email')
-                        ->setFrom('lubomir@lubo.com')
-                        ->setTo('s.feasson@gmail.com')
+                    $message = \Swift_Message::newInstance();
+                    $url = $message->embed(\Swift_Image::fromPath('bundles/app/images/logo_233.png'));
+                    //$urlImage = $message->embed(\Swift_Image::fromPath($this->container->get('templating.helper.assets')->getUrl('bundles/app/images/logo-footer.png')));
+                    $message->setSubject('Contact - Flare Up')
+                        ->setFrom('flareup42@gmail.com')
+                        ->setTo($user->getEmail())
                         ->setBody(
                             $this->renderView(
                                 'Emails/contact.html.twig',
-                                array('name' => $contact->getName())
+                                array('name' => $contact->getName(), 'url' => $url )
                             ),
                             'text/html'
                         )
                     ;
                     $this->get('mailer')->send($message);
-
 
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($contact);
@@ -61,5 +64,13 @@ class ContactController extends Controller
         ));
     }
 
+    public function blockHeaderAction()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        return $this->render('AppBundle:Contact:block/header.html.twig', array(
+            'contactsNotRead' => $user->getContactsNotRead()
+        ));
+    }
 
 }
