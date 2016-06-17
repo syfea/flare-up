@@ -23,6 +23,9 @@ class ContactType extends AbstractType
             ->add('message', 'textarea', array(
                 'required' => true,
             ))
+            ->add('captcha', 'genemu_recaptcha', array(
+                    "mapped" => false,
+                ))
             ->add('save', 'submit');
     }
 

@@ -473,6 +473,12 @@ li.logo-title {
 .search-content h2 {
     color: #ffffff;
 }
+#appbundle_contact_captcha_div {
+    margin-left: 3rem;
+}
+.recaptchatable input {
+    height: auto;
+}
 @media (min-width:320px) and (max-width: 1280px) {
     header.header-fix nav {
         display: none;

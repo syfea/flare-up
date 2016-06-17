@@ -1,5 +1,18 @@
 {% extends 'AppBundle::layout-fo.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/app/css/colorpicker/colorpicker.css') }}" rel="stylesheet" />
+    {{ form_stylesheet(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/colorpicker/eye.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/colorpicker/utils.js') }}"></script>
+    {{ form_javascript(form) }}
+{% endblock %}
+
 {% block title %}{{ 'Contact us'|trans }} - Flare Up{% endblock %}{% block content %}
     <div class="row">
         <div class="col l12">
@@ -32,6 +45,9 @@
                         <div class="input-field">
                             {{ form_widget(form.message, {'attr': {'class': 'materialize-textarea'}}) }}
                             <label for="appbundle_contact_message">{{ 'Message here'|trans }}</label>
+                        </div>
+                        <div class="input-field">
+                            {{ form_widget(form.captcha, {'attr': {'class': 'materialize-textarea'}}) }}
                         </div>
                         {{ form_widget(form.save, {'attr': {'class': 'btn btn-flat waves-effect waves-light shopping-cart-button right'}}) }}
                         {{ form_rest(form) }}

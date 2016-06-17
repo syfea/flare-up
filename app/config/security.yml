@@ -63,7 +63,7 @@ security:
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/mot-de-passe-oublie, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/password-forget, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/deconnexion$, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/efconnect, role: ROLE_USER }
         - { path: ^/elfinder, role: ROLE_USER }

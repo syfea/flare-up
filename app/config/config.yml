@@ -95,7 +95,7 @@ fos_user:
             #validation_groups: [Profile, Default]
     resetting:
         email:
-            template: AppFrontOfficeBundle:Resetting:email.html.twig
+            template: AppBundle:Resetting:email.html.twig
     group:
         group_class: App\MainBundle\Entity\Group
     from_email:

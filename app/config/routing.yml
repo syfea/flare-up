@@ -65,25 +65,25 @@ fos_user_registration_confirmed:
 
 # RESETTING PASSWORD
 fos_user_resetting_request:
-    pattern: /mot-de-passe-oublie/reinitialisation
+    pattern: /password-forget/reinitialisation
     defaults: { _controller: AppBundle:User:request }
     requirements:
         _method: GET
 
 fos_user_resetting_send_email:
-    pattern: /mot-de-passe-oublie/e-mail
+    pattern: /password-forget/e-mail
     defaults: { _controller: FOSUserBundle:Resetting:sendEmail }
     requirements:
         _method: GET|POST
 
 fos_user_resetting_check_email:
-    pattern: /mot-de-passe-oublie/verification
+    pattern: /password-forget/verification
     defaults: { _controller: FOSUserBundle:Resetting:checkEmail }
     requirements:
         _method: GET
 
 fos_user_resetting_reset:
-    pattern: /mot-de-passe-oublie/{token}
+    pattern: /password-forget/{token}
     defaults: { _controller: FOSUserBundle:Resetting:reset }
     requirements:
         _method: GET|POST
