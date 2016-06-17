@@ -22,36 +22,37 @@ class ContactController extends Controller
         $form = $this->get('form.factory')->create(new ContactType(), $contact);
         $form->handleRequest($request);
 
-        //echo $this->container->get('templating.helper.assets')->getUrl('bundles/app/images/logo-footer.png');
         if ($form->isValid()) {
             $users = $this->getDoctrine()
                 ->getRepository('AppBundle:User')
                 ->fetchByRoles(array('ROLE_SUPER_ADMIN'));
 
+            $em = $this->getDoctrine()->getManager();
             foreach ($users as $user) {
-                foreach ($users as $user) {
-                    $contact->setUser($user);
+                $contactTmp = new Contact();
+                $contactTmp->setEmail($contact->getEmail());
+                $contactTmp->setName($contact->getName());
+                $contactTmp->setMessage($contact->getMessage());
+                $contactTmp->setDateCreated($contact->getDateCreated());
+                $contactTmp->setUser($user);
 
-                    $message = \Swift_Message::newInstance();
-                    $url = $message->embed(\Swift_Image::fromPath('bundles/app/images/logo_233.png'));
-                    //$urlImage = $message->embed(\Swift_Image::fromPath($this->container->get('templating.helper.assets')->getUrl('bundles/app/images/logo-footer.png')));
-                    $message->setSubject('Contact - Flare Up')
-                        ->setFrom('flareup42@gmail.com')
-                        ->setTo($user->getEmail())
-                        ->setBody(
-                            $this->renderView(
-                                'Emails/contact.html.twig',
-                                array('name' => $contact->getName(), 'url' => $url )
-                            ),
-                            'text/html'
-                        )
-                    ;
-                    $this->get('mailer')->send($message);
+                $em->persist($contactTmp);
+                $em->flush();
 
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($contact);
-                    $em->flush();
-                }
+                $message = \Swift_Message::newInstance();
+                $url = $message->embed(\Swift_Image::fromPath('bundles/app/images/logo_233.png'));
+                $message->setSubject('Contact - Flare Up')
+                    ->setFrom('flareup42@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'Emails/contact.html.twig',
+                            array('name' => $contact->getName(), 'url' => $url )
+                        ),
+                        'text/html'
+                    )
+                ;
+                $this->get('mailer')->send($message);
             }
             $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Your message was sent !'));
 
