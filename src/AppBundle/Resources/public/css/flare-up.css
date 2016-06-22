@@ -78,6 +78,7 @@ header.header-fix nav {
     position: relative;
     top: -74px;
     width: 55%;
+    display: none;
 }
 header.header-fix .nav-wrapper.menu-category a {
     color: #ffffff;
@@ -466,21 +467,29 @@ li.logo-title {
 .searchbox-icon, .searchbox-submit {
     padding: 0 6px 6px 6px;
 }
-.header-fix .logo {
-    float: left;
-    padding-bottom: 0;
+.wrapper.margin-top {
+    margin-top: 240px;
 }
 .search-content h2 {
     color: #ffffff;
+}
+.logo > a {
+    display: block;
 }
 @media (min-width:320px) and (max-width: 1280px) {
     header.header-fix nav {
         display: none;
     }
+    .logo > a {
+        display: inline-block;
+    }
 }
 @media (min-width:320px) and (max-width: 600px) {
     body {
         background-color: #424242;
+    }
+    .logo > a {
+        display: inline-block;
     }
     .top-header {
         background: #424242;
@@ -492,6 +501,7 @@ li.logo-title {
     }
     header.header-fix img {
         position: relative;
+        margin-left: 0;
     }
     .logo {
         padding: 0 0 36px 0;
@@ -501,6 +511,7 @@ li.logo-title {
     }
     header.header-fix img {
         height: 35px;
+        margin-left: 0;
     }
     .header-fix .logo {
         padding: 5px 0 0 0;
