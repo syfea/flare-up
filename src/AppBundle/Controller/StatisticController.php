@@ -19,4 +19,53 @@ class StatisticController extends Controller
             'categories' => $categories
         ));
     }
+
+    public function articlesRankingAction()
+    {
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->getArticleList();
+
+        $tab1 = array();
+        $tab2 = array();
+        foreach ($articles as $article) {
+            $ga1 = $article->getAnalytics();
+            $tab1[$article->getId()] = $ga1['pageViews'];
+            $ga2 = $article->getAnalytics('-7 day');
+            $tab2[$article->getId()] = $ga2['pageViews'];
+        }
+        arsort($tab1);
+        arsort($tab2);
+
+        $return = array();
+        $itab1 = 1;
+        foreach($tab1 as $key => $nbViews) {
+            $itab2 = 1;
+            foreach ($tab2 as $key2 => $nbViews2) {
+                if ($key == $key2) {
+                    break;
+                }
+                $itab2++;
+            }
+
+            if ($itab1 < $itab2) {
+                $position = 'up';
+            } elseif ($itab1 > $itab2) {
+                $position = 'down';
+            } else {
+                $position = '';
+            }
+            $itab1++;
+            $return[] = [
+                            'article'  => $this->getDoctrine()->getRepository('AppBundle:Article')->findById($key),
+                            'position' => $position,
+                            'nbViews'  => $nbViews
+                        ];
+        }
+
+
+        return $this->render('AppBundle:Statistic:articlesRanking.html.twig', array(
+            'articles' => $return
+        ));
+    }
 }

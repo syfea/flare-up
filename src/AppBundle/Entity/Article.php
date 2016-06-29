@@ -308,7 +308,7 @@ class Article
      *
      * @return string
      */
-    public function getAnalytics()
+    public function getAnalytics($time = "")
     {
         global $kernel;
         if ('AppCache' == get_class($kernel)) {
@@ -316,6 +316,10 @@ class Article
         }
 
         $datetime = new \DateTime("now");
+        if ($time != '') {
+            date_modify($datetime, $time);
+        }
+
         if ((!is_null($this->getPublishedAt()) && $this->getPublishedAt() < $datetime)) {
             $analytics = $kernel->getContainer()->getParameter('analytics');
             $analytics_file = $kernel->getRootDir() . '/Resources/'.$analytics['name_file'];
@@ -330,6 +334,7 @@ class Article
             $uView['users'] = 0;
             $uView['pageViews'] = 0;
         }
+
         return $uView;
     }
 
