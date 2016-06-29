@@ -52,6 +52,7 @@
 /* ---------------------------------------------- */
 .header-top, header.header-fix .header-top {
     background-color: #424242;
+    line-height: 70px;
 }
 header, header.header-fix {
     background-color: #4e4e4e
@@ -63,6 +64,7 @@ header, header.header-fix {
 .wrapper {
     background: transparent;
     bottom: 40px;
+    top: 80px;
 }
 .logo {
     padding: 15px 0;
@@ -74,11 +76,7 @@ header.header-fix img {
     height: 50px;
 }
 header.header-fix nav {
-    left: 5%;
-    position: relative;
-    top: -74px;
-    width: 55%;
-    display: none;
+    padding: 0;
 }
 header.header-fix .nav-wrapper.menu-category a {
     color: #ffffff;
@@ -130,6 +128,9 @@ header.header-fix .nav-wrapper.menu-category a {
 }
 .news-title > a:hover, .news-time {
     color: #039be5;
+}
+nav ul li {
+    float: left;
 }
 .blockquote-breaking {
     background: red;
@@ -263,7 +264,7 @@ footer.page-footer {
     margin-top: -20px;
 }
 #contain {
-    padding-bottom: 20px;
+    padding-bottom: 140px;
 }
 .mdi-action-perm-identity::before, .mdi-action-lock-open::before {
     content: '';
@@ -348,7 +349,7 @@ input[type="text"]:focus:not([readonly]), input[type="email"]:focus:not([readonl
 }
 .login{
     margin-right: auto;
-     margin-top: 10px;
+    margin-top: 4px;
 }
 .news-single {
     position: relative;
@@ -482,10 +483,10 @@ li.logo-title {
 .logo > a {
     display: block;
 }
+.nav-wrapper.menu-category a::after {
+    background-color: transparent;
+}
 @media (min-width:320px) and (max-width: 1280px) {
-    header.header-fix nav {
-        display: none;
-    }
     .logo > a {
         display: inline-block;
     }
@@ -494,12 +495,18 @@ li.logo-title {
     body {
         background-color: #424242;
     }
+    .top-header {
+        padding: 14px 0;
+    }
     .logo > a {
         display: inline-block;
     }
     .top-header {
         background: #424242;
         border-bottom: 1px solid #039be5;;
+    }
+    header.header-fix img {
+        height: 48px !important;
     }
     header.header-fix{
         background: #4e4e4e !important;

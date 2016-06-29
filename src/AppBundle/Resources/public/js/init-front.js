@@ -2,19 +2,19 @@ $(document).ready(function() {
     'use strict';
     //Sidebar Navigation
     $('.button-collapse').sideNav({
-        menuWidth: 300, 
+        menuWidth: 300,
     });
-    
-    
+
+
     //Drop Down
     $('.dropdown-button').dropdown({
         inDuration: 300,
         outDuration: 225,
         constrain_width: false,
     });
-     
-        
-    //Header Search Box 
+
+
+    //Header Search Box
     var submitIcon = $('.searchbox-icon');
     var inputBox = $('.searchbox-input');
     var searchBox = $('.searchbox');
@@ -29,29 +29,29 @@ $(document).ready(function() {
             inputBox.focusout();
             isOpen = false;
         }
-    }); 
- 
-  
+    });
+
+
     //Dropdown
     $('select').material_select();
-    
-    
+
+
     //News Main Slider
     $('.pgwSlider').pgwSlider();
-    
-  
+
+
     //Header Fix
-    $(window).scroll(function(){
-        if ($(window).scrollTop()>100){
-            $('header').addClass('header-fix');
-            $('.wrapper').addClass('margin-top');
-        }else{
-            $('header').removeClass('header-fix');
-            $('.wrapper').removeClass('margin-top');
-        }
-    });
-  
-  
+//    $(window).scroll(function(){
+//        if ($(window).scrollTop()>100){
+//            $('header').addClass('header-fix');
+//            $('.wrapper').addClass('margin-top');
+//        }else{
+//            $('header').removeClass('header-fix');
+//            $('.wrapper').removeClass('margin-top');
+//        }
+//    });
+
+
     //Thubnail Slider 1
    // $('#camera_wrap_1').camera({
     //     height: '520px',
@@ -95,8 +95,8 @@ $(document).ready(function() {
     //     pagination: false,
     //     thumbnails: true
     // });
-  
-    
+
+
     //Tab Slider
     $('#main-slider').liquidSlider();
 

@@ -1,6 +1,11 @@
-<nav role="navigation"  class="container hide-on-small-only">
+<nav role="navigation"  class="container hide-on-small-only hide-on-med-and-down">
     <div class="nav-wrapper menu-category">
         <ul>
+            <li>
+                <div class="logo">
+                    <a href="{{ path('app_default_homepage') }}"><img src="{{ asset('bundles/app/images/logo_233.png') }}" alt="{{ 'Flare Up' }}"></a>
+                </div>
+            </li>
             {% for category in categories %}
             <li>
                 <ul class="news-category-dropdown">
@@ -18,10 +23,21 @@
         </ul>
     </div>
 </nav>
+
+<div class="logo hide-on-large-only  show-on-medium-and-down">
+    <ul>
+        <li>
+            <a href="{{ path('app_default_homepage') }}"><img src="{{ asset('bundles/app/images/logo_233.png') }}" alt="{{ 'Flare Up' }}"></a>
+        </li>
+    </ul>
+</div>
 <style>
     {% for category in categories %}
         .nav-wrapper.menu-category a.inline-{{ category.id }}::after {
             background-color: #{{ category.color }} !important
+        }
+        .nav-wrapper.menu-category .logo a {
+            border: 0;
         }
     {% endfor %}
 </style>

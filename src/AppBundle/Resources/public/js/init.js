@@ -41,15 +41,15 @@ $(document).ready(function() {
 
 
     //Header Fix
-    $(window).scroll(function(){
-        if ($(window).scrollTop()>100){
-            $('header').addClass('header-fix');
-            $('.wrapper').addClass('margin-top');
-        }else{
-            $('header').removeClass('header-fix');
-            $('.wrapper').removeClass('margin-top');
-        }
-    });
+//    $(window).scroll(function(){
+//        if ($(window).scrollTop()>100){
+//            $('header').addClass('header-fix');
+//            $('.wrapper').addClass('margin-top');
+//        }else{
+//            $('header').removeClass('header-fix');
+//            $('.wrapper').removeClass('margin-top');
+//        }
+//    });
 
     //Tab Slider
     $('#main-slider').liquidSlider();

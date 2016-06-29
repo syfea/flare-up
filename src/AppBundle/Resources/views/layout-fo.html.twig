@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block header %}
-<header>
+<header class="header-fix">
     <!-- Header Top Display In large and Tablet Device -->
     <div class="header-top hide-on-small-only">
         <div class="container">
@@ -17,9 +17,10 @@
                 </div>
                 <div class="col l10 col m9 col s12">
                     <!-- Logo -->
-                    <div class="logo">
-                        <a href="{{ path('app_default_homepage') }}"><img src="{{ asset('bundles/app/images/logo_233.png') }}" alt="{{ 'Flare Up' }}"></a>
-                    </div>
+                    <!-- Navigation -->
+                    {% block nav %}
+                        {{ render(controller('AppBundle:Default:navbar')) }}
+                    {%  endblock %}
                 </div>
                 <div class="col l1 col m2 col s12 pull-right col-login-search">
                     {{ render(controller('AppBundle:Default:searchEngine')) }}
@@ -63,10 +64,6 @@
             </div>
         </div>
     </div>
-    <!-- Navigation -->
-    {% block nav %}
-        {{ render(controller('AppBundle:Default:navbar')) }}
-    {%  endblock %}
 </header>
 <!-- Sidebar Navigation -->
 {{ render(controller('AppBundle:Default:sidebar')) }}
