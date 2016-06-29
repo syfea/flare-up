@@ -8,7 +8,7 @@
                 {% for article in articles|slice(0, 5) %}
                     <li class="mdl-list__item">
                         <span class="mdl-list__item-primary-content list__item-text">
-                            {{ article['article'][0].title|slice(3) }}
+                            {{ article['article'][0].title|slice(0,30) }}
                         </span>
                         <span class="mdl-list__item-secondary-content">
                             {% if article['position'] == 'up' %}

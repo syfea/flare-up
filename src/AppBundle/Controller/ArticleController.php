@@ -110,7 +110,7 @@ class ArticleController extends Controller
         if (!is_null($article->getPublishedAt()) && $article->getPublishedAt() < $datetime) {
             $userArticles = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
-                ->getRecentArticleByUser(5);
+                ->getRecentArticleByUser($article->getUser(), 5);
 
             return $this->render('AppBundle:Article:display.html.twig', array(
                 'article' => $article,
@@ -119,7 +119,7 @@ class ArticleController extends Controller
         } elseif ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
             $userArticles = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
-                ->getRecentArticleByUser(5);
+                ->getRecentArticleByUser($article->getUser(), 5);
 
             return $this->render('AppBundle:Article:display.html.twig', array(
                 'article' => $article,
@@ -131,7 +131,7 @@ class ArticleController extends Controller
             }
             $userArticles = $this->getDoctrine()
                 ->getRepository('AppBundle:Article')
-                ->getRecentArticleByUser(5);
+                ->getRecentArticleByUser($article->getUser(), 5);
 
             return $this->render('AppBundle:Article:display.html.twig', array(
                 'article' => $article,

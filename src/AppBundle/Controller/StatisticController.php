@@ -22,9 +22,10 @@ class StatisticController extends Controller
 
     public function articlesRankingAction()
     {
+        $user = $this->container->get('security.context')->getToken()->getUser();
         $articles = $this->getDoctrine()
             ->getRepository('AppBundle:Article')
-            ->getArticleList();
+            ->getAllArticlesByUser($user);
 
         $tab1 = array();
         $tab2 = array();
