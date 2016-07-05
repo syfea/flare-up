@@ -486,6 +486,10 @@ li.logo-title {
 .nav-wrapper.menu-category a::after {
     background-color: transparent;
 }
+.discussion li {
+    padding: 10px 0;
+}
+
 @media (min-width:320px) and (max-width: 1280px) {
     .logo > a {
         display: inline-block;
@@ -568,6 +572,15 @@ li.logo-title {
     }
     .breadcrumb {
         margin-top: 8px;
+    }
+    .footer-title a {
+        writing-mode: tb-rl;
+        -webkit-transform:rotate(180deg);
+        -moz-transform:rotate(180deg);
+        -o-transform: rotate(180deg);
+        -ms-transform:rotate(180deg);
+        transform: rotate(180deg);
+        white-space:nowrap;
     }
 }
 @media (max-width: 640px) and (min-width: 640px) {

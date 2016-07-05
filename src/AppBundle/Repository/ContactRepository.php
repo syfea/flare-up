@@ -10,4 +10,8 @@ namespace AppBundle\Repository;
  */
 class ContactRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllContactByUser($user)
+    {
+        
+    }
 }

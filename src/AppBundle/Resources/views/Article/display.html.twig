@@ -8,6 +8,7 @@
 
 {% block metaOG %}
     <meta property="og:title" content="{{ article.title }}" />
+    <meta property="og:description" content="{{ article.smallContent }}" />
     <meta property="og:type" content="article" />
     <meta property="og:section" content="{{ article.category.name }}" />
     <meta property="og:published_time" content="{{ article.publishedAt|date('Y-m-d H:i:s') }}" />

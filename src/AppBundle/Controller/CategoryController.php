@@ -94,9 +94,12 @@ class CategoryController extends Controller
                 ->getRepository('AppBundle:Article')
                 ->getAllArticlesByCategory($category);
 
+        $parameter = $this->getDoctrine()->getManager()->getRepository('AppBundle:Parameter')->findOneById(1);
+
         return $this->render('AppBundle:Category:display.html.twig', array(
             'articles' => $articles,
-            'category' => $category
+            'category' => $category,
+            'parameter' => $parameter
         ));
     }
 }
