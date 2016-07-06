@@ -5,7 +5,9 @@
             <span class="label-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</span>
             <!-- News Image -->
             <div class="news-image">
-                <img class="responsive-img" src="{{ asset('/uploads/article/'~article.picture|e) | imagine_filter('my_relative_homepage') }}" alt="{{ article.title }}">
+                <a href="{{ article.url }}">
+                    <img class="responsive-img" src="{{ asset('/uploads/article/'~article.picture|e) | imagine_filter('my_relative_homepage') }}" alt="{{ article.title }}">
+                </a>
             </div>
             <!-- News Description -->
             <div class="news-description">
@@ -26,7 +28,9 @@
                 <span class="label-category right" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</span>
                 <div class="col l4 col m4 col s12 no-padding">
                     <div class="news-image">
-                        <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) | imagine_filter('my_vertical_homepage') }}" alt="{{ article.title }}">
+                        <a href="{{ article.url }}">
+                            <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) | imagine_filter('my_vertical_homepage') }}" alt="{{ article.title }}">
+                        </a>
                     </div>
                 </div>
                 <div class="col l8 col m8 col s12 no-padding">

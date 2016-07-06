@@ -5,7 +5,9 @@
             <span class="label-category" style="background-color: #{{ article.category.color }}">{{ article.category.name }}</span>
             <!-- News Image -->
             <div class="news-image">
-                <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) | imagine_filter('my_relative_homepage') }}" alt="{{ article.title }}">
+                <a href="{{ article.url }}">
+                    <img class="responsive-img" src="{{ asset('uploads/article/'~article.picture|e) | imagine_filter('my_relative_homepage') }}" alt="{{ article.title }}">
+                </a>
             </div>
             <!-- News Description -->
             <div class="news-description">
