@@ -5,28 +5,9 @@
         <div class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
         {{ render(controller('AppBundle:Statistic:categories')) }}
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-            <div class="mdl-card mdl-shadow--2dp weather">
-                <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">Now</h2>
-
-                    <div class="mdl-layout-spacer"></div>
-                    <div class="mdl-card__subtitle-text">
-                        <i class="material-icons">room</i>
-                        Minsk, Belarus
-                    </div>
-                </div>
-                <div class="mdl-card__supporting-text mdl-card--expand">
-                    <p class="weather-temperature">-11<sup>&deg;</sup></p>
-
-                    <p class="weather-description">
-                        Cloudy and snow
-                    </p>
-                </div>
-            </div>
-        </div>
-
         {{ render(controller('AppBundle:Statistic:articlesRanking')) }}
+
+        {{ render(controller('AppBundle:Statistic:articlesPercent')) }}
 
         <div class="mdl-cell mdl-cell--5-col-desktop mdl-cell--5-col-tablet mdl-cell--2-col-phone">
             <div class="mdl-card mdl-shadow--2dp cotoneaster">
@@ -45,18 +26,7 @@
             </div>
         </div>
 
-        <div class="mdl-cell mdl-cell--7-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
-            <div class="mdl-card mdl-shadow--2dp line-chart">
-                <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">Startup Financing Cycle</h2>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    <div class="line-chart__container">
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{ render(controller('AppBundle:Statistic:viewDiagram')) }}
 
         <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone ">
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp projects-table">

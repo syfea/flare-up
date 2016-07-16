@@ -1,0 +1,23 @@
+{% extends 'AppBundle::layout-fo.html.twig' %}
+
+{% block title %}Flare Up{% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block content %}
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col l12 col m12 col s12">
+                    <div class="login-page">
+                        <div class="col l4 col m6 col s12 offset-l4 offset-m3">
+                            <div class="panel-body">
+                                <p>
+                                    {{ 'resetting.check_email'|trans({'%email%': email}) }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

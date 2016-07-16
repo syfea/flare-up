@@ -74,4 +74,17 @@ class ContactController extends Controller
         ));
     }
 
+    public function listAction(Request $request)
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $contacts = $this->getDoctrine()
+            ->getRepository('AppBundle:Contact')
+            ->getAllContactByUser($user);
+
+        return $this->render('AppBundle:Contact:list.html.twig', array(
+            'contacts' => $contacts,
+        ));
+    }
+
 }

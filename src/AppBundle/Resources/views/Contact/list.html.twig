@@ -1,0 +1,97 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block content %}
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+
+            <div class="mdl-cell mdl-cell--11-col-desktop mdl-cell--11-col-tablet mdl-cell--4-col-phone ">
+                <div class="mdl-card__title" style="position: relative">
+                    <h2 class="mdl-card__title-text">{{ 'Contacts' }}</h2>
+                </div>
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp projects-table">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Title'|trans }}</th>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <th class="mdl-data-table__cell--non-numeric">{{ 'Author'|trans }}</th>
+                        {% endif %}
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Category'|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Published '|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Created'|trans }}</th>
+                        <th class="mdl-data-table__cell--numeric">{{ 'Counter view'|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Action'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {{ article.title | slice(0, 60) }}
+                            </td>
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    {{ article.user.username }}
+                                </td>
+                            {% endif %}
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {{ article.category.name }}
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {% if article.publishedAt is null %}
+                                    {{ article.status }}
+                                {% else %}
+                                    {{ article.publishedAt|date('d/m/Y') }} à {{ article.publishedAt|date('H:i') }}
+                                {% endif %}
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {{ article.createdAt|date('d/m/Y') }} à {{ article.createdAt|date('H:i') }}
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {{ article.analytics['pageViews'] }}
+                            </td>
+                            <td>
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <a href="{{ path('app_backofficebundle_article_update', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Update article' }}">
+                                        <i class="material-icons">update</i>
+                                    </a>
+                                    {% if article.status == 'wait' %}
+                                        <a href="{{ path('app_backofficebundle_article_publish', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Publish article' }}">
+                                            <i class="material-icons">publish</i>
+                                        </a>
+                                        <a href="{{ path('app_backofficebundle_article_delete', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Delete article' }}">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    {% elseif article.status == 'publish' %}
+                                        <a href="{{ path('app_backofficebundle_article_publish', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Unpublish article' }}">
+                                            <i class="material-icons">vertical_align_bottom</i>
+                                        </a>
+                                    {% elseif article.status == 'draft' %}
+                                        <a href="{{ path('app_backofficebundle_article_ask', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Request publication' }}">
+                                            <i class="material-icons">touch_app</i>
+                                        </a>
+                                        <a href="{{ path('app_backofficebundle_article_delete', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Delete article' }}">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    {% endif %}
+                                {%  else %}
+                                    {% if article.status == 'draft' %}
+                                        <a href="{{ path('app_backofficebundle_article_update', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Update article' }}">
+                                            <i class="material-icons">update</i>
+                                        </a>
+                                        <a href="{{ path('app_backofficebundle_article_ask', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                            <i class="material-icons">touch_app</i>
+                                        </a>
+                                        <a href="{{ path('app_backofficebundle_article_delete', {'id': article.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Delete article' }}">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

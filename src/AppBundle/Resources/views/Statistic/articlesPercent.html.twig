@@ -1,0 +1,27 @@
+<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+    <div class="mdl-card mdl-shadow--2dp trending">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">{{ 'All articles views'|trans }}</h2>
+        </div>
+        <div class="mdl-card__supporting-text span4" id="chart2">
+            <ul class="mdl-list">
+                <svg style="height:250px;"> </svg>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+
+
+//Pie chart example data. Note how there is only a single array of key-value pairs.
+function exampleData() {
+    return  [
+        {% for article in articles %}
+            {
+            "label": "{{ article.title }}",
+            "value" : {{ article.analytics['pageViews'] }}
+            } ,
+        {% endfor %}
+    ];
+}
+</script>

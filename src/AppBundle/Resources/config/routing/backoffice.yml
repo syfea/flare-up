@@ -75,3 +75,7 @@ app_backofficebundle_subscriber_index:
 app_backofficebundle_parameter_index:
   path: /parameter
   defaults: { _controller: "AppBundle:Parameter:index" }
+
+app_backofficebundle_contact_list:
+  path: /contacts
+  defaults: { _controller: "AppBundle:Contact:list" }

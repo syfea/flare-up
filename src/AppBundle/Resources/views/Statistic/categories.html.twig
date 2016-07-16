@@ -13,6 +13,7 @@
 
 {% set totalArticles = 0 %}
 {% set firstArticle = 0 %}
+
 <script>
     "use strict";
     var colors = [
@@ -22,8 +23,8 @@
         ],
         data = [
             {% for category in categories %}
-                {% set totalArticles = totalArticles + category.articles|length %}
-                {key: "{{ category.name }}", y: 0, end: {{ category.articles|length }} },
+                {% set totalArticles = totalArticles + category.nbArticles %}
+                {key: "{{ category.name }}", y: 0, end: {{ category.nbArticles }} },
             {% endfor %}
             {key: "Pending", y: {{ totalArticles }}.{{ firstArticle }} },
         ];

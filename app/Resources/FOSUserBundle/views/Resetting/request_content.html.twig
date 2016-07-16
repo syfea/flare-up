@@ -1,0 +1,32 @@
+{% extends 'AppBundle::layout-fo.html.twig' %}
+
+{% block title %}Flare Up{% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+    <div class="row">
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col l12 col m12 col s12">
+                        <div class="login-page">
+                            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                                <div>
+                                    {% if invalid_username is defined %}
+                                        <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                                    {% endif %}
+                                    <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                                    <input type="text" id="username" name="username" required="required" />
+                                </div>
+                                <div>
+                                    <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-flat waves-effect waves-light shopping-cart-button" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

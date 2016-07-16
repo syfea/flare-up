@@ -3,6 +3,8 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr;
+use AppBundle\Entity\Article as article;
 
 /**
  * CategoryRepository
@@ -17,5 +19,22 @@ class CategoryRepository extends EntityRepository
         return $this->createQueryBuilder('c')
             ->addOrderBy('c.position', 'ASC')
             ->getQuery()->getResult();
+    }
+
+    public function getCategoriesByUser($user = null)
+    {
+        $builder = $this->createQueryBuilder('c');
+        $sql = $builder
+            ->select(array('COUNT(a) AS nbArticles', 'c.color', 'c.position', 'c.name'))
+            ->innerJoin('AppBundle\Entity\Article', 'a', 'WITH', 'c.id = a.category');
+        if (!is_null($user)) {
+            $sql = $builder->andWhere('a.user = :userId')
+                ->setParameter('userId', $user->getId());
+        }
+        $sql = $builder->groupBy('c.color', 'c.position', 'c.name')
+            ->addOrderBy('c.position', 'ASC')
+            ->getQuery()->getResult();
+
+        return $sql;
     }
 }

@@ -11,12 +11,20 @@ class StatisticController extends Controller
 {
     public function categoriesAction()
     {
-        $categories = $this->getDoctrine()
-            ->getRepository('AppBundle:Category')
-            ->findAll();
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            $categories = $this->getDoctrine()
+                ->getRepository('AppBundle:Category')
+                ->getCategoriesByUser();
+        } else {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            $categories = $this->getDoctrine()
+                ->getRepository('AppBundle:Category')
+                ->getCategoriesByUser($user);
+        }
+
 
         return $this->render('AppBundle:Statistic:categories.html.twig', array(
-            'categories' => $categories
+            'categories' => $categories,
         ));
     }
 
@@ -67,6 +75,30 @@ class StatisticController extends Controller
 
         return $this->render('AppBundle:Statistic:articlesRanking.html.twig', array(
             'articles' => $return
+        ));
+    }
+
+    public function viewDiagramAction()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $userArticles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->getRecentArticleByUser($user, 3);
+
+        return $this->render('AppBundle:Statistic:viewDiagram.html.twig', array(
+            'articles' => $userArticles
+        ));
+    }
+
+    public function articlesPercentAction()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $articles = $this->getDoctrine()
+            ->getRepository('AppBundle:Article')
+            ->getAllArticlesByUser($user);
+
+        return $this->render('AppBundle:Statistic:articlesPercent.html.twig', array(
+            'articles' => $articles
         ));
     }
 }
