@@ -43,16 +43,19 @@ class ArticleRepository extends EntityRepository
             ->getQuery()->getResult();
     }
 
-    public function getRecentArticleByUser($user, $limit = 5)
+    public function getRecentArticleByUser($user = null, $limit = 5)
     {
-        return $this->createQueryBuilder('a')
-            ->where('a.publishedAt <= :publishedAt')
-            ->setParameter('publishedAt', date('Y-m-d H:i:s'))
-            ->andWhere('a.user = :userId')
-            ->setParameter('userId', $user->getId())
-            ->addOrderBy('a.publishedAt', 'DESC')
-            ->setMaxResults($limit)
-            ->getQuery()->getResult();
+        $query = $this->createQueryBuilder('a');
+        $query->where('a.publishedAt <= :publishedAt')
+            ->setParameter('publishedAt', date('Y-m-d H:i:s'));
+            if (!is_null($user)) {
+                $query->andWhere('a.user = :userId')
+                    ->setParameter('userId', $user->getId());
+            }
+        $query->addOrderBy('a.publishedAt', 'DESC')
+            ->setMaxResults($limit);
+
+        return $query->getQuery()->getResult();
     }
 
     public function getAllArticlesByCategory($category)
@@ -66,15 +69,18 @@ class ArticleRepository extends EntityRepository
             ->getQuery()->getResult();
     }
 
-    public function getAllArticlesByUser($user)
+    public function getAllArticlesByUser($user = null)
     {
-        return $this->createQueryBuilder('a')
-            ->where('a.publishedAt <= :publishedAt')
-            ->setParameter('publishedAt', date('Y-m-d H:i:s'))
-            ->andWhere('a.user = :userId')
-            ->setParameter('userId', $user->getId())
-            ->addOrderBy('a.publishedAt', 'DESC')
-            ->getQuery()->getResult();
+        $query = $this->createQueryBuilder('a');
+        $query->where('a.publishedAt <= :publishedAt')
+            ->setParameter('publishedAt', date('Y-m-d H:i:s'));
+        if (!is_null($user)) {
+            $query->andWhere('a.user = :userId')
+            ->setParameter('userId', $user->getId());
+        }
+        $query->addOrderBy('a.publishedAt', 'DESC');
+
+        return $query->getQuery()->getResult();
     }
 
     public function getSearch($parameters)

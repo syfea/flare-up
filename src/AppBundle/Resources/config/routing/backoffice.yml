@@ -79,3 +79,7 @@ app_backofficebundle_parameter_index:
 app_backofficebundle_contact_list:
   path: /contacts
   defaults: { _controller: "AppBundle:Contact:list" }
+
+app_backofficebundle_contact_view:
+  path: /contact/{id}/read
+  defaults: { _controller: "AppBundle:Contact:read" }

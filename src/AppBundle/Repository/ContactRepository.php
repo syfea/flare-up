@@ -12,6 +12,10 @@ class ContactRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getAllContactByUser($user)
     {
-        
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.user = :userId')
+            ->setParameter('userId', $user->getId())
+            ->addOrderBy('c.dateCreated', 'DESC')
+            ->getQuery()->getResult();
     }
 }

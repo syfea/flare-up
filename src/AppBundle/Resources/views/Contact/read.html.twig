@@ -1,0 +1,22 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/tinymce/tinymce.min.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="mdl-card mdl-shadow--2dp article-form" action="#">
+    <div class="mdl-card__title">
+        <h2>{{ contact.name }} - {{ contact.email }}</h2>
+        <div class="mdl-card__subtitle">{{ 'Send at'|trans }} {{ contact.dateCreated|date('d M Y H:i') }} - {{ 'Read at'|trans }} {{ contact.dateRead|date('d M Y H:i') }}</div>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+        <div class="form__article">
+            {{ contact.message|nl2br  }}
+        </div>
+    </div>
+</div>
+{% endblock %}

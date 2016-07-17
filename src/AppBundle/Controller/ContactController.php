@@ -87,4 +87,18 @@ class ContactController extends Controller
         ));
     }
 
+    public function readAction(Contact $contact)
+    {
+        if (is_null($contact->getDateRead())) {
+            $contact->setDateRead(new \Datetime());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+        }
+
+        return $this->render('AppBundle:Contact:read.html.twig', array(
+            'contact' => $contact
+        ));
+    }
+
 }

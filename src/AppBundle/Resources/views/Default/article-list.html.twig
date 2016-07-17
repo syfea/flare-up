@@ -15,7 +15,7 @@
                     <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y H:i') }}
                 </div>
                 <div class="news-title"><a href="{{ article.url }}">{{ article.title | striptags | slice(0, 60) }}</a></div>
-                <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 105) }} [...] </p></div>
+                <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 100) }} [...] </p></div>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                             <i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y H:i') }}
                         </div>
                         <div class="news-title"><a href="{{ article.url }}">{{ article.title | striptags | slice(0, 65) }}</a></div>
-                        <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 110) }} [...]</p></div>
+                        <div class="news-content"><p>{{ article.smallContent | striptags | slice(0, 100) }} [...]</p></div>
                     </div>
                 </div>
             </div>

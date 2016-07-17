@@ -490,6 +490,9 @@ li.logo-title {
 .discussion li {
     padding: 10px 0;
 }
+.contact-detail h2 {
+    color: #ffffff;
+}
 
 @media (min-width:320px) and (max-width: 1280px) {
     .logo > a {

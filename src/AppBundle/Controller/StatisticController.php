@@ -31,9 +31,18 @@ class StatisticController extends Controller
     public function articlesRankingAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $articles = $this->getDoctrine()
-            ->getRepository('AppBundle:Article')
-            ->getAllArticlesByUser($user);
+
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')) {
+            $articles = $this->getDoctrine()
+                ->getRepository('AppBundle:Article')
+                ->getAllArticlesByUser();
+        } else {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            $articles = $this->getDoctrine()
+                ->getRepository('AppBundle:Article')
+                ->getAllArticlesByUser($user);
+        }
+
 
         $tab1 = array();
         $tab2 = array();
