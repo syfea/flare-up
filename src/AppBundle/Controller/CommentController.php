@@ -71,7 +71,7 @@ class CommentController extends Controller
                         ->setTo($user->getEmail())
                         ->setBody(
                             $this->renderView(
-                                'Emails/contact.html.twig',
+                                'Emails/comment.html.twig',
                                 array(
                                     'name' => $comment->getUsername(),
                                     'url' => $url,
