@@ -54,6 +54,64 @@ class CommentController extends Controller
                 $em->persist($comment);
                 $em->flush();
 
+                // sent mail for the admins
+                $users = $this->getDoctrine()
+                    ->getRepository('AppBundle:User')
+                    ->fetchByRoles(array('ROLE_SUPER_ADMIN'));
+
+                $sendAutor = false;
+                foreach ($users as $user) {
+                    if ($article->getUser()->getEmail() == $user->getEmail()) {
+                        $sendAutor = true;
+                    }
+                    $message = \Swift_Message::newInstance();
+                    $url = $message->embed(\Swift_Image::fromPath('bundles/app/images/logo_233.png'));
+                    $message->setSubject('Commentaire - Flare Up')
+                        ->setFrom('flareup42@gmail.com')
+                        ->setTo($user->getEmail())
+                        ->setBody(
+                            $this->renderView(
+                                'Emails/contact.html.twig',
+                                array(
+                                    'name' => $comment->getUsername(),
+                                    'url' => $url,
+                                    'urlArticle' => $article->getUrl(),
+                                    'nameArticle' => $article->getTitle(),
+                                    'message' => $comment->getMessage()
+
+                                )
+                            ),
+                            'text/html'
+                        )
+                    ;
+                    $this->get('mailer')->send($message);
+                }
+
+                // sent mail for the author
+                if ($sendAutor) {
+                    $message = \Swift_Message::newInstance();
+                    $url = $message->embed(\Swift_Image::fromPath('bundles/app/images/logo_233.png'));
+                    $message->setSubject('Commentaire - Flare Up')
+                        ->setFrom('flareup42@gmail.com')
+                        ->setTo($article->getUser()->getEmail())
+                        ->setBody(
+                            $this->renderView(
+                                'Emails/contact.html.twig',
+                                array(
+                                    'name' => $comment->getUsername(),
+                                    'url' => $url,
+                                    'urlArticle' => $article->getUrl(),
+                                    'nameArticle' => $article->getTitle(),
+                                    'message' => $comment->getMessage()
+
+                                )
+                            ),
+                            'text/html'
+                        )
+                    ;
+                    $this->get('mailer')->send($message);
+                }
+
                 $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Your comment is created'));
             } else {
                 $request->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('Your comment is created'));
