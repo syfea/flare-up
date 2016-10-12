@@ -75,7 +75,7 @@ class CommentController extends Controller
                                 array(
                                     'name' => $comment->getUsername(),
                                     'url' => $url,
-                                    'urlArticle' => $article->getUrl(),
+                                    'urlArticle' => $this->container->get('router')->getContext()->getBaseUrl().'/'.$article->getUrl(),
                                     'nameArticle' => $article->getTitle(),
                                     'message' => $comment->getMessage()
 
