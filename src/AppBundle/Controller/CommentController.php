@@ -29,7 +29,7 @@ class CommentController extends Controller
                ));
     }
 
-    public function saveAction()
+    public function saveAction(Request $request)
     {
         $request = $this->container->get('request');
 
@@ -75,7 +75,7 @@ class CommentController extends Controller
                                 array(
                                     'name' => $comment->getUsername(),
                                     'url' => $url,
-                                    'urlArticle' => $this->container->get('router')->getContext()->getBaseUrl().'/'.$article->getUrl(),
+                                    'urlArticle' => $request->server->get('HTTP_HOST').'/'.$article->getUrl(),
                                     'nameArticle' => $article->getTitle(),
                                     'message' => $comment->getMessage()
 
@@ -100,7 +100,7 @@ class CommentController extends Controller
                                 array(
                                     'name' => $comment->getUsername(),
                                     'url' => $url,
-                                    'urlArticle' => $this->container->get('router')->getContext()->getBaseUrl().'/'.$article->getUrl(),
+                                    'urlArticle' => $request->server->get('HTTP_HOST').'/'.$article->getUrl(),
                                     'nameArticle' => $article->getTitle(),
                                     'message' => $comment->getMessage()
 
