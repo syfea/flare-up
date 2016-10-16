@@ -41,7 +41,6 @@
                         <span class="news-month"><a href="javascript:void(0);"><i class="fa fa-clock-o"></i> {{ article.publishedAt|date('d M Y H:i') }}</a></span>
                         <span class="news-comment"><a href="javascript:void(0);" title="{{ 'Average time spent' }}"><i class="fa fa-clock-o"></i> {{ article.analytics['avgTimeOnSite']|number_format(0, ',', ' m ') }}</a></span>
                         <span class="news-comment"><a href="javascript:void(0);" title="{{ 'Number visitor' }}"><i class="fa fa-users"></i> {{ article.analytics['users'] }}</a></span>
-                        <span class="news-view"><a href="javascript:void(0);" title="{{ 'Number visit' }}"><i class="fa fa-eye"></i> {{ article.analytics['pageViews'] }}</a></span>
                     </div>
                 </div>
             </div>
