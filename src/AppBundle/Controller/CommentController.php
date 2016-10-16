@@ -75,7 +75,7 @@ class CommentController extends Controller
                                 array(
                                     'name' => $comment->getUsername(),
                                     'url' => $url,
-                                    'urlArticle' => $request->server->get('HTTP_HOST').'/'.$article->getUrl(),
+                                    'urlArticle' => $request->server->get('HTTP_HOST').$article->getUrl(),
                                     'nameArticle' => $article->getTitle(),
                                     'message' => $comment->getMessage()
 
@@ -100,7 +100,7 @@ class CommentController extends Controller
                                 array(
                                     'name' => $comment->getUsername(),
                                     'url' => $url,
-                                    'urlArticle' => $request->server->get('HTTP_HOST').'/'.$article->getUrl(),
+                                    'urlArticle' => $request->server->get('HTTP_HOST').$article->getUrl(),
                                     'nameArticle' => $article->getTitle(),
                                     'message' => $comment->getMessage()
 
