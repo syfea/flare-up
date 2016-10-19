@@ -40,6 +40,25 @@ class CommentController extends Controller
                 ->getRepository('AppBundle:Article')
                 ->find($request->request->get('article_id'));
 
+                // followers
+                $laReceivers = array();
+                foreach ($article->getComments() as $comment) {
+                    $laReceivers[] = $comment->getEmail();
+                }
+
+                // sent mail for the admins
+                $users = $this->getDoctrine()
+                    ->getRepository('AppBundle:User')
+                    ->fetchByRoles(array('ROLE_SUPER_ADMIN'));
+                foreach ($users as $user) {
+                    $laReceivers[] = $user->getEmail();
+                }
+
+                //author
+                $laReceivers[] = $article->getUser()->getEmail();
+
+                $laReceivers = array_unique ($laReceivers);
+
                 $comment = new Comment();
                 $comment->setArticle($article);
                 $comment->setUsername($request->request->get('username'));
@@ -54,21 +73,12 @@ class CommentController extends Controller
                 $em->persist($comment);
                 $em->flush();
 
-                // sent mail for the admins
-                $users = $this->getDoctrine()
-                    ->getRepository('AppBundle:User')
-                    ->fetchByRoles(array('ROLE_SUPER_ADMIN'));
-
-                $sendAutor = false;
-                foreach ($users as $user) {
-                    if ($article->getUser()->getEmail() == $user->getEmail()) {
-                        $sendAutor = true;
-                    }
+                foreach ($laReceivers as $receiver) {
                     $message = \Swift_Message::newInstance();
                     $url = $message->embed(\Swift_Image::fromPath('bundles/app/images/logo_233.png'));
                     $message->setSubject('Commentaire - Flare Up')
                         ->setFrom('flareup42@gmail.com')
-                        ->setTo($user->getEmail())
+                        ->setTo($receiver)
                         ->setBody(
                             $this->renderView(
                                 'Emails/comment.html.twig',
@@ -86,32 +96,6 @@ class CommentController extends Controller
                     ;
                     $this->get('mailer')->send($message);
                 }
-
-                // sent mail for the author
-                if ($sendAutor) {
-                    $message = \Swift_Message::newInstance();
-                    $url = $message->embed(\Swift_Image::fromPath('bundles/app/images/logo_233.png'));
-                    $message->setSubject('Commentaire - Flare Up')
-                        ->setFrom('flareup42@gmail.com')
-                        ->setTo($article->getUser()->getEmail())
-                        ->setBody(
-                            $this->renderView(
-                                'Emails/comment.html.twig',
-                                array(
-                                    'name' => $comment->getUsername(),
-                                    'url' => $url,
-                                    'urlArticle' => $request->server->get('HTTP_HOST').$article->getUrl(),
-                                    'nameArticle' => $article->getTitle(),
-                                    'message' => $comment->getMessage()
-
-                                )
-                            ),
-                            'text/html'
-                        )
-                    ;
-                    $this->get('mailer')->send($message);
-                }
-
                 $request->getSession()->getFlashBag()->add('notice', $this->get('translator')->trans('Your comment is created'));
             } else {
                 $request->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('Your comment is created'));
