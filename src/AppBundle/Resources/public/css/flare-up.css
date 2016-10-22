@@ -493,6 +493,9 @@ li.logo-title {
 .contact-detail h2 {
     color: #ffffff;
 }
+.camera_caption {
+    top: 0;
+}
 
 @media (min-width:320px) and (max-width: 1280px) {
     .logo > a {

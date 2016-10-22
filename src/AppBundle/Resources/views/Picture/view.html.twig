@@ -1,0 +1,55 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/tinymce/tinymce.min.js') }}"></script>
+    {{ form_javascript(form) }}
+{% endblock %}
+
+{% block content %}
+    <div class="mdl-card mdl-shadow--2dp picture-form" action="#">
+        <div class="mdl-card__title">
+            <h2>{{ 'Picture'|trans }}</h2>
+            <div class="mdl-card__subtitle">{{ 'Please complete the form'|trans }}</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+            {{ form_errors(form) }}
+            <div class="form__picture">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form_widget(form.title, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                        {{ form_label(form.title, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                    </div>
+                </div>
+
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form_widget(form.comment, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                        {{ form_label(form.comment, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                    </div>
+                </div>
+
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form_widget(form.picture, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                        {{ form_label(form.picture, null, {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <a href="{{ asset('uploads/picture/' ~ picture.picture) }}">
+                            <img src="{{ asset('uploads/picture/'~picture.picture|e) }}" class="vignet-bulle" alt="" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="form__action">
+                    {{ form_widget(form.save, {'attr': {'class': 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored', 'id': 'submit_button'}}) }}
+                </div>
+            </div>
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block content %}
+    <div class="mdl-card mdl-shadow--2dp employer-form" action="#">
+        <div class="mdl-card__title">
+            <h2>{{ 'Delete article'|trans }}</h2>
+            <div class="mdl-card__subtitle">{{ picture.title }}</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+
+            <div class="form__article">
+                {%  if picture.status == 'publish' %}
+                    <h3>{{ 'Can not delete this article., because he is publish'| trans }}</h3>
+                    <p>- <a href="{{ asset('uploads/picture/' ~ picture.picture) }}">{{ picture.id }} {{ picture.title }}</a></p>
+                {% else %}
+                    <h3>{{ 'Do you want really delete this picture ?'|trans }}</h3>
+                    <p>- <a href="{{ asset('uploads/picture/' ~ picture.picture) }}">{{ picture.id }} {{ picture.title }}</a></p>
+                    <form method="POST" id="form" action="#">
+                        <input type="hidden" name="action_value" id="action_value" value="" />
+                        <input id="delete-btn-yes" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-upgraded=",MaterialButton" type="button" name="btn-yes" value="{{ 'YES' | trans }}" />
+                        <input id="delete-btn-no" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored " data-upgraded=",MaterialButton" type="button" name="btn-no" value="{{ 'NO' | trans }}" />
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

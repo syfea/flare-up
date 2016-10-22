@@ -1,0 +1,88 @@
+{% extends 'AppBundle::layout-bo.html.twig' %}
+
+{% block content %}
+    <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+
+            <div class="mdl-cell mdl-cell--11-col-desktop mdl-cell--11-col-tablet mdl-cell--4-col-phone ">
+                <div class="mdl-card__title" style="position: relative">
+                    <h2 class="mdl-card__title-text">{{ 'Picture list' }}</h2>
+                    <a href="{{ path('app_backofficebundle_picture_create') }}" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored btn-floating" style="position: absolute; display: inline-block; z-index: 2; right: -7px; top: 40px">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp projects-table">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Title'|trans }}</th>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <th class="mdl-data-table__cell--non-numeric">{{ 'Author'|trans }}</th>
+                        {% endif %}
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Published '|trans }}</th>
+                        <th class="mdl-data-table__cell--non-numeric">{{ 'Action'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for picture in pictures %}
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {{ picture.title | slice(0, 60) }}
+                            </td>
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <td class="mdl-data-table__cell--non-numeric">
+                                    {{ picture.user.username }}
+                                </td>
+                            {% endif %}
+                            <td class="mdl-data-table__cell--non-numeric">
+                                {% if picture.publishedAt is null %}
+                                    {{ picture.status }}
+                                {% else %}
+                                    {{ picture.publishedAt|date('d/m/Y') }} à {{ picture.publishedAt|date('H:i') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <a href="{{ path('app_backofficebundle_picture_update', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Update picture' }}">
+                                        <i class="material-icons">update</i>
+                                    </a>
+                                    {% if picture.status == 'wait' %}
+                                        <a href="{{ path('app_backofficebundle_picture_publish', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Publish picture' }}">
+                                            <i class="material-icons">publish</i>
+                                        </a>
+                                        <a href="{{ path('app_backofficebundle_picture_delete', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Delete picture' }}">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    {% elseif picture.status == 'publish' %}
+                                        <a href="{{ path('app_backofficebundle_picture_publish', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Unpublish picture' }}">
+                                            <i class="material-icons">vertical_align_bottom</i>
+                                        </a>
+                                    {% elseif picture.status == 'draft' %}
+                                        <a href="{{ path('app_backofficebundle_picture_ask', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Request publication' }}">
+                                            <i class="material-icons">touch_app</i>
+                                        </a>
+                                        <a href="{{ path('app_backofficebundle_picture_delete', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Delete picture' }}">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    {% endif %}
+                                {%  else %}
+                                    {% if picture.status == 'draft' %}
+                                        <a href="{{ path('app_backofficebundle_picture_update', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Update picture' }}">
+                                            <i class="material-icons">update</i>
+                                        </a>
+                                        <a href="{{ path('app_backofficebundle_picture_ask', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                                            <i class="material-icons">touch_app</i>
+                                        </a>
+                                        <a href="{{ path('app_backofficebundle_picture_delete', {'id': picture.id} ) }}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" title="{{ 'Delete picture' }}">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

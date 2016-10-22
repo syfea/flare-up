@@ -1,0 +1,106 @@
+
+<div class="col l9 col m12 col s12">
+    <!-- Thumbnail Slider -->
+    <div class="thumbnail-slider z-depth-1">
+        <!-- Thumbnail Slider Category -->
+        {#<ul class="tabs">#}
+            {#<li class="tab"><a class="active" href="#News-category1">{{ 'Pictures'|trans }}</a></li>#}
+        {#</ul>#}
+        <!-- Thumbnail Slider 1 -->
+        <div id="News-category1">
+            <div class="camera_wrap camera_magenta_skin" id="camera_wrap_1">
+                {% for picture in pictures %}
+                    <div data-thumb="{{ asset('uploads/picture/'~picture.picture|e) }}" data-src="{{ asset('uploads/picture/'~picture.picture|e) }}">
+                        <div class="camera_caption fadeFromBottom">{{ picture.title  }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{#
+
+
+<div class="col l9 col m12 col s12">
+    <!-- Thumbnail Slider -->
+    <div class="thumbnail-slider z-depth-1">
+        <!-- Thumbnail Slider Category -->
+        <ul style="width: 100%;" class="tabs">
+            <li style="width: 100%;" class="tab"><a class="active" href="#News-category1">{{ 'Pictures'|trans }}</a></li>
+            #}
+{#<li style="width: 20%;" class="tab"><a href="#News-category2">Snapshot</a></li>
+            <li style="width: 20%;" class="tab"><a href="#News-category3">Terrorist Attack Donbass</a></li>
+            <li style="width: 20%;" class="tab"><a href="#News-category4">Prince Charles and Camilla visit the U.S.</a></li>
+            <li style="width: 20%;" class="tab"><a href="#News-category5">Your Take: Readers Photos of the Aurora Borealis</a></li>#}{#
+
+            <div style="right: 742px; left: 0px;" class="indicator"></div>
+        </ul>
+        <!-- Thumbnail Slider 1 -->
+        <div id="News-category1">
+            <div style="display: block; height: 520px; margin-bottom: 66px;" class="camera_wrap camera_magenta_skin" id="camera_wrap_1">
+                <div class="camera_fakehover">
+                    <div class="camera_src camerastarted">
+                        {% for picture in pictures %}
+                            <div data-thumb="{{ asset('uploads/picture/'~picture.picture|e) }}" data-src="{{ asset('uploads/picture/'~picture.picture|e) }}"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="camera_target">
+                        <div class="cameraCont">
+                            {% for picture in pictures %}
+                                <div style="visibility: visible; display: none; z-index: 1;" class="cameraSlide cameraSlide_{{ picture.id }}">
+                                    <img data-portrait="" data-alignment="" style="visibility: visible; height: 618px; margin-left: 0px; margin-top: -49px; position: absolute; width: 927px;" class="imgLoaded" src="{{ asset('uploads/picture/'~picture.picture|e) }}" height="1000" width="1500">
+                                    <div style="width: 927px; height: 520px;" class="camerarelative"></div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="camera_overlayer"></div>
+                    <div class="camera_target_content">
+                        <div class="cameraContents">
+                            <div style="display: none;" class="cameraContent">
+                                <div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div>
+                                </div>
+                            </div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: block;" class="cameraContent cameracurrent"><div style="visibility: visible; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div>
+                            </div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                            <div style="display: none;" class="cameraContent"><div style="visibility: hidden; opacity: 1; bottom: 0px;" class="camera_caption fadeFromBottom"><div></div></div></div>
+                        </div>
+                    </div>
+                    <div style="top: auto; height: 7px;" class="camera_bar"><span style="opacity: 0.8; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; background-color: rgb(34, 34, 34);" class="camera_bar_cont"><span style="opacity: 0; position: absolute; background-color: rgb(238, 238, 238); left: 0px; right: 0px; top: 2px; bottom: 2px; display: block;" id="pie_0"></span></span></div>
+                    <div style="opacity: 0;" class="camera_prev"><span><i class="fa fa-chevron-left"></i></span></div>
+                    <div style="opacity: 0;" class="camera_next"><span><i class="fa fa-chevron-right"></i></span></div>
+                </div>
+                <div>
+                    <div class="camera_thumbs">
+                        <div>
+                            <div class="camera_command_wrap">
+                                <div class="camera_prevThumbs hideNav"><div></div></div>
+                                <div class="camera_nextThumbs hideNav"><div></div></div>
+                                <div style="visibility: visible;" class="camera_thumbs_cont">
+                                    <div>
+                                        <ul style="width: 824px; margin-left: auto; margin-right: auto; margin-top: 0px;">
+                                            {% for picture in pictures %}
+                                                <li class="pix_thumb pix_thumb_{{ picture.id }} camera_visThumb"><img style="opacity: 0.5;" class="camera_thumb" src="{{ asset('uploads/picture/'~picture.picture|e) }}"></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none; visibility: visible;" class="camera_loader"></div></div>
+        </div>
+    </div>
+</div>
+#}

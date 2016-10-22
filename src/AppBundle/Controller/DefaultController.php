@@ -135,4 +135,15 @@ class DefaultController extends Controller
             'parameter' => $parameter
         ));
     }
+
+    public function sliderPicturesAction()
+    {
+        $pictures = $this->getDoctrine()
+            ->getRepository('AppBundle:Picture')
+            ->getLastPosted(12);
+
+        return $this->render('AppBundle:Default:sliderPictures.html.twig', array(
+            'pictures' => $pictures
+        ));
+    }
 }

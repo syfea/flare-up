@@ -83,3 +83,27 @@ app_backofficebundle_contact_list:
 app_backofficebundle_contact_view:
   path: /contact/{id}/read
   defaults: { _controller: "AppBundle:Contact:read" }
+
+app_backofficebundle_picture_index:
+    path: /pictures
+    defaults: { _controller: "AppBundle:Picture:index" }
+
+app_backofficebundle_picture_create:
+    path: /picture/create
+    defaults: { _controller: "AppBundle:Picture:create" }
+
+app_backofficebundle_picture_update:
+    path: /picture/{id}/update
+    defaults: { _controller: "AppBundle:Picture:update" }
+
+app_backofficebundle_picture_delete:
+    path: /picture/{id}/delete
+    defaults: { _controller: "AppBundle:Picture:delete" }
+
+app_backofficebundle_picture_publish:
+    path: /picture/{id}/publish
+    defaults: { _controller: "AppBundle:Picture:publish" }
+
+app_backofficebundle_picture_ask:
+    path: /picture/{id}/ask
+    defaults: { _controller: "AppBundle:Picture:ask" }

@@ -104,5 +104,12 @@ $(document).ready(function() {
 
         return false;
     });
+    
+    $('#camera_wrap_1').camera({
+        height: '520px',
+        loader: 'bar',
+        pagination: false,
+        thumbnails: true
+    });
 
 });
