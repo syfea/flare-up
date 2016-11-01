@@ -14,7 +14,7 @@ class PictureType extends AbstractType
     {
         $builder
             ->add('title', 'text')
-            ->add('comment', 'text')
+            ->add('comment', 'textarea')
             ->add('picture', 'file', array('data_class' => null, 'required' => false))
             ->add('save', 'submit');
     }

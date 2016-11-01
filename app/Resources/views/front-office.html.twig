@@ -15,6 +15,7 @@
         'bundles/app/css/font-awesome.min.css'
         'bundles/app/css/pgwslider.css'
         'bundles/app/css/camera.css'
+        'bundles/app/css/jquery.fancybox-2.1.5.css'
         'bundles/app/css/flare-up.css'
         'bundles/app/font/*' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
@@ -23,6 +24,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
     {% endblock %}
     {% block metaOG %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/images/favicon.ico') }}" />
 </head>
 <body>
     {% block header %}{% endblock %}
@@ -56,6 +58,7 @@
     'bundles/app/js/jquery.liquid-slider.js'
     'bundles/app/js/camera.js'
     'bundles/app/js/init.js'
+    'bundles/app/js/jquery.fancybox-2.1.5.js'
     'bundles/app/js/flare-up.js'%}
     <script src="{{ asset_url }}"></script>
     <script async defer src="//assets.pinterest.com/js/pinit.js"></script>

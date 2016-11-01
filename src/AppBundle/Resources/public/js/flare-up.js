@@ -19,3 +19,14 @@ jQuery(".listview-btn").on('click', function() {
     jQuery("#gridview i").removeClass('active');
     jQuery("#listview i").addClass('active');
 });
+$(document).ready(function() {
+    $(".fancybox-home").fancybox({
+        prevEffect		: 'none',
+        nextEffect		: 'none',
+        closeBtn		: true,
+        helpers		: {
+            title	: { type : 'inside' },
+            buttons	: {}
+        }
+    });
+});

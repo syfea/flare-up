@@ -11,7 +11,9 @@
             <div class="camera_wrap camera_magenta_skin" id="camera_wrap_1">
                 {% for picture in pictures %}
                     <div data-thumb="{{ asset('uploads/picture/'~picture.picture|e) }}" data-src="{{ asset('uploads/picture/'~picture.picture|e) }}">
-                        <div class="camera_caption fadeFromBottom">{{ picture.title  }}</div>
+                        <div class="camera_caption fadeFromBottom">{{ picture.title  }}
+                            <a class="fancybox-home" rel="group" href="{{ asset('uploads/picture/'~picture.picture|e) }}" title="{{ picture.comment |nl2br }}"></a>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
