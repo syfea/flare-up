@@ -718,12 +718,12 @@
             $(nextNav,wrap).animate({opacity:0},0);
             $(commands,wrap).animate({opacity:0},0);
             if(isMobile()){
-                fakeHover.live('vmouseover',function(){
+                fakeHover.on('vmouseover',function(){
                     $(prevNav,wrap).animate({opacity:1},200);
                     $(nextNav,wrap).animate({opacity:1},200);
                     $(commands,wrap).animate({opacity:1},200);
                 });
-                fakeHover.live('vmouseout',function(){
+                fakeHover.on('vmouseout',function(){
                     $(prevNav,wrap).delay(500).animate({opacity:0},200);
                     $(nextNav,wrap).delay(500).animate({opacity:0},200);
                     $(commands,wrap).delay(500).animate({opacity:0},200);
